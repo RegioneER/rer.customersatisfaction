@@ -4,9 +4,15 @@
   i18n_domain="plone">
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
-
-
+    <permission
+        id="rer.customersatisfaction.AddCustomerSatisfactionVote"
+        title="rer.customersatisfaction: Add Customer Satisfaction Vote"
+        />
+    <permission
+      id="rer.customersatisfaction.ManageCustomerSatisfaction"
+      title="rer.customersatisfaction: Manage Customer Satisfaction"
+     />
+    
   </configure>
 
 </configure>

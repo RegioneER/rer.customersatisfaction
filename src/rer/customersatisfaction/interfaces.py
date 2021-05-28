@@ -2,6 +2,11 @@
 """Module where all interfaces, events and exceptions live."""
 
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from zope.interface import Interface
+
+
+class ICustomerSatisfactionStore(Interface):
+    """Marker interface"""
 
 
 class IRerCustomersatisfactionLayer(IDefaultBrowserLayer):

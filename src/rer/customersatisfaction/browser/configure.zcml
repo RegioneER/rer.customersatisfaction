@@ -18,4 +18,19 @@
       directory="static"
       />
 
+    <browser:viewlet
+      name="rer-customersatisfaction"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      template="customer_satisfaction_viewlet.pt"
+      class=".viewlets.CustomerSatisfactionViewlet"
+      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+      permission="zope2.View"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+    <browser:page
+      for="*"
+      name="prova"
+      class=".prova.View"
+      permission="zope2.View"
+    />
 </configure>

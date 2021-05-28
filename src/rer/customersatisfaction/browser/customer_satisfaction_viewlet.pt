@@ -1,0 +1,20 @@
+<div id="customer-satisfaction">
+    <form action="${context/absolute_url}/@customer-satisfaction-add" method="POST">
+        <div class="field">
+            <p>Questa pagina ti è stata utile?</p>
+            <div>
+                <input type="radio" id="si" name="vote" value="1">
+                <label for="si">Sì</label>
+            </div>
+            <div>
+                <input type="radio" id="no" name="vote" value="-1">
+                <label for="no">No</label>
+            </div>
+        </div>
+        <textarea title="Spiegaci perché e aiutaci e migliorare la qualità del sito"
+                  placeholder="Spiegaci perché e aiutaci e migliorare la qualità del sito"
+                  name="comment" />
+        <tal:block tal:replace="structure context/@@captcha/image_tag"/>
+        <button class="context">Invia il tuo commento</button>
+    </form>
+</div>

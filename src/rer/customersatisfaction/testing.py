@@ -7,9 +7,14 @@ from plone.app.testing import (
     IntegrationTesting,
     PloneSandboxLayer,
 )
+from plone.restapi.testing import PloneRestApiDXLayer
 from plone.testing import z2
 
+import collective.MockMailHost
 import rer.customersatisfaction
+import collective.recaptcha
+import souper.plone
+import plone.restapi
 
 
 class RerCustomersatisfactionLayer(PloneSandboxLayer):
@@ -20,12 +25,14 @@ class RerCustomersatisfactionLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import plone.restapi
+
+        self.loadZCML(package=collective.recaptcha)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=rer.customersatisfaction)
+        self.loadZCML(package=souper.plone)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'rer.customersatisfaction:default')
+        applyProfile(portal, "rer.customersatisfaction:default")
 
 
 RER_CUSTOMERSATISFACTION_FIXTURE = RerCustomersatisfactionLayer()
@@ -33,21 +40,40 @@ RER_CUSTOMERSATISFACTION_FIXTURE = RerCustomersatisfactionLayer()
 
 RER_CUSTOMERSATISFACTION_INTEGRATION_TESTING = IntegrationTesting(
     bases=(RER_CUSTOMERSATISFACTION_FIXTURE,),
-    name='RerCustomersatisfactionLayer:IntegrationTesting',
+    name="RerCustomersatisfactionLayer:IntegrationTesting",
 )
 
 
 RER_CUSTOMERSATISFACTION_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(RER_CUSTOMERSATISFACTION_FIXTURE,),
-    name='RerCustomersatisfactionLayer:FunctionalTesting',
+    name="RerCustomersatisfactionLayer:FunctionalTesting",
 )
 
 
-RER_CUSTOMERSATISFACTION_ACCEPTANCE_TESTING = FunctionalTesting(
-    bases=(
-        RER_CUSTOMERSATISFACTION_FIXTURE,
-        REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE,
-    ),
-    name='RerCustomersatisfactionLayer:AcceptanceTesting',
+class RerCustomersatisfactionLayerApi(PloneRestApiDXLayer):
+
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
+
+    def setUpZope(self, app, configurationContext):
+        super(RerCustomersatisfactionLayerApi, self).setUpZope(
+            app, configurationContext
+        )
+        self.loadZCML(package=collective.recaptcha)
+        self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=rer.customersatisfaction)
+        self.loadZCML(package=souper.plone)
+
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, "rer.customersatisfaction:default")
+
+
+RER_CUSTOMERSATISFACTION_API_FIXTURE = RerCustomersatisfactionLayerApi()
+RER_CUSTOMERSATISFACTION_API_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(RER_CUSTOMERSATISFACTION_API_FIXTURE,),
+    name="RerCustomersatisfactionLayerApi:Integration",
+)
+
+RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(RER_CUSTOMERSATISFACTION_API_FIXTURE, z2.ZSERVER_FIXTURE),
+    name="RerCustomersatisfactionLayerApi:Functional",
 )

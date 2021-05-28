@@ -7,15 +7,11 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <!--
-    Be careful if you use general includeDependencies, it can have side effects!
-    Better import explicit packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
-
-  <include package=".browser" />
-
   <include file="permissions.zcml" />
+  <include package=".browser" />
+  <include package=".storage" />
+  <include package=".restapi" />
+
 
   <genericsetup:registerProfile
       name="default"
