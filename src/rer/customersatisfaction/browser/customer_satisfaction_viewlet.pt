@@ -1,20 +1,24 @@
 <div id="customer-satisfaction">
     <form action="${context/absolute_url}/@customer-satisfaction-add" method="POST">
         <div class="field">
-            <p>Questa pagina ti è stata utile?</p>
-            <div>
-                <input type="radio" id="si" name="vote" value="1">
-                <label for="si">Sì</label>
-            </div>
-            <div>
-                <input type="radio" id="no" name="vote" value="-1">
-                <label for="no">No</label>
+            <h2 id="cs-form-radiogroup-label">Questa pagina ti è stata utile?</h2>
+            <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
+                <label class="plone-btn plone-btn-default" for="si">
+                    <input type="radio" id="si" name="vote" value="1" aria-controls="cs-collapsible-form-area" class="sr-only">
+                    Sì
+                </label>
+                <label class="plone-btn plone-btn-default" for="no">
+                    <input type="radio" id="no" name="vote" value="-1" aria-controls="cs-collapsible-form-area" class="sr-only">
+                    No
+                </label>
             </div>
         </div>
-        <textarea title="Spiegaci perché e aiutaci e migliorare la qualità del sito"
-                  placeholder="Spiegaci perché e aiutaci e migliorare la qualità del sito"
-                  name="comment" />
-        <tal:block tal:replace="structure context/@@captcha/image_tag"/>
-        <button class="context">Invia il tuo commento</button>
+        <div id="cs-collapsible-form-area" role="region" style="transition: 0.2s max-height ease; max-height: 0; overflow: hidden;">
+            <textarea title="Spiegaci perché e aiutaci e migliorare la qualità del sito"
+                      placeholder="Spiegaci perché e aiutaci e migliorare la qualità del sito"
+                      name="comment" />
+            <tal:block tal:replace="structure context/@@captcha/image_tag"/>
+            <button class="context">Invia il tuo commento</button>
+        </div>
     </form>
 </div>

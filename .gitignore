@@ -30,4 +30,5 @@ report.html
 .vscode/
 .tox/
 reports/
+pyvenv.cfg
 # excludes

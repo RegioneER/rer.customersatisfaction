@@ -1,43 +1,103 @@
-require([
-    'jquery',
-  ], function($, otherLibrary) {
-    'use strict';
+require(["jquery"], function ($) {
+  "use strict";
 
-    const add_error_message = (err) => {
-        const resp = err.responseJSON;
-        if (!resp) {
-            return;
-        }
-        $( "#customer-satisfaction" ).prepend('<div class="customer-satisfaction-message portalMessage error"><strong>' + resp.message + '</strong></div>')
+  function addErrorMessage(err) {
+    const resp = err.responseJSON;
+    if (!resp) {
+      return;
     }
-    const add_success_message = () => {
-        $( "#customer-satisfaction" ).prepend('<div class="customer-satisfaction-message portalMessage info"><strong>Grazie per il tuo feedbak</strong></div>')
-    }
-    const clean_message = () => {
-        $( ".customer-satisfaction-message" ).remove();
+    $("#customer-satisfaction").prepend(
+      '<div class="customer-satisfaction-message portalMessage error" role="alert" style="display: flex; align-items: center"><strong>' +
+        resp.message +
+        '</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio" style="margin-left: auto">&times;</button></div>'
+    );
+  }
 
-    }
+  function addSuccessMessage() {
+    $("#customer-satisfaction").prepend(
+      '<div class="customer-satisfaction-message portalMessage info" role="alert" style="display: flex; align-items: center"><strong>Grazie per il tuo feedbak</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio" style="margin-left: auto">&times;</button></div>'
+    );
+    cleanVotes();
+    expandCollapse(false);
+  }
 
-    $("#customer-satisfaction form").on( "submit", function( event ) {
-        const form = $(this);
-        event.preventDefault();
-        clean_message();
-        let data={};
-        form.serializeArray().forEach(param => data[param.name] = param.value);
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: form.attr('action'),
-            data: JSON.stringify(data),
-            headers:{'Accept': 'application/json', 'Content-Type': 'application/json'},
-            processData: false,
-            success: function(msg) {
-                form.trigger("reset");
-                add_success_message();
-            },
-            error: function(err) {
-                add_error_message(err);
-            }
-        });
+  function cleanMessage() {
+    $(".customer-satisfaction-message").remove();
+  }
+
+  function cleanVotes() {
+    $("#customer-satisfaction form label").each(function () {
+      $(this).removeClass("active");
+      $(this).find("input[type='radio']").prop("checked", false);
+    });
+  }
+
+  function setVoteActive(label) {
+    label.addClass("active");
+    label.find("input[type='radio']").prop("checked", true);
+    label.find("input[type='radio']").select();
+  }
+
+  function expandCollapse(expand) {
+    var collapse = $("#cs-collapsible-form-area");
+    if (expand) {
+      collapse.css("max-height", "300px").attr("aria-expanded", true);
+    } else {
+      collapse.css("max-height", "0").attr("aria-expanded", false);
+    }
+  }
+
+  $("#customer-satisfaction form input[type='radio']").on(
+    "click",
+    function (event) {
+      var currentLabel = $(event.target).closest("label");
+      if (currentLabel && !currentLabel.hasClass("active")) {
+        cleanVotes();
+        setVoteActive(currentLabel);
+        expandCollapse(true);
+      } else {
+        cleanVotes();
+        expandCollapse(false);
+      }
+    }
+  );
+
+  $("#customer-satisfaction form").on("submit", function (event) {
+    var form = $(this);
+    event.preventDefault();
+    cleanMessage();
+    var data = {};
+    form
+      .find(":input")
+      .serializeArray()
+      .forEach(function (param) {
+        data[param.name] = param.value;
+      });
+    $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: form.attr("action"),
+      data: JSON.stringify(data),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      processData: false,
+      success: function (_msg) {
+        form.trigger("reset");
+        addSuccessMessage();
+      },
+      error: function (err) {
+        addErrorMessage(err);
+      },
     });
   });
+
+  $("#customer-satisfaction").on(
+    "click",
+    ".customer-satisfaction-message button.delete-message",
+    function () {
+      cleanMessage();
+    }
+  );
+});
