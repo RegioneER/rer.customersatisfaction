@@ -1,0 +1,18 @@
+#customer-satisfaction .customer-satisfaction-message {
+  display: flex;
+  align-items: center;
+}
+
+#customer-satisfaction .customer-satisfaction-message button {
+  margin-left: auto;
+}
+
+#cs-collapsible-form-area {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.2s max-height ease;
+}
+
+#cs-collapsible-form-area[aria-expanded="true"] {
+  max-height: 600px;
+}

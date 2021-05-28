@@ -13,12 +13,12 @@
                 </label>
             </div>
         </div>
-        <div id="cs-collapsible-form-area" role="region" style="transition: 0.2s max-height ease; max-height: 0; overflow: hidden;">
+        <div id="cs-collapsible-form-area" role="region" aria-expanded="false">
             <textarea title="Spiegaci perché e aiutaci e migliorare la qualità del sito"
                       placeholder="Spiegaci perché e aiutaci e migliorare la qualità del sito"
                       name="comment" />
             <tal:block tal:replace="structure context/@@captcha/image_tag"/>
-            <button class="context">Invia il tuo commento</button>
+            <button class="plone-btn plone-btn-primary" type="submit">Invia il tuo commento</button>
         </div>
     </form>
 </div>
