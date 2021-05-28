@@ -7,6 +7,10 @@
   margin-left: auto;
 }
 
+#customer-satisfaction form .g-recaptcha {
+  margin: 1rem 0;
+}
+
 #cs-collapsible-form-area {
   max-height: 0;
   overflow: hidden;
