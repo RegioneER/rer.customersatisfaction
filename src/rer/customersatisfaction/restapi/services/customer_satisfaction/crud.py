@@ -32,9 +32,21 @@ class CustomerSatisfactionAdd(DataAdd):
         check all required fields and parameters
         """
         for field in ["vote"]:
-            if not form_data.get(field, ""):
+            value = form_data.get(field, "")
+            if not value:
                 raise BadRequest(
                     "Campo obbligatorio mancante: {}".format(field)
+                )
+            try:
+                int_value = int(value)
+                if int_value not in [1, -1]:
+                    raise BadRequest(
+                        "Il voto deve essere un valore valido: 1 o -1."
+                    )
+            except Exception as e:
+                logger.exception(e)
+                raise BadRequest(
+                    "Il voto deve essere un valore valido: 1 o -1."
                 )
         self.check_recaptcha(form_data)
 
@@ -68,6 +80,9 @@ class CustomerSatisfactionAdd(DataAdd):
         context = context_state.canonical_object()
         data["uid"] = context.UID()
         data["title"] = context.Title()
+        data["vote"] = int(data["vote"])
+        if "g-recaptcha-response" in data:
+            del data["g-recaptcha-response"]
         return data
 
 

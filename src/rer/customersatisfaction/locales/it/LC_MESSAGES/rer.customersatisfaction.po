@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -15,64 +12,64 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: rer.customersatisfaction\n"
+"Domain: DOMAIN\n"
 
 #: rer/customersatisfaction/configure.zcml:23
 msgid "Installs the rer.customersatisfaction add-on."
-msgstr ""
+msgstr "Installa rer.customersatisfaction"
 
 #: rer/customersatisfaction/browser/reviews_view.pt:27
 msgid "Reviews"
-msgstr ""
+msgstr "Valutazioni"
 
 #: rer/customersatisfaction/configure.zcml:32
 msgid "Uninstalls the rer.customersatisfaction add-on."
-msgstr ""
+msgstr "Disinstalla rer.customersatisfaction"
 
 #: rer/customersatisfaction/configure.zcml:23
 msgid "rer.customersatisfaction"
-msgstr ""
+msgstr "rer.customersatisfaction"
 
 #: rer/customersatisfaction/configure.zcml:32
 msgid "rer.customersatisfaction (uninstall)"
-msgstr ""
+msgstr "rer.customersatisfaction (disinstalla)"
 
 #. Default: "Comments"
 #: rer/customersatisfaction/browser/reviews_view.pt:35
 msgid "reviews_view_comments_header"
-msgstr ""
+msgstr "Commenti"
 
 #. Default: "${counter} items received a review."
 #: rer/customersatisfaction/browser/reviews_view.pt:21
 msgid "reviews_view_count"
-msgstr ""
+msgstr "${counter} contenuti che hanno ricevuto una valutazione."
 
 #. Default: "Last voted"
 #: rer/customersatisfaction/browser/reviews_view.pt:34
 msgid "reviews_view_date_header"
-msgstr ""
+msgstr "Ultimo voto"
 
 #. Default: "Download as csv"
 #: rer/customersatisfaction/browser/reviews_view.pt:23
 msgid "reviews_view_download_link"
-msgstr ""
+msgstr "Scarica come csv"
 
 #. Default: "Negative votes"
 #: rer/customersatisfaction/browser/reviews_view.pt:33
 msgid "reviews_view_nok_header"
-msgstr ""
+msgstr "Voti negativi"
 
 #. Default: "Positive votes"
 #: rer/customersatisfaction/browser/reviews_view.pt:32
 msgid "reviews_view_ok_header"
-msgstr ""
+msgstr "Voti positivi"
 
 #. Default: "Page"
 #: rer/customersatisfaction/browser/reviews_view.pt:31
 msgid "reviews_view_page_header"
-msgstr ""
+msgstr "Pagina"
 
 #. Default: "Site reviews"
 #: rer/customersatisfaction/browser/reviews_view.pt:15
 msgid "reviews_view_title"
-msgstr ""
+msgstr "Valutazioni del sito"

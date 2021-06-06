@@ -112,7 +112,7 @@ class CustomerSatisfactionStore(object):
             return {"error": "NotFound"}
         for k, v in data.items():
             if k not in self.fields:
-                logger.warning("[UPDATE] SKIP unkwnown field: {}".format(k))
+                logger.debug("[UPDATE] SKIP unkwnown field: {}".format(k))
 
             else:
                 record.attrs[k] = v

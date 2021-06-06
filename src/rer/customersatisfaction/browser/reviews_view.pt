@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="rer.customersatisfaction">
+
+<body>
+<metal:main
+    fill-slot="content"
+    tal:define="batch view/get_data;
+                toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+    <article id="content">
+        <h1 class="documentFirstHeading" i18n:translate="reviews_view_title">
+            Site reviews
+        </h1>
+        <div id="content-core">
+            <div class="reviews-count">
+                <p i18n:translate="reviews_view_count">
+                    <tal:count i18n:name="counter" tal:content="batch/sequence_length" /> items received a review.
+                </p>
+                <a class="context download-button"
+                   i18n:translate="reviews_view_download_link"
+                   href="${context/portal_url}/download-reviews">Download as csv</a>
+            </div>
+            <table class="listing" summary="Reviews"
+                i18n:attributes="summary">
+                <thead>
+                    <tr>
+                        <th class="nosort" i18n:translate="reviews_view_page_header">Page</th>
+                        <th class="nosort" i18n:translate="reviews_view_ok_header">Positive votes</th>
+                        <th class="nosort" i18n:translate="reviews_view_nok_header">Negative votes</th>
+                        <th class="nosort" i18n:translate="reviews_view_date_header">Last voted</th>
+                        <th class="nosort" i18n:translate="reviews_view_comments_header">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tal:block tal:repeat="item batch">
+                        <tr tal:define="oddrow repeat/item/odd;"
+                            tal:attributes="class python:oddrow and 'even' or 'odd'" >
+                        <td>
+                            <a href="${item/url}" tal:omit-tag="python: not item.get('url')">${item/title}</a>
+                        </td>
+                        <td>${item/ok}</td>
+                        <td>${item/nok}</td>
+                        <td tal:content="python:toLocalizedTime(item.get('last_date', ''), long_format=True)"></td>
+                        <td tal:content="python:len(item.get('comments', []))"></td>
+                        </tr>
+                    </tal:block>
+                </tbody>
+            </table>
+
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+        </div>
+    </article>
+</metal:main>
+
+</body>
+</html>

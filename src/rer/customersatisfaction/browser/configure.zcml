@@ -28,9 +28,18 @@
       for="plone.dexterity.interfaces.IDexterityContent"
       />
     <browser:page
-      for="*"
-      name="prova"
-      class=".prova.View"
-      permission="zope2.View"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="site-reviews"
+      class=".reviews_view.View"
+      template="reviews_view.pt"
+      permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+    />
+    <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="download-reviews"
+      class=".download_reviews.View"
+      permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
 </configure>
