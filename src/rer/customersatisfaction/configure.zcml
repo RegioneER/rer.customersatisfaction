@@ -15,7 +15,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="rer.customersatisfaction"
+      title="RER: Customer satisfaction"
       directory="profiles/default"
       description="Installs the rer.customersatisfaction add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -24,7 +24,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="rer.customersatisfaction (uninstall)"
+      title="RER: Customer satisfaction (uninstall)"
       directory="profiles/uninstall"
       description="Uninstalls the rer.customersatisfaction add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"

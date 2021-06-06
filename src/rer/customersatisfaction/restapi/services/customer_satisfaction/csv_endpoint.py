@@ -16,6 +16,10 @@ COLUMNS = [
 
 
 class CustomerSatisfactionCSVGet(DataCSVGet):
+    """
+    UNUSED RIGHT NOW
+    """
+
     type = "customer_satisfaction"
     store = ICustomerSatisfactionStore
     columns = COLUMNS

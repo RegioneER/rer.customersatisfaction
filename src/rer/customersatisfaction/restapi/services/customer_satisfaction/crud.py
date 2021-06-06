@@ -2,22 +2,13 @@
 from plone import api
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from zExceptions import BadRequest
-from rer.customersatisfaction.restapi.services.common import DataGet
 from rer.customersatisfaction.restapi.services.common import DataAdd
-from rer.customersatisfaction.restapi.services.common import DataUpdate
-from rer.customersatisfaction.restapi.services.common import DataDelete
-from rer.customersatisfaction.restapi.services.common import DataClear
 from collective.recaptcha.settings import IRecaptchaSettings
 
 import requests
 import logging
 
 logger = logging.getLogger(__name__)
-
-
-class CustomerSatisfactionGet(DataGet):
-
-    store = ICustomerSatisfactionStore
 
 
 class CustomerSatisfactionAdd(DataAdd):
@@ -84,17 +75,3 @@ class CustomerSatisfactionAdd(DataAdd):
         if "g-recaptcha-response" in data:
             del data["g-recaptcha-response"]
         return data
-
-
-class CustomerSatisfactionUpdate(DataUpdate):
-    """ Update an entry """
-
-    store = ICustomerSatisfactionStore
-
-
-class CustomerSatisfactionDelete(DataDelete):
-    store = ICustomerSatisfactionStore
-
-
-class CustomerSatisfactionClear(DataClear):
-    store = ICustomerSatisfactionStore

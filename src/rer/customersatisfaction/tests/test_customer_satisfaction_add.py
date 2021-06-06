@@ -10,11 +10,12 @@ from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
 from plone.restapi.testing import RelativeSession
+from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
+from zope.component import getUtility
 
 import transaction
 import unittest
 import requests_mock
-import json
 
 
 class TestCustomerSatisfactionAdd(unittest.TestCase):
@@ -123,12 +124,9 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
                 "g-recaptcha-response": "xyz",
             },
         )
-        self.assertEqual(
-            self.api_session.get(
-                "{}/@customer-satisfaction".format(self.portal.absolute_url())
-            ).json()["items_total"],
-            1,
-        )
+        transaction.commit()
+        tool = getUtility(ICustomerSatisfactionStore)
+        self.assertEqual(len(tool.search()), 1)
 
     @requests_mock.Mocker(real_http=True)
     def test_store_only_known_fields(self, m):
@@ -146,10 +144,10 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
                 "g-recaptcha-response": "xyz",
             },
         )
-        res = self.api_session.get(
-            "{}/@customer-satisfaction".format(self.portal.absolute_url())
-        ).json()
-        self.assertEqual(res["items_total"], 1)
-        self.assertEqual(res["items"][0].get("unknown", None), None)
-        self.assertEqual(res["items"][0].get("vote", None), 1)
-        self.assertEqual(res["items"][0].get("comment", None), "i disagree")
+        transaction.commit()
+        tool = getUtility(ICustomerSatisfactionStore)
+        res = tool.search()
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res[0]._attrs.get("unknown", None), None)
+        self.assertEqual(res[0]._attrs.get("vote", None), 1)
+        self.assertEqual(res[0]._attrs.get("comment", None), "i disagree")
