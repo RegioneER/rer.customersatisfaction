@@ -16,8 +16,9 @@
             Site reviews
         </h1>
         <div id="content-core">
-            <div class="reviews-count">
-                <p i18n:translate="reviews_view_count">
+            <div id="reviews-count">
+                <p class="counter-label"
+                   i18n:translate="reviews_view_count">
                     <tal:count i18n:name="counter" tal:content="batch/sequence_length" /> items received a review.
                 </p>
                 <a class="context download-button"

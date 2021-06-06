@@ -20,3 +20,9 @@
 #cs-collapsible-form-area[aria-expanded="true"] {
   max-height: 600px;
 }
+
+#reviews-count {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
