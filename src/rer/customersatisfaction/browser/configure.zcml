@@ -42,4 +42,12 @@
       permission="rer.customersatisfaction.ManageCustomerSatisfaction"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
+
+    <browser:page
+      name="customer-satisfaction-settings"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.CustomersatisfactionSettingsControlPanel"
+      permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+      />
 </configure>
