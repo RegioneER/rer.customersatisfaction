@@ -7,15 +7,15 @@ require(["jquery"], function ($) {
       return;
     }
     $("#customer-satisfaction").prepend(
-      '<div class="customer-satisfaction-message portalMessage error" role="alert" style="display: flex; align-items: center"><strong>' +
+      '<div class="customer-satisfaction-message portalMessage error" role="alert"><strong>' +
         resp.message +
-        '</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio" style="margin-left: auto">&times;</button></div>'
+        '</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio">&times;</button></div>'
     );
   }
 
   function addSuccessMessage() {
     $("#customer-satisfaction").prepend(
-      '<div class="customer-satisfaction-message portalMessage info" role="alert" style="display: flex; align-items: center"><strong>Grazie per il tuo feedbak</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio" style="margin-left: auto">&times;</button></div>'
+      '<div class="customer-satisfaction-message portalMessage info" role="alert"><strong>Grazie per il tuo feedbak</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio">&times;</button></div>'
     );
     cleanVotes();
     expandCollapse(false);
@@ -41,9 +41,9 @@ require(["jquery"], function ($) {
   function expandCollapse(expand) {
     var collapse = $("#cs-collapsible-form-area");
     if (expand) {
-      collapse.css("max-height", "300px").attr("aria-expanded", true);
+      collapse.attr("aria-expanded", true);
     } else {
-      collapse.css("max-height", "0").attr("aria-expanded", false);
+      collapse.attr("aria-expanded", false);
     }
   }
 

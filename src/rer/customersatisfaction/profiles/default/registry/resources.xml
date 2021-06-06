@@ -6,14 +6,16 @@
   <!-- PATTERN -->
   <records prefix="plone.resources/rer-customer-satisfaction"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-      <value key="js">++plone++rer.customersatisfaction/main.js</value>
+      <value key="js">++plone++rer.customersatisfaction/rer-customersatisfaction.js</value>
+      <value key="css">++plone++rer.customersatisfaction/rer-customersatisfaction.css</value>
   </records>
 
   <!-- BUNDLE -->
   <records prefix="plone.bundles/rer-customer-satisfaction"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++rer.customersatisfaction/main.js</value>
+    <value key="jscompilation">++plone++rer.customersatisfaction/rer-customersatisfaction.js</value>
+    <value key="csscompilation">++plone++rer.customersatisfaction/rer-customersatisfaction.css</value>
     <value key="last_compilation">2018-04-14 00:00:00</value>
     <value key="compile">True</value>
     <value key="depends">plone</value>
