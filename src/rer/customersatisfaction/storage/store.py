@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from plone import api
-from rer.customersatisfaction import _
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from souper.soup import get_soup
 from souper.soup import Record
-from zope.globalrequest import getRequest
-from zope.i18n import translate
 from zope.interface import implementer
 
 import logging
