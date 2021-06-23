@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-06 14:00+0000\n"
+"POT-Creation-Date: 2021-06-23 12:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,15 @@ msgstr ""
 msgid "Installs the rer.customersatisfaction add-on."
 msgstr "Installa rer.customersatisfaction"
 
-#: rer/customersatisfaction/browser/reviews_view.pt:27
+#: rer/customersatisfaction/configure.zcml:23
+msgid "RER: Customer satisfaction"
+msgstr ""
+
+#: rer/customersatisfaction/configure.zcml:32
+msgid "RER: Customer satisfaction (uninstall)"
+msgstr ""
+
+#: rer/customersatisfaction/browser/reviews_view.pt:28
 msgid "Reviews"
 msgstr "Valutazioni"
 
@@ -26,46 +34,43 @@ msgstr "Valutazioni"
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr "Disinstalla rer.customersatisfaction"
 
-#: rer/customersatisfaction/configure.zcml:23
-msgid "rer.customersatisfaction"
-msgstr "rer.customersatisfaction"
-
-#: rer/customersatisfaction/configure.zcml:32
-msgid "rer.customersatisfaction (uninstall)"
-msgstr "rer.customersatisfaction (disinstalla)"
+#. Default: "Unable to export data in csv. Please contact site administrator."
+#: rer/customersatisfaction/browser/download_reviews.py:23
+msgid "csd_generation_error"
+msgstr "Impossibile esportare i dati. Per favore contatta l'amministratore del sito."
 
 #. Default: "Comments"
-#: rer/customersatisfaction/browser/reviews_view.pt:35
+#: rer/customersatisfaction/browser/reviews_view.pt:36
 msgid "reviews_view_comments_header"
 msgstr "Commenti"
 
 #. Default: "${counter} items received a review."
-#: rer/customersatisfaction/browser/reviews_view.pt:21
+#: rer/customersatisfaction/browser/reviews_view.pt:22
 msgid "reviews_view_count"
 msgstr "${counter} contenuti che hanno ricevuto una valutazione."
 
 #. Default: "Last voted"
-#: rer/customersatisfaction/browser/reviews_view.pt:34
+#: rer/customersatisfaction/browser/reviews_view.pt:35
 msgid "reviews_view_date_header"
 msgstr "Ultimo voto"
 
 #. Default: "Download as csv"
-#: rer/customersatisfaction/browser/reviews_view.pt:23
+#: rer/customersatisfaction/browser/reviews_view.pt:24
 msgid "reviews_view_download_link"
 msgstr "Scarica come csv"
 
 #. Default: "Negative votes"
-#: rer/customersatisfaction/browser/reviews_view.pt:33
+#: rer/customersatisfaction/browser/reviews_view.pt:34
 msgid "reviews_view_nok_header"
 msgstr "Voti negativi"
 
 #. Default: "Positive votes"
-#: rer/customersatisfaction/browser/reviews_view.pt:32
+#: rer/customersatisfaction/browser/reviews_view.pt:33
 msgid "reviews_view_ok_header"
 msgstr "Voti positivi"
 
 #. Default: "Page"
-#: rer/customersatisfaction/browser/reviews_view.pt:31
+#: rer/customersatisfaction/browser/reviews_view.pt:32
 msgid "reviews_view_page_header"
 msgstr "Pagina"
 

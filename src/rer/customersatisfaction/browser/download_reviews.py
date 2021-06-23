@@ -3,6 +3,7 @@ from datetime import datetime
 from plone import api
 from plone.restapi.serializer.converters import json_compatible
 from Products.Five import BrowserView
+from rer.customersatisfaction import _
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from six import StringIO
 from zope.component import getUtility
