@@ -16,6 +16,20 @@ logger = logging.getLogger(__name__)
 class View(BrowserView):
     def __call__(self):
         data = self.get_data()
+        if isinstance(data, dict):
+            if data.get("error", False):
+                api.portal.show_message(
+                    message=_(
+                        "csd_generation_error",
+                        default="Unable to export data in csv. Please contact site administrator.",  # noqa
+                    ),
+                    request=self.request,
+                )
+                return self.request.response.redirect(
+                    "{0}/@@site-reviews".format(
+                        api.portal.get().absolute_url()
+                    )
+                )
         self.request.response.setHeader(
             "Content-Type", "text/comma-separated-values"
         )
@@ -49,7 +63,7 @@ class View(BrowserView):
                     v = ", ".join(v)
                 if isinstance(v, int):
                     v = str(v)
-                data[k] = json_compatible(v)
+                data[k] = json_compatible(v).encode("utf-8")
             uid = item.attrs.get("uid", "")
             if uid:
                 ref_obj = api.content.get(UID=uid)
@@ -68,4 +82,4 @@ class View(BrowserView):
                 return {"error": True}
         res = sbuf.getvalue()
         sbuf.close()
-        return res.encode()
+        return res
