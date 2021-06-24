@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="rer.customersatisfaction">
+
+<head>
+</head>
+
+<body>
+<metal:content-core fill-slot="content-core"
+  tal:define="data view/get_data;
+              toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+
+  <h2 i18n:translate="feedbacks_label">Feedbacks</h2>
+  <div class="filters">
+    <span i18n:translate="show_only_label">Show only</span>
+    <a href="${context/absolute_url}/show-feedbacks?vote=ok">
+      <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
+    </a> 
+    <a href="${context/absolute_url}/show-feedbacks?vote=nok">
+      <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
+    </a> 
+  </div>
+  <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
+
+  <div class="feedbacks-wrapper" tal:condition="data">
+    <div class="discussion">
+      <tal:feedback repeat="feedback data">
+        <div class="comment"
+          tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
+                      icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
+                      comment feedback/comment|nothing">
+          <div class="documentByLine">
+            <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
+            <div class="commentDate" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></div>
+          </div>
+          <div class="commentBody" tal:condition="comment" tal:content="comment" />
+        </div>
+      </tal:feedback>
+    </div>
+  </div>
+  
+</metal:content-core>
+</body>
+</html>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-23 12:00+0000\n"
+"POT-Creation-Date: 2021-06-24 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,55 +26,85 @@ msgstr ""
 msgid "RER: Customer satisfaction (uninstall)"
 msgstr ""
 
-#: rer/customersatisfaction/browser/reviews_view.pt:28
-msgid "Reviews"
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:18
+msgid "Tell us why and help us to improve site quality"
 msgstr ""
 
 #: rer/customersatisfaction/configure.zcml:32
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr ""
 
-#. Default: "Unable to export data in csv. Please contact site administrator."
-#: rer/customersatisfaction/browser/download_reviews.py:23
-msgid "csd_generation_error"
+msgid "comments_label"
 msgstr ""
 
-#. Default: "Comments"
-#: rer/customersatisfaction/browser/reviews_view.pt:36
-msgid "reviews_view_comments_header"
+#. Default: "Customer satisfaction"
+#: rer/customersatisfaction/browser/customer_satisfaction.pt:22
+msgid "customer_satisfaction_title_label"
 msgstr ""
 
-#. Default: "${counter} items received a review."
-#: rer/customersatisfaction/browser/reviews_view.pt:22
-msgid "reviews_view_count"
+msgid "delete_feedbacks_confirm_label"
 msgstr ""
 
-#. Default: "Last voted"
-#: rer/customersatisfaction/browser/reviews_view.pt:35
-msgid "reviews_view_date_header"
+msgid "delete_feedbacks_label"
 msgstr ""
 
-#. Default: "Download as csv"
-#: rer/customersatisfaction/browser/reviews_view.pt:24
-msgid "reviews_view_download_link"
+msgid "export_csv_label"
 msgstr ""
 
-#. Default: "Negative votes"
-#: rer/customersatisfaction/browser/reviews_view.pt:34
-msgid "reviews_view_nok_header"
+#. Default: "Feedbacks"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:16
+msgid "feedbacks_label"
 msgstr ""
 
-#. Default: "Positive votes"
-#: rer/customersatisfaction/browser/reviews_view.pt:33
-msgid "reviews_view_ok_header"
+msgid "filter_title_label"
 msgstr ""
 
-#. Default: "Page"
-#: rer/customersatisfaction/browser/reviews_view.pt:32
-msgid "reviews_view_page_header"
+msgid "item_selected"
 msgstr ""
 
-#. Default: "Site reviews"
-#: rer/customersatisfaction/browser/reviews_view.pt:15
-msgid "reviews_view_title"
+msgid "items_selected"
+msgstr ""
+
+msgid "last_voted_label"
+msgstr ""
+
+msgid "negative_votes_label"
+msgstr ""
+
+msgid "no_data_label"
+msgstr ""
+
+#. Default: "No feedbacks for this content."
+#: rer/customersatisfaction/browser/show_feedbacks.pt:17
+msgid "no_feedbacks_label"
+msgstr ""
+
+msgid "page_label"
+msgstr ""
+
+#. Default: "Does this page was useful?"
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:5
+msgid "page_useful_label"
+msgstr ""
+
+msgid "positive_votes_label"
+msgstr ""
+
+msgid "reset_feedbacks_confirm_label"
+msgstr ""
+
+msgid "reset_feedbacks_label"
+msgstr ""
+
+msgid "search_label"
+msgstr ""
+
+#. Default: "Send your feedback"
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:23
+msgid "send_feedback"
+msgstr ""
+
+#. Default: "Show only"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:21
+msgid "show_only_label"
 msgstr ""

@@ -13,12 +13,11 @@ require(["jquery"], function ($) {
     );
   }
 
-  function addSuccessMessage() {
+  function doSuccessCleanup() {
     $("#customer-satisfaction").prepend(
       '<div class="customer-satisfaction-message portalMessage info" role="alert"><strong>Grazie per il tuo feedbak</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio">&times;</button></div>'
     );
-    cleanVotes();
-    expandCollapse(false);
+    $('#customer-satisfaction form').remove();
   }
 
   function cleanMessage() {
@@ -85,7 +84,7 @@ require(["jquery"], function ($) {
       processData: false,
       success: function (_msg) {
         form.trigger("reset");
-        addSuccessMessage();
+        doSuccessCleanup();
       },
       error: function (err) {
         addErrorMessage(err);

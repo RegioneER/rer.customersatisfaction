@@ -1,24 +1,26 @@
-<div id="customer-satisfaction">
+<div id="customer-satisfaction"
+    i18n:domain="rer.customersatisfaction">
     <form action="${context/absolute_url}/@customer-satisfaction-add" method="POST">
         <div class="field">
-            <h2 id="cs-form-radiogroup-label">Questa pagina ti è stata utile?</h2>
+            <h2 id="cs-form-radiogroup-label" i18n:translate="page_useful_label">Does this page was useful?</h2>
             <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
                 <label class="plone-btn plone-btn-default" for="si">
-                    <input type="radio" id="si" name="vote" value="1" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    Sì
+                    <input type="radio" id="si" name="vote" value="ok" aria-controls="cs-collapsible-form-area" class="sr-only">
+                    <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
                 </label>
                 <label class="plone-btn plone-btn-default" for="no">
-                    <input type="radio" id="no" name="vote" value="-1" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    No
+                    <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only">
+                    <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
                 </label>
             </div>
         </div>
         <div id="cs-collapsible-form-area" role="region" aria-expanded="false">
-            <textarea title="Spiegaci perché e aiutaci e migliorare la qualità del sito"
-                      placeholder="Spiegaci perché e aiutaci e migliorare la qualità del sito"
+            <textarea i18n:attributes="title;placeholder"
+                      title="Tell us why and help us to improve site quality"
+                      placeholder="Tell us why and help us to improve site quality"
                       name="comment" />
             <tal:block tal:replace="structure context/@@captcha/image_tag"/>
-            <button class="plone-btn plone-btn-primary">Invia il tuo commento</button>
+            <button class="plone-btn plone-btn-primary" i18n:translate="send_feedback">Send your feedback</button>
         </div>
     </form>
 </div>

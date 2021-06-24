@@ -29,17 +29,27 @@
       />
     <browser:page
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      name="site-reviews"
-      class=".reviews_view.View"
-      template="reviews_view.pt"
+      name="customer-satisfaction"
+      class=".customer_satisfaction.View"
+      template="customer_satisfaction.pt"
       permission="rer.customersatisfaction.ManageCustomerSatisfaction"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     <browser:page
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      name="download-reviews"
-      class=".download_reviews.View"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      name="show-feedbacks"
+      class=".show_feedbacks.View"
+      template="show_feedbacks.pt"
       permission="rer.customersatisfaction.ManageCustomerSatisfaction"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
+    <browser:page
+      name="collective-recaptcha-settings"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class="collective.recaptcha.settings.RecaptchaSettingsForm"
+      permission="zope2.ManageProperties"
+      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+      />
+
+    <adapter factory=".adapters.CustomerSatisfactionBodyClasses" />
 </configure>

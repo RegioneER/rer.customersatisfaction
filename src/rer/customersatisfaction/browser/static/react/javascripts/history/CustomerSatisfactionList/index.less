@@ -1,0 +1,46 @@
+.customer-satisfaction-history-list {
+    *[role='heading'] {
+        background-color: transparent;
+    }
+    .rdt_TableCol {
+        background-color: #e8e8e8;
+    }
+    .channels {
+        width: 100%;
+        overflow: scroll;
+        max-height: 4rem;
+    }
+
+    .action.editItem {
+        &:hover,
+        &:active {
+            box-shadow: none;
+        }
+    }
+
+    .search-wrapper {
+        display: flex;
+        input {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            height: unset;
+        }
+        button {
+            border-left: none;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+    .status {
+        .success {
+            color: #5cb85c;
+        }
+        .error {
+            color: #d9534f;
+        }
+    }
+    .type-select {
+        width: 23em;
+        margin-right: 1rem;
+    }
+}

@@ -1,0 +1,63 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2019-03-27 11:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: rer.customersatisfaction\n"
+
+msgid "page_label"
+msgstr ""
+
+msgid "positive_votes_label"
+msgstr ""
+
+msgid "negative_votes_label"
+msgstr ""
+
+msgid "last_voted_label"
+msgstr ""
+
+msgid "comments_label"
+msgstr ""
+
+msgid "filter_title_label"
+msgstr ""
+
+msgid "search_label" 
+msgstr ""
+
+msgid "no_data_label"
+msgstr ""
+
+msgid "delete_feedbacks_label"
+msgstr ""
+
+msgid "delete_feedbacks_confirm_label"
+msgstr ""
+
+msgid "export_csv_label"
+msgstr ""
+
+msgid "item_selected"
+msgstr ""
+
+msgid "items_selected"
+msgstr ""
+
+msgid "reset_feedbacks_confirm_label"
+msgstr ""
+
+msgid "reset_feedbacks_label"
+msgstr ""

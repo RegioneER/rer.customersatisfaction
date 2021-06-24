@@ -15,5 +15,6 @@ class CustomerSatisfactionViewlet(ViewletBase):
         )
         if context_state.canonical_object() == api.portal.get():
             return ""
-
+        if not context_state.is_view_template():
+            return ""
         return self.index()

@@ -1,0 +1,69 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+categories:
+  - application-development
+  - content-management
+logo: docs/rer-logo.png
+dependsOn:
+  open:
+    - name: Plone
+      optional: false
+      version: ''
+      versionMax: ''
+      versionMin: '4'
+description:
+  it:
+    features:
+      - Comunicati Stampa
+      - Ricerca
+    genericName: Plone addon
+    longDescription: >
+      
+    shortDescription: 
+    screenshots:
+developmentStatus: stable
+it:
+  riuso:
+    codiceIPA: r_emiro
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: false
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+legal:
+  license: GPL-2.0-only
+  mainCopyrightOwner: Regione Emilia-Romagna
+  repoOwner: Regione Emilia-Romagna
+localisation:
+  availableLanguages:
+    - it
+    - en
+  localisationReady: true
+maintenance:
+  contacts:
+    - affiliation: Regione Emilia-Romagna
+      email: webmaster@regione.emilia-romagna.it
+      name: Sara Turra
+  contractors:
+    - name: RedTurtle
+      until: '2020-08-31'
+      website: 'https://www.redturtle.it/'
+  type: contract
+name: Comunicati stampa per CMS Plone
+platforms:
+  - web
+releaseDate: '2011-04-15'
+softwareType: addon
+softwareVersion: 4.0.7
+url: 'https://github.com/RegioneER/rer.ufficiostampa'
+usedBy:
+  - Regione Emilia-Romagna

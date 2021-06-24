@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="rer.customersatisfaction">
+
+<head>
+<metal:override fill-slot="top_slot"
+    tal:define="disable_column_one python: request.set('disable_plone.leftcolumn',1);
+                disable_column_two python: request.set('disable_plone.rightcolumn',1)"
+                />
+<metal:style fill-slot="style_slot">
+  <link tal:define="css python:view.get_resource_css()"
+        href="${css}" rel="stylesheet" />
+</metal:style>
+</head>
+
+<body>
+<metal:main fill-slot="content">
+  <article id="content">
+    <h1 class="documentFirstHeading" i18n:translate="customer_satisfaction_title_label">Customer satisfaction</h1>
+    <div id="content-core">
+      <div id="customer-satisfaction-history-wrapper" data-authenticator="${view/get_token}"/>
+    </div>
+    <script tal:define="js python:view.get_resource_js()" src="${js}"></script>
+  </article>
+</metal:main>
+</body>
+</html>

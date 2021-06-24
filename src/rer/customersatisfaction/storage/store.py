@@ -24,8 +24,9 @@ class CustomerSatisfactionStore(object):
         "comment",
         "vote",
     ]
-    # indexes = ["vote", "title"]
-    indexes = []
+    text_index = "text"
+    indexes = ["text", "vote", "uid"]
+    keyword_indexes = []
 
     @property
     def soup(self):
@@ -36,9 +37,9 @@ class CustomerSatisfactionStore(object):
         record = Record()
         for k, v in data.items():
             if k not in self.fields:
-                logger.warning("[ADD] SKIP unkwnown field: {}".format(k))
-            else:
-                record.attrs[k] = v
+                logger.debug("[ADD] SKIP unkwnown field: {}".format(k))
+                continue
+            record.attrs[k] = v
         record.attrs["date"] = datetime.now()
         return self.soup.add(record)
 
@@ -76,7 +77,6 @@ class CustomerSatisfactionStore(object):
 
     def parse_query_params(self, index, value):
         """
-        temporary unused
         """
         if index == self.text_index:
             return "'{}' in {}".format(value, self.text_index)
@@ -86,7 +86,10 @@ class CustomerSatisfactionStore(object):
             elif isinstance(value, six.text_type) or isinstance(value, str):
                 return "{} in any('{}')".format(index, value)
         else:
-            return "{} == '{}'".format(index, value)
+            if isinstance(value, int):
+                return "{} == {}".format(index, value)
+            else:
+                return "{} == '{}'".format(index, value)
 
     def get_record(self, id):
         if isinstance(id, six.text_type) or isinstance(id, str):

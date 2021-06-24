@@ -11,4 +11,36 @@
     permission="rer.customersatisfaction.AddCustomerSatisfactionVote"
     layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
+  <plone:service
+    method="GET"
+    name="@customer-satisfaction"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory=".get.CustomerSatisfactionGet"
+    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+    />
+  <plone:service
+    method="GET"
+    name="@customer-satisfaction-csv"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory=".get.CustomerSatisfactionCSVGet"
+    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+    />
+  <plone:service
+    method="DELETE"
+    name="@customer-satisfaction-delete"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory=".crud.CustomerSatisfactionDelete"
+    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+    />
+  <plone:service
+    method="GET"
+    name="@customer-satisfaction-clear"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory=".crud.CustomerSatisfactionClear"
+    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
+    />
 </configure>

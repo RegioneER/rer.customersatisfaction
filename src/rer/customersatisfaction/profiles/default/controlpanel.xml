@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
+        i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  
+  <!-- register controlpanel with a new name -->
+  <configlet title="Collective Recaptcha Settings" action_id="CollectiveRecaptchaSettings" appId="CollectiveRecaptchaSettings"
+             category="Products" condition_expr=""
+             icon_expr=""
+             url_expr="string:${portal_url}/@@collective-recaptcha-settings" visible="True"
+             i18n:attributes="title">
+    <permission>Manage portal</permission>
+  </configlet>
+
+  <!-- remove duplicate one -->
+  <configlet title="Recaptcha Settings" action_id="RecaptchaSettings" appId="RecaptchaSettings"
+             remove="True">
+  </configlet>
+</object>
