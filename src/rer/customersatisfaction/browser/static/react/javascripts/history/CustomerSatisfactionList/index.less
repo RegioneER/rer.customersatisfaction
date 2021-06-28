@@ -2,9 +2,6 @@
     *[role='heading'] {
         background-color: transparent;
     }
-    .rdt_TableCol {
-        background-color: #e8e8e8;
-    }
     .channels {
         width: 100%;
         overflow: scroll;
@@ -42,5 +39,17 @@
     .type-select {
         width: 23em;
         margin-right: 1rem;
+    }
+
+    .rdt_TableCol {
+        background-color: #e8e8e8;
+    }
+    .rdt_TableCell {
+        a {
+            &:hover,
+            &:focus {
+                border-bottom: 1px solid currentColor !important;
+            }
+        }
     }
 }

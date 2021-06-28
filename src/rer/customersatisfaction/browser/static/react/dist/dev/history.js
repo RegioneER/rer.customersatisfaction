@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "4ab8edcdb4b373b9a3c9";
+/******/ 	var hotCurrentHash = "c150c601ee50fe29fd6d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -54046,9 +54046,13 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     selector: 'title',
     sortable: true,
     cell: function cell(row) {
-      return row.url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      return row.url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "col-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: row.url,
-        title: row.title
+        title: 'Apri ' + row.title,
+        target: "_blank",
+        rel: "noopener noreferrer"
       }, row.title)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, row.title);
     }
   }, {
@@ -54075,8 +54079,11 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     sortable: false,
     width: '80px',
     cell: function cell(row) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "".concat(row.url, "/show-feedbacks")
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "comments-count"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "".concat(row.url, "/show-feedbacks"),
+        title: "Vai ai commenti"
       }, row.comments.length));
     }
   }]; //------------ROW SELECTION------------
@@ -54169,7 +54176,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       onClick: handleClearText
-    }, "X")));
+    }, "\xD7")));
   }, [filters, resetPaginationToggle, data.items]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "customer-satisfaction-history-list"
@@ -54452,9 +54459,9 @@ var apiFetch = function apiFetch(_ref) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/cekk/work/rer/regione-er-5/src/rer.customersatisfaction/node_modules/webpack-dev-server/client/index.js?http://localhost:3000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:3000");
-__webpack_require__(/*! /Users/cekk/work/rer/regione-er-5/src/rer.customersatisfaction/node_modules/webpack/hot/dev-server.js */"./node_modules/webpack/hot/dev-server.js");
-module.exports = __webpack_require__(/*! /Users/cekk/work/rer/regione-er-5/src/rer.customersatisfaction/src/rer/customersatisfaction/browser/static/react/javascripts/history/index.js */"./src/rer/customersatisfaction/browser/static/react/javascripts/history/index.js");
+__webpack_require__(/*! /Users/nicola/workspace/regione-er-5/src/rer.customersatisfaction/node_modules/webpack-dev-server/client/index.js?http://localhost:3000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:3000");
+__webpack_require__(/*! /Users/nicola/workspace/regione-er-5/src/rer.customersatisfaction/node_modules/webpack/hot/dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+module.exports = __webpack_require__(/*! /Users/nicola/workspace/regione-er-5/src/rer.customersatisfaction/src/rer/customersatisfaction/browser/static/react/javascripts/history/index.js */"./src/rer/customersatisfaction/browser/static/react/javascripts/history/index.js");
 
 
 /***/ })
