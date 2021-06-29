@@ -1,48 +1,89 @@
 #customer-satisfaction .customer-satisfaction-message {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 #customer-satisfaction .customer-satisfaction-message button {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 #customer-satisfaction form .g-recaptcha {
-  margin: 1rem 0;
+    margin: 1rem 0;
 }
 
 #cs-collapsible-form-area {
-  max-height: 0;
-  overflow: hidden;
-  transition: 0.2s max-height ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.2s max-height ease;
 }
 
-#cs-collapsible-form-area[aria-expanded="true"] {
-  max-height: 600px;
+#cs-collapsible-form-area[aria-expanded='true'] {
+    max-height: 600px;
 }
 
 #reviews-count {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1em;
-}
-
-.feedback-success {
-  background-color: #5cb85c;
-}
-
-.feedback-danger {
-  background-color: #d9534f;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
 }
 
 .feedback-label {
-  display: inline;
-  padding: .2em .6em .3em;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
+    display: inline-block;
+    padding: 6px 12px;
+    font-weight: bold;
+    background-color: #e3e3e3;
+    color: #000;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: baseline;
+    border-radius: 2px;
+}
+
+.feedback-label.feedback-success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.feedback-label.feedback-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+body.template-show-feedbacks #content-core .filters a {
+    border-bottom: 0;
+}
+
+body.template-show-feedbacks .filters {
+    margin: 2rem 0 3rem;
+}
+
+body.template-show-feedbacks .feedback {
+    margin: 0.5em 0;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+body.template-show-feedbacks .feedback .feedback-date {
+    color: #696969;
+    font-weight: 400;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+body.template-show-feedbacks .feedback .feedback-body {
+    display: flex;
+}
+
+body.template-show-feedbacks .feedback .feedback-body .feedback-label {
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.template-show-feedbacks .feedback .feedback-body .feedback-comment {
+    margin-left: 1rem;
 }

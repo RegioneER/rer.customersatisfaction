@@ -32,3 +32,4 @@ report.html
 reports/
 pyvenv.cfg
 # excludes
+__pycache__/

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-06-24 13:25+0000\n"
+"POT-Creation-Date: 2021-06-29 07:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,23 +14,23 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: rer/customersatisfaction/configure.zcml:23
+#: ../configure.zcml:23
 msgid "Installs the rer.customersatisfaction add-on."
 msgstr "Installa rer.customersatisfaction"
 
-#: rer/customersatisfaction/configure.zcml:23
+#: ../configure.zcml:23
 msgid "RER: Customer satisfaction"
 msgstr "RER: Customer satisfaction"
 
-#: rer/customersatisfaction/configure.zcml:32
+#: ../configure.zcml:32
 msgid "RER: Customer satisfaction (uninstall)"
 msgstr "RER: Customer satisfaction (uninstall)"
 
-#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:18
+#: ../browser/customer_satisfaction_viewlet.pt:18
 msgid "Tell us why and help us to improve site quality"
 msgstr "Spiegaci perché e aiutaci e migliorare la qualità del sito"
 
-#: rer/customersatisfaction/configure.zcml:32
+#: ../configure.zcml:32
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr "Disinstalla rer.customersatisfaction"
 
@@ -38,7 +38,7 @@ msgid "comments_label"
 msgstr "Commenti"
 
 #. Default: "Customer satisfaction"
-#: rer/customersatisfaction/browser/customer_satisfaction.pt:22
+#: ../browser/customer_satisfaction.pt:22
 msgid "customer_satisfaction_title_label"
 msgstr "Customer satisfaction"
 
@@ -52,12 +52,17 @@ msgid "export_csv_label"
 msgstr "Esporta in CSV"
 
 #. Default: "Feedbacks"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:16
+#: ../browser/show_feedbacks.pt:16
 msgid "feedbacks_label"
 msgstr "Recensioni"
 
 msgid "filter_title_label"
 msgstr "Filtra per titolo"
+
+#. Default: "Filter:&nbsp;"
+#: ../browser/show_feedbacks.pt:18
+msgid "filters_label"
+msgstr "Filtra per:&nbsp;"
 
 msgid "item_selected"
 msgstr "elemento selezionato"
@@ -75,7 +80,7 @@ msgid "no_data_label"
 msgstr "Nessun dato trovato"
 
 #. Default: "No feedbacks for this content."
-#: rer/customersatisfaction/browser/show_feedbacks.pt:17
+#: ../browser/show_feedbacks.pt:32
 msgid "no_feedbacks_label"
 msgstr "Nessuna recensione per questo contenuto."
 
@@ -83,7 +88,7 @@ msgid "page_label"
 msgstr "Pagina"
 
 #. Default: "Does this page was useful?"
-#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:5
+#: ../browser/customer_satisfaction_viewlet.pt:5
 msgid "page_useful_label"
 msgstr "Questa pagina ti è stata utile?"
 
@@ -96,15 +101,25 @@ msgstr "Sei sicuro di voler cancellare le recensioni di questo contenuto?"
 msgid "reset_feedbacks_label"
 msgstr "Cancella recensioni"
 
+#. Default: "Vai alla ricerca per commenti negativi"
+#: ../browser/show_feedbacks.pt:25
+msgid "search_feedback_nok"
+msgstr "Vai alla ricerca per commenti negativi"
+
+#. Default: "Vai alla ricerca per commenti positivi"
+#: ../browser/show_feedbacks.pt:21
+msgid "search_feedback_ok"
+msgstr "Vai alla ricerca per commenti positivi"
+
 msgid "search_label"
 msgstr "Ricerca..."
 
+#. Default: "Vai alla ricerca dei commenti non filtrata"
+#: ../browser/show_feedbacks.pt:29
+msgid "search_no_filters"
+msgstr "Vai alla ricerca dei commenti non filtrata"
+
 #. Default: "Send your feedback"
-#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:23
+#: ../browser/customer_satisfaction_viewlet.pt:23
 msgid "send_feedback"
 msgstr "Invia il tuo commento"
-
-#. Default: "Show only"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:21
-msgid "show_only_label"
-msgstr "Mostra solo"

@@ -15,33 +15,37 @@
 
   <h2 i18n:translate="feedbacks_label">Feedbacks</h2>
   <div class="filters">
-    <span i18n:translate="show_only_label">Show only</span>
+    <span i18n:translate="filters_label">Filter:&nbsp;</span>
     <a href="${context/absolute_url}/show-feedbacks?vote=ok">
       <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
-    </a> 
+      <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
+    </a>
     <a href="${context/absolute_url}/show-feedbacks?vote=nok">
       <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
-    </a> 
+      <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
+    </a>
+    <a href="${context/absolute_url}/show-feedbacks">
+      <span class="feedback-label"><i class="glyphicon glyphicon-erase"/></span>
+      <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
+    </a>
   </div>
   <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
 
   <div class="feedbacks-wrapper" tal:condition="data">
-    <div class="discussion">
-      <tal:feedback repeat="feedback data">
-        <div class="comment"
-          tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
-                      icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
-                      comment feedback/comment|nothing">
-          <div class="documentByLine">
-            <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
-            <div class="commentDate" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></div>
-          </div>
-          <div class="commentBody" tal:condition="comment" tal:content="comment" />
+    <tal:feedback repeat="feedback data">
+      <div class="feedback"
+           tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
+                       icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
+                       comment feedback/comment|nothing">
+        <p class="feedback-date" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></p>
+        <div class="feedback-body">
+          <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
+          <div class="feedback-comment" tal:condition="comment" tal:content="comment" />
         </div>
-      </tal:feedback>
-    </div>
+      </div>
+    </tal:feedback>
   </div>
-  
+
 </metal:content-core>
 </body>
 </html>
