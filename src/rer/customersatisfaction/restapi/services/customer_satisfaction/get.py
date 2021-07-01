@@ -90,7 +90,7 @@ class CustomerSatisfactionGet(DataGet):
         sort_on = self.request.form.get("sort_on", "last_date")
         sort_order = self.request.form.get("sort_order", "desc")
         reverse = sort_order.lower() in ["desc", "descending", "reverse"]
-        if sort_on in ["ok", "nok", "title"]:
+        if sort_on in ["ok", "nok", "title", "last_vote"]:
             result = sorted(result, key=lambda k: k[sort_on], reverse=reverse)
         return result
 
@@ -123,7 +123,7 @@ class CustomerSatisfactionCSVGet(DataCSVGet):
                     v = str(v)
                 val = json_compatible(v)
                 if six.PY2:
-                    val.encode("utf-8")
+                    val = val.encode("utf-8")
                 data[k] = val
             uid = item.attrs.get("uid", "")
             if uid:
@@ -143,4 +143,6 @@ class CustomerSatisfactionCSVGet(DataCSVGet):
                 return {"error": True}
         res = sbuf.getvalue()
         sbuf.close()
+        if six.PY2:
+            return res
         return res.encode()

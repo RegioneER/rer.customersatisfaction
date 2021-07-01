@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
 from Products.Five import BrowserView
-from zope.component import getUtility
-from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
-from plone import api
-from Products.CMFPlone.PloneBatch import Batch
-
-# -*- coding: utf-8 -*-
 from plone import api
 from plone.memoize import ram
 from plone.protect.authenticator import createToken
-from Products.Five import BrowserView
 from time import time
 
-
 import pkg_resources
+
 
 JS_TEMPLATE = "{portal_url}/++plone++rer.customersatisfaction/react/dist/{env_mode}/{name}.js?v={version}"  # noqa
 CSS_TEMPLATE = "{portal_url}/++plone++rer.customersatisfaction/react/dist/{env_mode}/{name}.css?v={version}"  # noqa

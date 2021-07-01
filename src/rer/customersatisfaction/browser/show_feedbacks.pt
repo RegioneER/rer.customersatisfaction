@@ -5,15 +5,24 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="rer.customersatisfaction">
 
-<head>
-</head>
-
 <body>
+<metal:content-title fill-slot="content-title">
+  <h1 class="documentFirstHeading" i18n:translate="feedbacks_title">
+    <tal:title i18n:name="title">${context/Title}</tal:title> - feedbacks
+  </h1>
+</metal:content-title>
 <metal:content-core fill-slot="content-core"
   tal:define="data view/get_data;
               toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
-  <h2 i18n:translate="feedbacks_label">Feedbacks</h2>
+  <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
+  <p class="feedbacks_summary">
+    <span i18n:translate="reveived_label">Received <tal:total i18n:name="total">${data/total}</tal:total> feedbacks:</span>
+    <span i18n:translate="ok_total_label"><tal:ok i18n:name="ok">${data/ok}</tal:ok> positives</span>
+    and
+    <span i18n:translate="nok_total_label"><tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives</span>
+  </p>
+  <h4 i18n:translate="comments_label">Comments</h4>
   <div class="filters">
     <span i18n:translate="filters_label">Filter:&nbsp;</span>
     <a href="${context/absolute_url}/show-feedbacks?vote=ok">

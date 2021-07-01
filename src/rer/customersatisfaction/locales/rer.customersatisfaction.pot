@@ -4,7 +4,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
+<<<<<<< Updated upstream
 "POT-Creation-Date: 2021-06-29 07:23+0000\n"
+=======
+"POT-Creation-Date: 2021-06-24 15:36+0000\n"
+>>>>>>> Stashed changes
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +41,8 @@ msgstr ""
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr ""
 
+#. Default: "Comments"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:25
 msgid "comments_label"
 msgstr ""
 
@@ -54,9 +60,15 @@ msgstr ""
 msgid "export_csv_label"
 msgstr ""
 
+<<<<<<< Updated upstream
 #. Default: "Feedbacks"
 #: ../browser/show_feedbacks.pt:16
 msgid "feedbacks_label"
+=======
+#. Default: "${title} - feedbacks"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:11
+msgid "feedbacks_title"
+>>>>>>> Stashed changes
 msgstr ""
 
 msgid "filter_title_label"
@@ -83,8 +95,22 @@ msgid "no_data_label"
 msgstr ""
 
 #. Default: "No feedbacks for this content."
+<<<<<<< Updated upstream
 #: ../browser/show_feedbacks.pt:32
+=======
+#: rer/customersatisfaction/browser/show_feedbacks.pt:18
+>>>>>>> Stashed changes
 msgid "no_feedbacks_label"
+msgstr ""
+
+#. Default: "${nok} negatives"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:23
+msgid "nok_total_label"
+msgstr ""
+
+#. Default: "${ok} positives"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:21
+msgid "ok_total_label"
 msgstr ""
 
 msgid "page_label"
@@ -104,6 +130,7 @@ msgstr ""
 msgid "reset_feedbacks_label"
 msgstr ""
 
+<<<<<<< Updated upstream
 #. Default: "Vai alla ricerca per commenti negativi"
 #: ../browser/show_feedbacks.pt:25
 msgid "search_feedback_nok"
@@ -112,6 +139,11 @@ msgstr ""
 #. Default: "Vai alla ricerca per commenti positivi"
 #: ../browser/show_feedbacks.pt:21
 msgid "search_feedback_ok"
+=======
+#. Default: "Received ${total} feedbacks:"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:20
+msgid "reveived_label"
+>>>>>>> Stashed changes
 msgstr ""
 
 msgid "search_label"
@@ -122,7 +154,13 @@ msgstr ""
 msgid "search_no_filters"
 msgstr ""
 
+<<<<<<< Updated upstream
 #. Default: "Send your feedback"
 #: ../browser/customer_satisfaction_viewlet.pt:23
 msgid "send_feedback"
+=======
+#. Default: "Show only"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:27
+msgid "show_only_label"
+>>>>>>> Stashed changes
 msgstr ""

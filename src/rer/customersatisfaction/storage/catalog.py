@@ -6,7 +6,6 @@ from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
 from souper.soup import NodeTextIndexer
 from zope.interface import implementer
-from repoze.catalog.indexes.keyword import CatalogKeywordIndex
 
 
 @implementer(ICatalogFactory)

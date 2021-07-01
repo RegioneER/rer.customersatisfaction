@@ -34,6 +34,8 @@ msgstr "Spiegaci perché e aiutaci e migliorare la qualità del sito"
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr "Disinstalla rer.customersatisfaction"
 
+#. Default: "Comments"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:25
 msgid "comments_label"
 msgstr "Commenti"
 
@@ -83,6 +85,16 @@ msgstr "Nessun dato trovato"
 #: ../browser/show_feedbacks.pt:32
 msgid "no_feedbacks_label"
 msgstr "Nessuna recensione per questo contenuto."
+
+#. Default: "${nok} negatives"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:23
+msgid "nok_total_label"
+msgstr "${nok} negative"
+
+#. Default: "${ok} positives"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:21
+msgid "ok_total_label"
+msgstr "${ok} positive"
 
 msgid "page_label"
 msgstr "Pagina"
