@@ -49,7 +49,8 @@ const Menu = () => {
             }
             className="plone-btn plone-btn-primary context"
           >
-            {labels.exportCsv}
+            {labels.exportCsv}{' '}
+            <i className="fa fas fa-download fa-lg fa-fw" aria-hidden={true}></i>
           </button>
         </div>
         <div className="right-zone">
@@ -57,6 +58,7 @@ const Menu = () => {
               onClick={() => clearData()}
               className="plone-btn plone-btn-danger"
             >
+              <i className="fa fa-trash fa-lg fa-fw" aria-hidden={true}></i>{' '}
               {labels.deleteFeedbacks}
             </button>
           </div>
