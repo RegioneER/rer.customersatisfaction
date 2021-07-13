@@ -13,6 +13,7 @@
 </metal:content-title>
 <metal:content-core fill-slot="content-core"
   tal:define="data view/get_data;
+              batch data/comments|nothing;
               toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
   <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
@@ -41,7 +42,7 @@
   <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
 
   <div class="feedbacks-wrapper" tal:condition="data">
-    <tal:feedback repeat="feedback data">
+    <tal:feedback repeat="feedback batch">
       <div class="feedback"
            tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
                        icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
@@ -53,6 +54,8 @@
         </div>
       </div>
     </tal:feedback>
+
+    <div metal:use-macro="context/batch_macros/macros/navigation" />
   </div>
 
 </metal:content-core>
