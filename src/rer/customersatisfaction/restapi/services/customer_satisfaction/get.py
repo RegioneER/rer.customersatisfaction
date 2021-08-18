@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
+from datetime import datetime
 from plone import api
 from plone.restapi.batching import HypermediaBatch
 from plone.restapi.search.utils import unflatten_dotted_dict
 from plone.restapi.serializer.converters import json_compatible
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
-from rer.customersatisfaction.restapi.services.common import DataCSVGet
 from rer.customersatisfaction.restapi.services.common import DataGet
 from six import StringIO
 from zope.component import getUtility
@@ -40,22 +40,6 @@ class CustomerSatisfactionGet(DataGet):
     def fix_fields(self, data):
         data["last_vote"] = json_compatible(data["last_vote"])
         return data
-
-    def get_commented_obj(self, record):
-        uid = record._attrs.get("uid", "")
-        try:
-            obj = api.content.get(UID=uid)
-        except Unauthorized:
-            return
-
-        if not obj:
-            return
-        if not api.user.has_permission(
-            "rer.customersatisfaction: Access Customer Satisfaction", obj=obj
-        ):
-            # user does not have that permission on object
-            return
-        return obj
 
     def get_data(self):
         tool = getUtility(ICustomerSatisfactionStore)
@@ -114,11 +98,32 @@ class CustomerSatisfactionGet(DataGet):
         return result
 
 
-class CustomerSatisfactionCSVGet(DataCSVGet):
+class CustomerSatisfactionCSVGet(DataGet):
     """
     """
 
     type = "customer_satisfaction"
+
+    def render(self):
+        data = self.get_data()
+        if isinstance(data, dict):
+            if data.get("error", False):
+                self.request.response.setStatus(500)
+                return dict(
+                    error=dict(
+                        type="InternalServerError",
+                        message="Unable export. Contact site manager.",
+                    )
+                )
+        self.request.response.setHeader("Content-Type", "text/comma-separated-values")
+        now = datetime.now()
+        self.request.response.setHeader(
+            "Content-Disposition",
+            'attachment; filename="{type}_{date}.csv"'.format(
+                type=self.type, date=now.strftime("%d%m%Y-%H%M%S")
+            ),
+        )
+        self.request.response.write(data)
 
     def get_data(self):
         if api.user.is_anonymous():

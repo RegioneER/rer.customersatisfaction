@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 from copy import deepcopy
-from datetime import datetime
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.batching import HypermediaBatch
 from plone.restapi.deserializer import json_body
 from plone.restapi.search.utils import unflatten_dotted_dict
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services import Service
-from six import StringIO
 from zExceptions import BadRequest
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
-import csv
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -57,58 +55,21 @@ class DataGet(Service):
         res["query"] = query
         return res
 
+    def get_commented_obj(self, record):
+        uid = record._attrs.get("uid", "")
+        try:
+            obj = api.content.get(UID=uid)
+        except Unauthorized:
+            return
 
-class DataCSVGet(DataGet):
-    def render(self):
-
-        data = self.get_data()
-        if isinstance(data, dict):
-            if data.get("error", False):
-                self.request.response.setStatus(500)
-                return dict(
-                    error=dict(
-                        type="InternalServerError",
-                        message="Unable export. Contact site manager.",
-                    )
-                )
-        self.request.response.setHeader("Content-Type", "text/comma-separated-values")
-        now = datetime.now()
-        self.request.response.setHeader(
-            "Content-Disposition",
-            'attachment; filename="{type}_{date}.csv"'.format(
-                type=self.type, date=now.strftime("%d%m%Y-%H%M%S")
-            ),
-        )
-        self.request.response.write(data)
-
-    def get_data(self):
-        tool = getUtility(self.store)
-        query = self.parse_query()
-        sbuf = StringIO()
-        rows = []
-
-        for item in tool.search(**query):
-            data = {}
-            for k, v in item.attrs.items():
-                if k not in self.columns:
-                    continue
-                if isinstance(v, list):
-                    v = ", ".join(v)
-                if isinstance(v, int):
-                    v = str(v)
-                data[k] = json_compatible(v)
-            rows.append(data)
-        writer = csv.DictWriter(sbuf, fieldnames=self.columns, delimiter=",")
-        writer.writeheader()
-        for row in rows:
-            try:
-                writer.writerow(row)
-            except Exception as e:
-                logger.exception(e)
-                return {"error": True}
-        res = sbuf.getvalue()
-        sbuf.close()
-        return res.encode()
+        if not obj:
+            return
+        if not api.user.has_permission(
+            "rer.customersatisfaction: Access Customer Satisfaction", obj=obj
+        ):
+            # user does not have that permission on object
+            return
+        return obj
 
 
 class DataAdd(Service):
