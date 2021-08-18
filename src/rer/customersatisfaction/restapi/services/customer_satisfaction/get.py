@@ -41,12 +41,25 @@ class CustomerSatisfactionGet(DataGet):
         data["last_vote"] = json_compatible(data["last_vote"])
         return data
 
+    def get_commented_obj(self, record):
+        uid = record._attrs.get("uid", "")
+        try:
+            obj = api.content.get(UID=uid)
+        except Unauthorized:
+            return
+
+        if not obj:
+            return
+        if not api.user.has_permission(
+            "rer.customersatisfaction: Access Customer Satisfaction", obj=obj
+        ):
+            # user does not have that permission on object
+            return
+        return obj
+
     def get_data(self):
         tool = getUtility(ICustomerSatisfactionStore)
         reviews = {}
-        show_deleted = api.user.has_permission(
-            "rer.customersatisfaction: Show Deleted Feedbacks"
-        )
 
         query = unflatten_dotted_dict(self.request.form)
         text = query.get("text", "")
@@ -59,9 +72,11 @@ class CustomerSatisfactionGet(DataGet):
             date = review._attrs.get("date", "")
             vote = review._attrs.get("vote", "")
             if uid not in reviews:
-                try:
-                    obj = api.content.get(UID=uid)
-                except Unauthorized:
+                obj = self.get_commented_obj(record=review)
+                if not obj and not api.user.has_permission(
+                    "rer.customersatisfaction: Show Deleted Feedbacks"
+                ):
+                    # only manager can list deleted object's reviews
                     continue
                 new_data = {
                     "ok": 0,
@@ -71,16 +86,6 @@ class CustomerSatisfactionGet(DataGet):
                     "uid": uid,
                     "review_ids": [],
                 }
-
-                if not obj and not show_deleted:
-                    # rer.customersatisfaction: Show Deleted Feedbacks.
-                    continue
-
-                if not api.user.has_permission(
-                    "rer.customersatisfaction: Access Customer Satisfaction", obj=obj
-                ):
-                    # user does not have that permission on object
-                    continue
                 if obj:
                     # can be changed
                     new_data["title"] = obj.Title()
@@ -129,6 +134,12 @@ class CustomerSatisfactionCSVGet(DataCSVGet):
             "date",
         ]
         for item in tool.search():
+            obj = self.get_commented_obj(record=item)
+            if not obj and not api.user.has_permission(
+                "rer.customersatisfaction: Show Deleted Feedbacks"
+            ):
+                # only manager can list deleted object's reviews
+                continue
             data = {}
             for k, v in item.attrs.items():
                 if k not in columns:
@@ -141,13 +152,10 @@ class CustomerSatisfactionCSVGet(DataCSVGet):
                 if six.PY2:
                     val = val.encode("utf-8")
                 data[k] = val
-            uid = item.attrs.get("uid", "")
-            if uid:
-                ref_obj = api.content.get(UID=uid)
-                if ref_obj:
-                    data["url"] = ref_obj.absolute_url()
-                else:
-                    data["url"] = ""
+            if obj:
+                data["url"] = obj.absolute_url()
+            else:
+                data["url"] = ""
             rows.append(data)
         writer = csv.DictWriter(sbuf, fieldnames=columns, delimiter=",")
         writer.writeheader()
