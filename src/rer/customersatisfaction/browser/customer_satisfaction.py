@@ -56,6 +56,6 @@ class View(BrowserView):
             api.user.has_permission(
                 "rer.customersatisfaction: Manage Customer Satisfaction"
             )
-            and "true"
-            or "false"
+            and "true"  # noqa
+            or "false"  # noqa
         )

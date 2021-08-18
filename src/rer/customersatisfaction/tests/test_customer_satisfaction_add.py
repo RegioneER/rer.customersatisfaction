@@ -104,7 +104,7 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         )
         resp = self.anon_api_session.post(
             self.url,
-            json={"vote": 1, "comment": "i disagree", "g-recaptcha-response": "xyz",},
+            json={"vote": 1, "comment": "i disagree", "g-recaptcha-response": "xyz"},
         )
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.json()["message"], "Voto non valido: 1")

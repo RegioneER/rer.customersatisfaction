@@ -92,7 +92,7 @@ class CustomerSatisfactionGet(DataGet):
             comment = review._attrs.get("comment", "")
             if comment:
                 data["comments"].append(
-                    {"comment": comment, "date": json_compatible(date), "vote": vote,}
+                    {"comment": comment, "date": json_compatible(date), "vote": vote}
                 )
             if not data.get("last_vote", None):
                 data["last_vote"] = date
