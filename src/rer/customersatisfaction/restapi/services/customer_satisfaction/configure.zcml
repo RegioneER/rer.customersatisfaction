@@ -16,7 +16,7 @@
     name="@customer-satisfaction"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory=".get.CustomerSatisfactionGet"
-    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    permission="zope2.View"
     layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
   <plone:service
@@ -24,7 +24,7 @@
     name="@customer-satisfaction-csv"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory=".get.CustomerSatisfactionCSVGet"
-    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    permission="zope2.View"
     layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
   <plone:service
@@ -32,7 +32,7 @@
     name="@customer-satisfaction-delete"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory=".crud.CustomerSatisfactionDelete"
-    permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+    permission="rer.customersatisfaction.AccessCustomerSatisfaction"
     layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
   <plone:service

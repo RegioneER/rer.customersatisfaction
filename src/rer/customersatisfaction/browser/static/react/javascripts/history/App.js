@@ -5,7 +5,7 @@ import Menu from './Menu/Menu';
 import CustomerSatisfactionList from './CustomerSatisfactionList';
 import './App.less';
 
-const App = () => {
+const App = ({ canDelete }) => {
   const [user, setUser] = useState(null);
 
   const endpoint = 'customer-satisfaction';
@@ -19,7 +19,9 @@ const App = () => {
 
   return (
     <TranslationsWrapper>
-      <ApiWrapper endpoint={endpoint}>{children}</ApiWrapper>
+      <ApiWrapper endpoint={endpoint} canDelete={canDelete}>
+        {children}
+      </ApiWrapper>
     </TranslationsWrapper>
   );
 };

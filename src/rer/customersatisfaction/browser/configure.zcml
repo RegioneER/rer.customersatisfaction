@@ -32,7 +32,7 @@
       name="customer-satisfaction"
       class=".customer_satisfaction.View"
       template="customer_satisfaction.pt"
-      permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+      permission="zope2.View"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     <browser:page
@@ -40,7 +40,7 @@
       name="show-feedbacks"
       class=".show_feedbacks.View"
       template="show_feedbacks.pt"
-      permission="rer.customersatisfaction.ManageCustomerSatisfaction"
+      permission="rer.customersatisfaction.AccessCustomerSatisfaction"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     <browser:page

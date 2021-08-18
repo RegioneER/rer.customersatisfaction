@@ -33,3 +33,4 @@ reports/
 pyvenv.cfg
 # excludes
 __pycache__/
+src/rer/customersatisfaction/browser/static/react/dist/dev

@@ -17,14 +17,12 @@ const Menu = () => {
     apiErrors,
     endpoint,
     setApiErrors,
+    canDelete,
   } = useContext(ApiContext);
 
   const labels = getCustomerSatisfactionLables(getTranslationFor);
-
   const clearData = () => {
-    if (
-      window.confirm(labels.deleteFeedbacksConfirm)
-    ) {
+    if (window.confirm(labels.deleteFeedbacksConfirm)) {
       let fetches = [
         apiFetch({
           url: portalUrl + '/@' + endpoint + '-clear',
@@ -38,7 +36,6 @@ const Menu = () => {
       });
     }
   };
-
   return (
     <>
       <div className="customersatisfaction-menu-wrapper">
@@ -50,10 +47,14 @@ const Menu = () => {
             className="plone-btn plone-btn-primary context"
           >
             {labels.exportCsv}{' '}
-            <i className="fa fas fa-download fa-lg fa-fw" aria-hidden={true}></i>
+            <i
+              className="fa fas fa-download fa-lg fa-fw"
+              aria-hidden={true}
+            ></i>
           </button>
         </div>
-        <div className="right-zone">
+        {canDelete && (
+          <div className="right-zone">
             <button
               onClick={() => clearData()}
               className="plone-btn plone-btn-danger"
@@ -62,6 +63,7 @@ const Menu = () => {
               {labels.deleteFeedbacks}
             </button>
           </div>
+        )}
       </div>
 
       {apiErrors && (

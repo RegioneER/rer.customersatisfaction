@@ -71,9 +71,7 @@ class DataCSVGet(DataGet):
                         message="Unable export. Contact site manager.",
                     )
                 )
-        self.request.response.setHeader(
-            "Content-Type", "text/comma-separated-values"
-        )
+        self.request.response.setHeader("Content-Type", "text/comma-separated-values")
         now = datetime.now()
         self.request.response.setHeader(
             "Content-Disposition",
@@ -185,9 +183,7 @@ class DataUpdate(TraversableService):
         if not res:
             return self.reply_no_content()
         if res.get("error", "") == "NotFound":
-            raise BadRequest(
-                'Unable to find item with id "{}"'.format(self.id)
-            )
+            raise BadRequest('Unable to find item with id "{}"'.format(self.id))
         self.request.response.setStatus(500)
         return dict(
             error=dict(
@@ -207,9 +203,7 @@ class DataDelete(TraversableService):
         if not res:
             return self.reply_no_content()
         if res.get("error", "") == "NotFound":
-            raise BadRequest(
-                'Unable to find item with id "{}"'.format(self.id)
-            )
+            raise BadRequest('Unable to find item with id "{}"'.format(self.id))
         self.request.response.setStatus(500)
         return dict(
             error=dict(

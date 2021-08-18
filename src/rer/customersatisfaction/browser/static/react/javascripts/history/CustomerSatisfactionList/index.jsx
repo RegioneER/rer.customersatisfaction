@@ -26,6 +26,7 @@ const CustomerSatisfactionList = () => {
     handlePageChange,
     b_size,
     setSorting,
+    canDelete,
   } = useContext(ApiContext);
   const labels = getCustomerSatisfactionLables(getTranslationFor);
   const [filters, setFilters] = useState({});
@@ -40,9 +41,9 @@ const CustomerSatisfactionList = () => {
       name: labels.page,
       selector: 'title',
       sortable: true,
-      cell: (row) => {
+      cell: row => {
         return row.url ? (
-          <div class="col-title">
+          <div className="col-title">
             <a
               href={row.url}
               title={'Apri ' + row.title}
@@ -73,7 +74,7 @@ const CustomerSatisfactionList = () => {
       name: labels.last_voted,
       selector: 'last_vote',
       sortable: true,
-      cell: (row) => (
+      cell: row => (
         <div>
           {row.last_vote
             ? format(new Date(row.last_vote), 'dd/MM/yyyy HH:mm:ss')
@@ -87,8 +88,8 @@ const CustomerSatisfactionList = () => {
       selector: 'comments',
       sortable: false,
       width: '80px',
-      cell: (row) => (
-        <div class="comments-count">
+      cell: row => (
+        <div className="comments-count">
           <a href={`${row.url}/show-feedbacks`} title="Vai ai commenti">
             {row.comments.length}
           </a>
@@ -98,7 +99,7 @@ const CustomerSatisfactionList = () => {
   ];
 
   //------------ROW SELECTION------------
-  const handleRowSelected = React.useCallback((state) => {
+  const handleRowSelected = React.useCallback(state => {
     setSelectedRows(state.selectedRows);
   }, []);
 
@@ -108,7 +109,7 @@ const CustomerSatisfactionList = () => {
       if (
         window.confirm(
           `${labels.resetFeedbacksConfirm} \n${selectedRows
-            .map((r) => r.title)
+            .map(r => r.title)
             .join('\n')}`,
         )
       ) {
@@ -119,7 +120,7 @@ const CustomerSatisfactionList = () => {
         let method = 'DELETE';
         let fetches = [];
 
-        selectedRows.forEach((r) => {
+        selectedRows.forEach(r => {
           fetches.push(
             apiFetch({
               url: url + '/' + r.uid,
@@ -128,7 +129,7 @@ const CustomerSatisfactionList = () => {
           );
         });
 
-        Promise.all(fetches).then((data) => {
+        Promise.all(fetches).then(data => {
           handleApiResponse(data[0]);
           fetchApi();
         });
@@ -156,7 +157,7 @@ const CustomerSatisfactionList = () => {
       doQuery(newFilters);
     };
 
-    const delayTextSubmit = (value) => {
+    const delayTextSubmit = value => {
       const newFilters = { ...filters, text: value };
       if (textTimeout) {
         clearInterval(textTimeout);
@@ -168,7 +169,7 @@ const CustomerSatisfactionList = () => {
       setTextTimeout(timeout);
     };
 
-    const doQuery = (queryFilters) => {
+    const doQuery = queryFilters => {
       const params = { ...queryFilters };
       if (params.text?.length) {
         params.text = params.text + '*';
@@ -184,7 +185,7 @@ const CustomerSatisfactionList = () => {
             placeholder={labels.filterTitle}
             aria-label={labels.search}
             value={filters.text || ''}
-            onChange={(e) => delayTextSubmit(e.target.value)}
+            onChange={e => delayTextSubmit(e.target.value)}
           />
           <button type="button" onClick={handleClearText}>
             &times;
@@ -215,7 +216,7 @@ const CustomerSatisfactionList = () => {
           persistSelectedOnSort: false,
         }}
         paginationTotalRows={data.items_total}
-        onChangeRowsPerPage={(size) => setB_size(size)}
+        onChangeRowsPerPage={size => setB_size(size)}
         onChangePage={handlePageChange}
         progressPending={loading}
         sortServer={true}

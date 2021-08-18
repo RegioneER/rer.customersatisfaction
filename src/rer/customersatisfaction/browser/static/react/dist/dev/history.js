@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "61891365a943eb6708e8";
+/******/ 	var hotCurrentHash = "c0d28fa968d8c63402fd";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -53557,12 +53557,13 @@ var ApiContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.creat
 var ApiProvider = ApiContext.Provider;
 var ApiConsumer = ApiContext.Consumer;
 var DEFAULT_B_SIZE = 25;
-var DEFAULT_SORT_ON = 'date';
+var DEFAULT_SORT_ON = 'last_vote';
 var DEFAULT_SORT_ORDER = 'descending';
 
 function ApiWrapper(_ref) {
   var endpoint = _ref.endpoint,
-      children = _ref.children;
+      children = _ref.children,
+      canDelete = _ref.canDelete;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -53692,7 +53693,8 @@ function ApiWrapper(_ref) {
       apiErrors: apiErrors,
       setApiErrors: setApiErrors,
       loading: loading,
-      endpoint: endpoint
+      endpoint: endpoint,
+      canDelete: canDelete
     }
   }, children);
 }
@@ -53845,7 +53847,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var App = function App() {
+var App = function App(_ref) {
+  var canDelete = _ref.canDelete;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
@@ -53854,7 +53858,8 @@ var App = function App() {
   var endpoint = 'customer-satisfaction';
   var children = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Menu_Menu__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomerSatisfactionList__WEBPACK_IMPORTED_MODULE_4__["default"], null));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TranslationsContext__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ApiContext__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    endpoint: endpoint
+    endpoint: endpoint,
+    canDelete: canDelete
   }, children));
 };
 
@@ -54011,7 +54016,8 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
       setB_size = _useContext.setB_size,
       handlePageChange = _useContext.handlePageChange,
       b_size = _useContext.b_size,
-      setSorting = _useContext.setSorting;
+      setSorting = _useContext.setSorting,
+      canDelete = _useContext.canDelete;
 
   var labels = Object(_utils__WEBPACK_IMPORTED_MODULE_7__["getCustomerSatisfactionLables"])(getTranslationFor);
 
@@ -54047,7 +54053,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     sortable: true,
     cell: function cell(row) {
       return row.url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "col-title"
+        className: "col-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: row.url,
         title: 'Apri ' + row.title,
@@ -54080,7 +54086,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     width: '80px',
     cell: function cell(row) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "comments-count"
+        className: "comments-count"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "".concat(row.url, "/show-feedbacks"),
         title: "Vai ai commenti"
@@ -54277,7 +54283,8 @@ var Menu = function Menu() {
       handleApiResponse = _useContext.handleApiResponse,
       apiErrors = _useContext.apiErrors,
       endpoint = _useContext.endpoint,
-      setApiErrors = _useContext.setApiErrors;
+      setApiErrors = _useContext.setApiErrors,
+      canDelete = _useContext.canDelete;
 
   var labels = Object(_utils__WEBPACK_IMPORTED_MODULE_6__["getCustomerSatisfactionLables"])(getTranslationFor);
 
@@ -54303,14 +54310,20 @@ var Menu = function Menu() {
       return Object(_CSV_ExportCSV__WEBPACK_IMPORTED_MODULE_4__["downloadCSV"])(portalUrl, endpoint, setApiErrors, getTranslationFor);
     },
     className: "plone-btn plone-btn-primary context"
-  }, labels.exportCsv)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, labels.exportCsv, ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fas fa-download fa-lg fa-fw",
+    "aria-hidden": true
+  }))), canDelete && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "right-zone"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return clearData();
     },
     className: "plone-btn plone-btn-danger"
-  }, labels.deleteFeedbacks))), apiErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-trash fa-lg fa-fw",
+    "aria-hidden": true
+  }), ' ', labels.deleteFeedbacks))), apiErrors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "errors"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
     className: "portalMessage error",
@@ -54355,7 +54368,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var rootElement = document.getElementById('customer-satisfaction-history-wrapper');
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), rootElement);
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  canDelete: JSON.parse(rootElement.dataset.candelete)
+}), rootElement);
 
 /***/ }),
 

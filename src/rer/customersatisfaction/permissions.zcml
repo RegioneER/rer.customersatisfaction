@@ -12,7 +12,15 @@
       id="rer.customersatisfaction.ManageCustomerSatisfaction"
       title="rer.customersatisfaction: Manage Customer Satisfaction"
      />
-    
+    <permission
+      id="rer.customersatisfaction.ShowFeedbacks"
+      title="rer.customersatisfaction: Show Deleted Feedbacks"
+     />
+     <permission
+      id="rer.customersatisfaction.AccessCustomerSatisfaction"
+      title="rer.customersatisfaction: Access Customer Satisfaction"
+     />
+
   </configure>
 
 </configure>

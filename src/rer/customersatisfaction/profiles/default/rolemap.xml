@@ -5,6 +5,15 @@
       <role name="Manager" />
       <role name="Site Administrator" />
     </permission>
+    <permission name="rer.customersatisfaction: Access Customer Satisfaction" acquire="True">
+      <role name="Editor" />
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
+    <permission name="rer.customersatisfaction: Show Deleted Feedbacks" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
     <permission name="rer.customersatisfaction: Add Customer Satisfaction Vote" acquire="True">
       <role name="Anonymous" />
     </permission>

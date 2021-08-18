@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
+from AccessControl import Unauthorized
 from plone import api
-from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
-from rer.customersatisfaction.restapi.services.common import DataGet
 from plone.restapi.batching import HypermediaBatch
 from plone.restapi.search.utils import unflatten_dotted_dict
 from plone.restapi.serializer.converters import json_compatible
-from zope.component import getUtility
+from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from rer.customersatisfaction.restapi.services.common import DataCSVGet
+from rer.customersatisfaction.restapi.services.common import DataGet
 from six import StringIO
-
+from zope.component import getUtility
 
 import csv
 import logging
@@ -23,6 +23,8 @@ class CustomerSatisfactionGet(DataGet):
     """
 
     def reply(self):
+        if api.user.is_anonymous():
+            raise Unauthorized
         results = self.get_data()
         batch = HypermediaBatch(self.request, results)
         data = {
@@ -42,20 +44,26 @@ class CustomerSatisfactionGet(DataGet):
     def get_data(self):
         tool = getUtility(ICustomerSatisfactionStore)
         reviews = {}
-        query = unflatten_dotted_dict(self.request.form)
+        show_deleted = api.user.has_permission(
+            "rer.customersatisfaction: Show Deleted Feedbacks"
+        )
 
+        query = unflatten_dotted_dict(self.request.form)
         text = query.get("text", "")
         if text:
             query_res = tool.search(query={"text": text})
         else:
             query_res = tool.search()
-
         for review in query_res:
             uid = review._attrs.get("uid", "")
             date = review._attrs.get("date", "")
             vote = review._attrs.get("vote", "")
             if uid not in reviews:
-                reviews[uid] = {
+                try:
+                    obj = api.content.get(UID=uid)
+                except Unauthorized:
+                    continue
+                new_data = {
                     "ok": 0,
                     "nok": 0,
                     "comments": [],
@@ -63,22 +71,28 @@ class CustomerSatisfactionGet(DataGet):
                     "uid": uid,
                     "review_ids": [],
                 }
-                obj = api.content.get(UID=uid)
+
+                if not obj and not show_deleted:
+                    # rer.customersatisfaction: Show Deleted Feedbacks.
+                    continue
+
+                if not api.user.has_permission(
+                    "rer.customersatisfaction: Access Customer Satisfaction", obj=obj
+                ):
+                    # user does not have that permission on object
+                    continue
                 if obj:
                     # can be changed
-                    reviews[uid]["title"] = obj.Title()
-                    reviews[uid]["url"] = obj.absolute_url()
+                    new_data["title"] = obj.Title()
+                    new_data["url"] = obj.absolute_url()
+                reviews[uid] = new_data
             data = reviews[uid]
             if vote in ["ok", "nok"]:
                 data[vote] += 1
             comment = review._attrs.get("comment", "")
             if comment:
                 data["comments"].append(
-                    {
-                        "comment": comment,
-                        "date": json_compatible(date),
-                        "vote": vote,
-                    }
+                    {"comment": comment, "date": json_compatible(date), "vote": vote,}
                 )
             if not data.get("last_vote", None):
                 data["last_vote"] = date
@@ -102,6 +116,8 @@ class CustomerSatisfactionCSVGet(DataCSVGet):
     type = "customer_satisfaction"
 
     def get_data(self):
+        if api.user.is_anonymous():
+            raise Unauthorized
         tool = getUtility(ICustomerSatisfactionStore)
         sbuf = StringIO()
         rows = []

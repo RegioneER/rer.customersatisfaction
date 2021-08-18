@@ -4,6 +4,7 @@ from plone import api
 from plone.memoize import ram
 from plone.protect.authenticator import createToken
 from time import time
+from AccessControl import Unauthorized
 
 import pkg_resources
 
@@ -15,11 +16,14 @@ CSS_TEMPLATE = "{portal_url}/++plone++rer.customersatisfaction/react/dist/{env_m
 class View(BrowserView):
     """ """
 
+    def __call__(self):
+        if api.user.is_anonymous():
+            raise Unauthorized
+        return super(View, self).__call__()
+
     @ram.cache(lambda *args: time() // (60 * 60))
     def get_version(self):
-        return pkg_resources.get_distribution(
-            "rer.customersatisfaction"
-        ).version
+        return pkg_resources.get_distribution("rer.customersatisfaction").version
 
     def get_env_mode(self):
         return (
@@ -46,3 +50,12 @@ class View(BrowserView):
 
     def get_token(self):
         return createToken()
+
+    def can_delete(self):
+        return (
+            api.user.has_permission(
+                "rer.customersatisfaction: Manage Customer Satisfaction"
+            )
+            and "true"
+            or "false"
+        )

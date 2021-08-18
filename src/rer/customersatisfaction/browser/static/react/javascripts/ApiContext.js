@@ -12,7 +12,7 @@ export const DEFAULT_B_SIZE = 25;
 export const DEFAULT_SORT_ON = 'last_vote';
 export const DEFAULT_SORT_ORDER = 'descending';
 
-function ApiWrapper({ endpoint, children }) {
+function ApiWrapper({ endpoint, children, canDelete }) {
   const [data, setData] = useState({});
   const [portalUrl, setPortalUrl] = useState(null);
 
@@ -23,7 +23,7 @@ function ApiWrapper({ endpoint, children }) {
   const [sort_on, setSort_on] = useState(DEFAULT_SORT_ON);
   const [sort_order, setSort_order] = useState(DEFAULT_SORT_ORDER);
 
-  const handleApiResponse = (res) => {
+  const handleApiResponse = res => {
     if (res?.status == 204 || res?.status == 200) {
       //ok
     } else {
@@ -49,7 +49,7 @@ function ApiWrapper({ endpoint, children }) {
         },
         method: 'GET',
       })
-        .then((data) => {
+        .then(data => {
           if (data === undefined) {
             setApiErrors({ status: 500, statusText: 'Error' });
             setLoading(false);
@@ -59,7 +59,7 @@ function ApiWrapper({ endpoint, children }) {
           setData(data.data);
           setLoading(false);
         })
-        .catch((error) => {
+        .catch(error => {
           setLoading(false);
           if (error && error.response) {
             setApiErrors({
@@ -88,7 +88,7 @@ function ApiWrapper({ endpoint, children }) {
     }
   }, [portalUrl, b_size, sort_on, sort_order]);
 
-  const handlePageChange = (page) => {
+  const handlePageChange = page => {
     fetchApi(b_size * (page - 1));
   };
 
@@ -114,6 +114,7 @@ function ApiWrapper({ endpoint, children }) {
         setApiErrors,
         loading,
         endpoint,
+        canDelete,
       }}
     >
       {children}

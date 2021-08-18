@@ -21,7 +21,7 @@
   <article id="content">
     <h1 class="documentFirstHeading" i18n:translate="customer_satisfaction_title_label">Customer satisfaction</h1>
     <div id="content-core">
-      <div id="customer-satisfaction-history-wrapper" data-authenticator="${view/get_token}"/>
+      <div id="customer-satisfaction-history-wrapper" data-authenticator="${view/get_token}" data-canDelete="${view/can_delete}" />
     </div>
     <script tal:define="js python:view.get_resource_js()" src="${js}"></script>
   </article>
