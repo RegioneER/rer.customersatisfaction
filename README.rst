@@ -17,11 +17,13 @@ Permissions
 
 There are two new specific permission:
 
-- rer.customersatisfaction.AddCustomerSatisfactionVote (rer.customersatisfaction: Add Customer Satisfaction Vote) that allows users to vote (by default Anonymous).
-- rer.customersatisfaction.ManageCustomerSatisfaction (rer.customersatisfaction: Manage Customer Satisfaction) that allows users to see and download data (by default Manager and Site Administrator).
-  
-Stored reviews
-==============
+- rer.customersatisfaction.AddCustomerSatisfactionVote (rer.customersatisfaction: Add Customer Satisfaction Vote) Allows users to vote (by default Anonymous).
+- rer.customersatisfaction.ManageCustomerSatisfaction (rer.customersatisfaction: Manage Customer Satisfaction) Allows to reset data (by default Manager and Site Administrator).
+- rer.customersatisfaction.ShowDeletedFeedbacks (rer.customersatisfaction: Show Deleted Feedbacks) Allow list also feedbacks from deleted contents (by default Manager and Site Administrator)
+- rer.customersatisfaction.AccessCustomerSatisfaction (rer.customersatisfaction: Access Customer Satisfaction) Allows users to list feedbacks on contents where they have that permission (by default Editor, Manager and Site Administrator)
+
+Feedbacks catalog
+=================
 
 Reviews are stored inside an internal catalog (based on `souper.plone <https://pypi.org/project/souper.plone/>`_).
 
@@ -77,6 +79,20 @@ Only users with "rer.customersatisfaction.AddCustomerSatisfactionVote" can post 
 > curl -i -X POST http://localhost:8080/Plone/front-page/@customer-satisfaction-add -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{"vote": "1"}' --user admin:admin
 
 If vote is successful, the response is a ``204``.
+
+
+Feedbacks listing
+=================
+
+There is a view (a link is also available on user menu in sidebar) that shows all infos about feedbacks: @@customer-satisfaction
+
+The list of feedbacks is filtered based on some permissions.
+
+Comments listing
+================
+
+Users with *rer.customersatisfaction.AccessCustomerSatisfaction* can call **@@show-feedbacks**
+view on a content, to see a detailed list of feedbacks and comments.
 
 
 Installation
