@@ -4,11 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-<<<<<<< Updated upstream
-"POT-Creation-Date: 2021-06-29 07:23+0000\n"
-=======
-"POT-Creation-Date: 2021-06-24 15:36+0000\n"
->>>>>>> Stashed changes
+"POT-Creation-Date: 2021-08-18 09:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,33 +17,37 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: rer.customersatisfaction\n"
 
-#: ../configure.zcml:23
+#: rer/customersatisfaction/profiles/default/actions.xml
+msgid "Customer satisfaction"
+msgstr ""
+
+#: rer/customersatisfaction/configure.zcml:23
 msgid "Installs the rer.customersatisfaction add-on."
 msgstr ""
 
-#: ../configure.zcml:23
+#: rer/customersatisfaction/configure.zcml:23
 msgid "RER: Customer satisfaction"
 msgstr ""
 
-#: ../configure.zcml:32
+#: rer/customersatisfaction/configure.zcml:32
 msgid "RER: Customer satisfaction (uninstall)"
 msgstr ""
 
-#: ../browser/customer_satisfaction_viewlet.pt:18
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:18
 msgid "Tell us why and help us to improve site quality"
 msgstr ""
 
-#: ../configure.zcml:32
+#: rer/customersatisfaction/configure.zcml:32
 msgid "Uninstalls the rer.customersatisfaction add-on."
 msgstr ""
 
 #. Default: "Comments"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:25
+#: rer/customersatisfaction/browser/show_feedbacks.pt:26
 msgid "comments_label"
 msgstr ""
 
 #. Default: "Customer satisfaction"
-#: ../browser/customer_satisfaction.pt:22
+#: rer/customersatisfaction/browser/customer_satisfaction.pt:22
 msgid "customer_satisfaction_title_label"
 msgstr ""
 
@@ -60,22 +60,16 @@ msgstr ""
 msgid "export_csv_label"
 msgstr ""
 
-<<<<<<< Updated upstream
-#. Default: "Feedbacks"
-#: ../browser/show_feedbacks.pt:16
-msgid "feedbacks_label"
-=======
 #. Default: "${title} - feedbacks"
 #: rer/customersatisfaction/browser/show_feedbacks.pt:11
 msgid "feedbacks_title"
->>>>>>> Stashed changes
 msgstr ""
 
 msgid "filter_title_label"
 msgstr ""
 
 #. Default: "Filter:&nbsp;"
-#: ../browser/show_feedbacks.pt:18
+#: rer/customersatisfaction/browser/show_feedbacks.pt:28
 msgid "filters_label"
 msgstr ""
 
@@ -95,21 +89,17 @@ msgid "no_data_label"
 msgstr ""
 
 #. Default: "No feedbacks for this content."
-<<<<<<< Updated upstream
-#: ../browser/show_feedbacks.pt:32
-=======
-#: rer/customersatisfaction/browser/show_feedbacks.pt:18
->>>>>>> Stashed changes
+#: rer/customersatisfaction/browser/show_feedbacks.pt:19
 msgid "no_feedbacks_label"
 msgstr ""
 
 #. Default: "${nok} negatives"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:23
+#: rer/customersatisfaction/browser/show_feedbacks.pt:24
 msgid "nok_total_label"
 msgstr ""
 
 #. Default: "${ok} positives"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:21
+#: rer/customersatisfaction/browser/show_feedbacks.pt:22
 msgid "ok_total_label"
 msgstr ""
 
@@ -117,7 +107,7 @@ msgid "page_label"
 msgstr ""
 
 #. Default: "Does this page was useful?"
-#: ../browser/customer_satisfaction_viewlet.pt:5
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:5
 msgid "page_useful_label"
 msgstr ""
 
@@ -130,37 +120,30 @@ msgstr ""
 msgid "reset_feedbacks_label"
 msgstr ""
 
-<<<<<<< Updated upstream
+#. Default: "Received ${total} feedbacks:"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:21
+msgid "reveived_label"
+msgstr ""
+
 #. Default: "Vai alla ricerca per commenti negativi"
-#: ../browser/show_feedbacks.pt:25
+#: rer/customersatisfaction/browser/show_feedbacks.pt:35
 msgid "search_feedback_nok"
 msgstr ""
 
 #. Default: "Vai alla ricerca per commenti positivi"
-#: ../browser/show_feedbacks.pt:21
+#: rer/customersatisfaction/browser/show_feedbacks.pt:31
 msgid "search_feedback_ok"
-=======
-#. Default: "Received ${total} feedbacks:"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:20
-msgid "reveived_label"
->>>>>>> Stashed changes
 msgstr ""
 
 msgid "search_label"
 msgstr ""
 
 #. Default: "Vai alla ricerca dei commenti non filtrata"
-#: ../browser/show_feedbacks.pt:29
+#: rer/customersatisfaction/browser/show_feedbacks.pt:39
 msgid "search_no_filters"
 msgstr ""
 
-<<<<<<< Updated upstream
 #. Default: "Send your feedback"
-#: ../browser/customer_satisfaction_viewlet.pt:23
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:23
 msgid "send_feedback"
-=======
-#. Default: "Show only"
-#: rer/customersatisfaction/browser/show_feedbacks.pt:27
-msgid "show_only_label"
->>>>>>> Stashed changes
 msgstr ""

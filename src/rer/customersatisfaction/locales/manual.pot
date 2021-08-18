@@ -29,9 +29,6 @@ msgstr ""
 msgid "last_voted_label"
 msgstr ""
 
-msgid "comments_label"
-msgstr ""
-
 msgid "filter_title_label"
 msgstr ""
 
