@@ -2,3 +2,12 @@ graft src/rer
 graft docs
 include *.rst
 global-exclude *.pyc
+exclude .babelrc
+exclude .nvmrc
+include *.GPL
+include *.js
+include *.json
+include *.lock
+include *.txt
+include *.yml
+prune src/rer/customersatisfaction/browser/static/dist/dev
