@@ -4,6 +4,7 @@
 *.mo
 *.py?
 *.swp
+.python-version
 # dirs
 bin/
 buildout-cache/
