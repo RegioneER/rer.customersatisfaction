@@ -32,7 +32,7 @@ msgstr "RER: Customer satisfaction (uninstall)"
 
 #: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:18
 msgid "Tell us why and help us to improve site quality"
-msgstr "Spiegaci perché e aiutaci e migliorare la qualità del sito"
+msgstr "Spiegaci perché e aiutaci a migliorare la qualità del sito"
 
 #: rer/customersatisfaction/configure.zcml:32
 msgid "Uninstalls the rer.customersatisfaction add-on."
