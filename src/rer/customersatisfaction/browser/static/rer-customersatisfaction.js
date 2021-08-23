@@ -43,8 +43,10 @@ require(['jquery'], function($) {
     var collapse = $('#cs-collapsible-form-area');
     if (expand) {
       collapse.attr('aria-expanded', true);
+      collapse.attr('aria-hidden', false);
     } else {
       collapse.attr('aria-expanded', false);
+      collapse.attr('aria-hidden', true);
     }
   }
 
