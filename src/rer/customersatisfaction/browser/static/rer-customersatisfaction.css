@@ -21,6 +21,12 @@
   max-height: 600px;
 }
 
+#cs-collapsible-form-area button[type='submit'].plone-btn-primary {
+  color: #fff;
+  background-color: #cb1d15;
+  border-color: #b41a13;
+}
+
 #reviews-count {
   display: flex;
   justify-content: space-between;
