@@ -6,6 +6,10 @@ Add a form (viewlet) for the customer satisfaction on site contents.
 
 Users can add a vote (positive or negative) and a comment to every page on the site.
 
+.. image:: docs/customer-satisfaction_1-Recensione.jpg
+   :alt: Review
+
+
 Captcha protection
 ==================
 
@@ -88,12 +92,18 @@ There is a view (a link is also available on user menu in sidebar) that shows al
 
 The list of feedbacks is filtered based on some permissions.
 
+.. image:: docs/customer-satisfaction_2-Elenco-Recensioni.jpg
+   :alt: Feedbacks listing
+
+
 Comments listing
 ================
 
 Users with *rer.customersatisfaction.AccessCustomerSatisfaction* can call **@@show-feedbacks**
 view on a content, to see a detailed list of feedbacks and comments.
 
+.. image:: docs/customer-satisfaction_3-Dettaglio-Commenti.jpg
+   :alt: Comments listing
 
 Installation
 ============
