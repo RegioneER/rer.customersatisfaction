@@ -40,11 +40,19 @@ require(['jquery'], function($) {
   }
 
   function expandCollapse(expand) {
-    var collapse = $('#cs-collapsible-form-area');
+    var $collapse = $('#cs-collapsible-form-area');
     if (expand) {
-      collapse.attr('aria-expanded', true);
+      $collapse.css('display', 'block');
+      setTimeout(() => {
+        $collapse.attr('aria-expanded', true);
+        $collapse.attr('aria-hidden', false);
+      }, 10);
     } else {
-      collapse.attr('aria-expanded', false);
+      $collapse.attr('aria-expanded', false);
+      $collapse.attr('aria-hidden', true);
+      setTimeout(() => {
+        $collapse.css('display', 'none');
+      }, 100);
     }
   }
 

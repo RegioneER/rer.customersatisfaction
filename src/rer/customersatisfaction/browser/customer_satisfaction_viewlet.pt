@@ -6,21 +6,25 @@
             <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
                 <label class="plone-btn plone-btn-default feedback-label feedback-success" for="si">
                     <input type="radio" id="si" name="vote" value="ok" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    <i class="glyphicon glyphicon-thumbs-up"/>
+                    <i aria-hidden="true" class="glyphicon glyphicon-thumbs-up"/>
+                    <span class="sr-only">Si</span>
                 </label>
                 <label class="plone-btn plone-btn-default feedback-label feedback-danger" for="no">
                     <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    <i class="glyphicon glyphicon-thumbs-down"/>
+                    <i aria-hidden="true" class="glyphicon glyphicon-thumbs-down"/>
+                    <span class="sr-only">No</span>
                 </label>
             </div>
         </div>
-        <div id="cs-collapsible-form-area" role="region" aria-expanded="false">
+        <div id="cs-collapsible-form-area" role="region" aria-expanded="false" aria-hidden="true" style="display: none;">
+            <label for="rer-customersatisfaction-comment" class="sr-only" i18n:translate="">Tell us why and help us to improve site quality</label>
             <textarea i18n:attributes="title;placeholder"
                       title="Tell us why and help us to improve site quality"
                       placeholder="Tell us why and help us to improve site quality"
+                      id="rer-customersatisfaction-comment"
                       name="comment" />
             <tal:block tal:replace="structure context/@@captcha/image_tag"/>
-            <button class="plone-btn plone-btn-primary" i18n:translate="send_feedback">Send your feedback</button>
+            <button type="submit" class="plone-btn plone-btn-primary" i18n:translate="send_feedback">Send your feedback</button>
         </div>
     </form>
 </div>

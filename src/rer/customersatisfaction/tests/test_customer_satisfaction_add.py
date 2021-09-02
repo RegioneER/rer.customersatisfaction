@@ -29,7 +29,9 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
         api.user.create(
-            email="memberuser@example.com", username="memberuser", password="secret",
+            email="memberuser@example.com",
+            username="memberuser",
+            password="secret",
         )
 
         self.document = api.content.create(
@@ -45,7 +47,9 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.url = "{}/@customer-satisfaction-add".format(self.document.absolute_url())
 
         set_registry_record(
-            "private_key", "foo-key", interface=IRecaptchaSettings,
+            "private_key",
+            "foo-key",
+            interface=IRecaptchaSettings,
         )
         transaction.commit()
 
@@ -69,27 +73,35 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(res.json()["message"], "Campo obbligatorio mancante: vote")
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": False},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": False},
         )
 
         # captcha is required
         res = self.anon_api_session.post(self.url, json={"vote": "ok"})
         self.assertEqual(res.status_code, 400)
-        self.assertEqual(res.json()["message"], "Campo obbligatorio mancante: captcha")
+        self.assertEqual(
+            res.json()["message"], "Campo obbligatorio mancante: Non sono un robot"
+        )
 
         # captcha code is invalid
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": False},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": False},
         )
         res = self.anon_api_session.post(
             self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
         )
         self.assertEqual(res.status_code, 400)
-        self.assertEqual(res.json()["message"], "Captcha errato")
+        self.assertEqual(
+            res.json()["message"],
+            "Validazione richiesta per il campo: Non sono un robot",
+        )
 
         # captcha code is valid
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": True},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": True},
         )
         res = self.anon_api_session.post(
             self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
@@ -100,7 +112,8 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
     def test_validate_vote(self, m):
         # mock captcha verification
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": True},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": True},
         )
         resp = self.anon_api_session.post(
             self.url,
@@ -113,7 +126,8 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
     def test_correctly_save_data(self, m):
         # mock captcha verification
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": True},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": True},
         )
         self.anon_api_session.post(
             self.url,
@@ -131,7 +145,8 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
     def test_store_only_known_fields(self, m):
         # mock captcha verification
         m.post(
-            "https://www.google.com/recaptcha/api/siteverify", json={"success": True},
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": True},
         )
         self.anon_api_session.post(
             self.url,

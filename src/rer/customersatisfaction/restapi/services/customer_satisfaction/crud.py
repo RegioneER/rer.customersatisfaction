@@ -30,16 +30,14 @@ class CustomerSatisfactionAdd(DataAdd):
         for field in ["vote"]:
             value = form_data.get(field, "")
             if not value:
-                raise BadRequest(
-                    "Campo obbligatorio mancante: {}".format(field)
-                )
+                raise BadRequest("Campo obbligatorio mancante: {}".format(field))
             if value not in ["ok", "nok"]:
                 raise BadRequest("Voto non valido: {}".format(value))
         self.check_recaptcha(form_data)
 
     def check_recaptcha(self, form_data):
         if "g-recaptcha-response" not in form_data:
-            raise BadRequest("Campo obbligatorio mancante: captcha")
+            raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
 
         secret = api.portal.get_registry_record(
             "private_key", interface=IRecaptchaSettings
@@ -53,7 +51,7 @@ class CustomerSatisfactionAdd(DataAdd):
         )
         result = response.json()
         if not result.get("success", False):
-            raise BadRequest("Captcha errato")
+            raise BadRequest("Validazione richiesta per il campo: Non sono un robot")
         return True
 
     def extract_data(self, form_data):
@@ -73,8 +71,7 @@ class CustomerSatisfactionAdd(DataAdd):
 
 
 class CustomerSatisfactionDelete(DataDelete):
-    """
-    """
+    """"""
 
     store = ICustomerSatisfactionStore
 
@@ -94,9 +91,7 @@ class CustomerSatisfactionDelete(DataDelete):
             if not res:
                 continue
             if res.get("error", "") == "NotFound":
-                raise BadRequest(
-                    'Unable to find item with id "{}"'.format(self.id)
-                )
+                raise BadRequest('Unable to find item with id "{}"'.format(self.id))
             self.request.response.setStatus(500)
             return dict(
                 error=dict(
@@ -108,7 +103,6 @@ class CustomerSatisfactionDelete(DataDelete):
 
 
 class CustomerSatisfactionClear(DataClear):
-    """
-    """
+    """"""
 
     store = ICustomerSatisfactionStore
