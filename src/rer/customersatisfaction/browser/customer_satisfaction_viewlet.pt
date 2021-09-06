@@ -4,13 +4,13 @@
         <div class="field">
             <h2 id="cs-form-radiogroup-label" i18n:translate="page_useful_label">Does this page was useful?</h2>
             <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
-                <label class="plone-btn plone-btn-default feedback-label feedback-success" for="si">
+                <label class="plone-btn plone-btn-default feedback-label feedback-success" for="si" role="radio">
                     <input type="radio" id="si" name="vote" value="ok" aria-controls="cs-collapsible-form-area" class="sr-only">
                     <i aria-hidden="true" class="glyphicon glyphicon-thumbs-up"/>
                     <span class="sr-only">Si</span>
                 </label>
                 <label class="plone-btn plone-btn-default feedback-label feedback-danger" for="no">
-                    <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only">
+                    <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only" role="radio">
                     <i aria-hidden="true" class="glyphicon glyphicon-thumbs-down"/>
                     <span class="sr-only">No</span>
                 </label>
