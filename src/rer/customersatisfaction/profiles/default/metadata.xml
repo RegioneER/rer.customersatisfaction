@@ -4,6 +4,5 @@
   <dependencies>
     <dependency>profile-souper.plone:default</dependency>
     <dependency>profile-plone.restapi:default</dependency>
-    <dependency>profile-collective.recaptcha:default</dependency>
   </dependencies>
 </metadata>

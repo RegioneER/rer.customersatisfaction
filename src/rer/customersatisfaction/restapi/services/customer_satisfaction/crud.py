@@ -1,19 +1,27 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
-from zExceptions import BadRequest
 from rer.customersatisfaction.restapi.services.common import DataAdd
 from rer.customersatisfaction.restapi.services.common import DataClear
 from rer.customersatisfaction.restapi.services.common import DataDelete
-from collective.recaptcha.settings import IRecaptchaSettings
+from zExceptions import BadRequest
 from zope.component import getUtility
-from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
 
-import requests
 import logging
+import os
+import requests
 
 logger = logging.getLogger(__name__)
+
+
+try:
+    from collective.recaptcha.settings import IRecaptchaSettings
+
+    HAS_COLLECTIVE_RECAPTCHA = True
+except ImportError:
+    HAS_COLLECTIVE_RECAPTCHA = False
 
 
 class CustomerSatisfactionAdd(DataAdd):
@@ -35,13 +43,25 @@ class CustomerSatisfactionAdd(DataAdd):
                 raise BadRequest("Voto non valido: {}".format(value))
         self.check_recaptcha(form_data)
 
+    def get_secret_key(self):
+        if HAS_COLLECTIVE_RECAPTCHA:
+            return api.portal.get_registry_record(
+                "private_key", interface=IRecaptchaSettings
+            )
+
+        return os.environ.get("RECAPTCHA_PRIVATE_KEY", "")
+
     def check_recaptcha(self, form_data):
         if "g-recaptcha-response" not in form_data:
             raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
+        secret = self.get_secret_key()
 
-        secret = api.portal.get_registry_record(
-            "private_key", interface=IRecaptchaSettings
-        )
+        if not secret:
+            logger.error(
+                "Missing Recaptcha private key. Set it into collective.recaptcha "
+                "control panel or in RECAPTCHA_PRIVATE_KEY env variable."
+            )
+            raise BadRequest("Chiave privata di Recaptcha non impostata.")
         payload = {
             "response": form_data["g-recaptcha-response"],
             "secret": secret,

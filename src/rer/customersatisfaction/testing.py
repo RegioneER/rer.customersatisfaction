@@ -11,9 +11,15 @@ from plone.testing import z2
 
 import collective.MockMailHost
 import rer.customersatisfaction
-import collective.recaptcha
 import souper.plone
 import plone.restapi
+
+try:
+    import collective.recaptcha
+
+    HAS_COLLECTIVE_RECAPTCHA = True
+except ImportError:
+    HAS_COLLECTIVE_RECAPTCHA = False
 
 
 class RerCustomersatisfactionLayer(PloneSandboxLayer):
@@ -24,8 +30,8 @@ class RerCustomersatisfactionLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-
-        self.loadZCML(package=collective.recaptcha)
+        if HAS_COLLECTIVE_RECAPTCHA:
+            self.loadZCML(package=collective.recaptcha)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=rer.customersatisfaction)
         self.loadZCML(package=souper.plone)
@@ -57,7 +63,8 @@ class RerCustomersatisfactionLayerApi(PloneRestApiDXLayer):
         super(RerCustomersatisfactionLayerApi, self).setUpZope(
             app, configurationContext
         )
-        self.loadZCML(package=collective.recaptcha)
+        if HAS_COLLECTIVE_RECAPTCHA:
+            self.loadZCML(package=collective.recaptcha)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=rer.customersatisfaction)
         self.loadZCML(package=souper.plone)
