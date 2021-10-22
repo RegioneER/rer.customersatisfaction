@@ -13,8 +13,21 @@ Users can add a vote (positive or negative) and a comment to every page on the s
 Captcha protection
 ==================
 
-This product uses `collective.recaptcha <https://pypi.org/project/collective.recaptcha/>`_ so after installing it,
-you need to setup proper keys into its control panel.
+This product can use `collective.recaptcha <https://pypi.org/project/collective.recaptcha/>`_ or just an environment variable (*RECAPTCHA_PRIVATE_KEY*)
+to recaptcha validation.
+
+collective.recaptcha usage is the preferred one for classic Plone because it's used in the viewlet.
+
+For Volto integration, we need to use recaptcha v3, so we can't use collective.recaptcha right now.
+
+You just need to set and environment variable *RECAPTCHA_PRIVATE_KEY* with the private key value.
+
+The default is without collective.recaptcha.
+
+If you want to add it, you need to add the extra required part (see **Installation** section).
+
+After installing it, you need to setup proper keys into its control panel.
+
 
 Permissions
 ===========
@@ -117,6 +130,13 @@ Add rer.customersatisfaction to buildout::
     eggs =
         rer.customersatisfaction
 
+
+If you need collective.recaptcha support, add the egg like this::
+
+   ...
+
+   eggs =
+       rer.customersatisfaction[collective_recaptcha]
 
 and run ``bin/buildout`` command.
 

@@ -30,6 +30,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />
+  
+  <genericsetup:registerProfile
+      name="collective_recaptcha"
+      title="RER: Customer satisfaction (with recaptcha)"
+      directory="profiles/collective_recaptcha"
+      description="Install the rer.customersatisfaction dependency."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
   <utility
       factory=".setuphandlers.HiddenProfiles"

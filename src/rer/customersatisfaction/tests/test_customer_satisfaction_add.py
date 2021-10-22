@@ -2,20 +2,19 @@
 from rer.customersatisfaction.testing import (
     RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING,
 )
-from collective.recaptcha.settings import IRecaptchaSettings
 from plone import api
-from plone.api.portal import set_registry_record
 from plone.app.testing import setRoles
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.app.testing import TEST_USER_ID
-from plone.restapi.testing import RelativeSession
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
+from plone.restapi.testing import RelativeSession
 from zope.component import getUtility
 
 import transaction
 import unittest
 import requests_mock
+import os
 
 
 class TestCustomerSatisfactionAdd(unittest.TestCase):
@@ -23,6 +22,7 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
     layer = RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING
 
     def setUp(self):
+        os.environ["RECAPTCHA_PRIVATE_KEY"] = "foo"
         self.app = self.layer["app"]
         self.portal = self.layer["portal"]
         self.portal_url = self.portal.absolute_url()
@@ -45,12 +45,6 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.anon_api_session.headers.update({"Accept": "application/json"})
 
         self.url = "{}/@customer-satisfaction-add".format(self.document.absolute_url())
-
-        set_registry_record(
-            "private_key",
-            "foo-key",
-            interface=IRecaptchaSettings,
-        )
         transaction.commit()
 
     def tearDown(self):
@@ -164,3 +158,18 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.assertEqual(res[0]._attrs.get("unknown", None), None)
         self.assertEqual(res[0]._attrs.get("vote", None), "nok")
         self.assertEqual(res[0]._attrs.get("comment", None), "i disagree")
+
+    @requests_mock.Mocker(real_http=True)
+    def test_raise_error_if_private_key_not_set(self, m):
+        """ """
+        del os.environ["RECAPTCHA_PRIVATE_KEY"]
+
+        # captcha code is valid
+        m.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            json={"success": True},
+        )
+        res = self.anon_api_session.post(
+            self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
+        )
+        self.assertEqual(res.status_code, 400)
