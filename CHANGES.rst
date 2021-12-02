@@ -5,8 +5,8 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix python requirement.
+  [cekk]
 
 1.1.0 (2021-10-22)
 ------------------
