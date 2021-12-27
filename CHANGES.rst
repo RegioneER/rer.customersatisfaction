@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.1.2 (unreleased)
+1.1.2 (2021-12-27)
 ------------------
 
 - Do not break viewlet if collective.recaptcha is not installed.
