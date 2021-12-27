@@ -5,7 +5,8 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not break viewlet if collective.recaptcha is not installed.
+  [cekk]
 
 
 1.1.1 (2021-12-02)
