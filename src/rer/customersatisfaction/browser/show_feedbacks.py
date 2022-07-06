@@ -24,8 +24,8 @@ class View(BrowserView):
             "nok": 0,
             "nok_with_comments": 0,
             "total": len(search_results),
-            "comments": [],
         }
+        comments = []
         for review in tool.search(query=query):
             data = self.format_data(review)
             vote = data.get("vote", "")
@@ -37,10 +37,11 @@ class View(BrowserView):
                 res["{}_with_comments".format(vote)] += 1
                 if query_vote and query_vote != vote:
                     continue
-                res["comments"].append(data)
-        b_size = self.request.form.get("b_size", 20)
-        b_start = self.request.form.get("b_start", 0)
-        res["comments"] = Batch(res["comments"], int(b_size), int(b_start))
+                comments.append(data)
+        if comments:
+            b_size = self.request.form.get("b_size", 20)
+            b_start = self.request.form.get("b_start", 0)
+            res["comments"] = Batch(comments, int(b_size), int(b_start))
         return res
 
     def format_data(self, item):

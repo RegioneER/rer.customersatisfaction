@@ -18,45 +18,49 @@
 
   <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
   <p class="feedbacks_summary">
-    <span i18n:translate="reveived_label">Received <tal:total i18n:name="total">${data/total}</tal:total> feedbacks:</span>
-    <span i18n:translate="ok_total_label"><tal:ok i18n:name="ok">${data/ok}</tal:ok> positives</span>
-    and
-    <span i18n:translate="nok_total_label"><tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives</span>
+    <span i18n:translate="reveived_label">
+      Received <tal:total i18n:name="total">${data/total}</tal:total> feedbacks:
+      <tal:ok i18n:name="ok">${data/ok}</tal:ok> positives
+      and
+      <tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives
+    </span>
   </p>
   <h4 i18n:translate="comments_label">Comments</h4>
-  <div class="filters">
-    <span i18n:translate="filters_label">Filter:&nbsp;</span>
-    <a href="${context/absolute_url}/show-feedbacks?vote=ok">
-      <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
-      <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
-    </a>
-    <a href="${context/absolute_url}/show-feedbacks?vote=nok">
-      <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
-      <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
-    </a>
-    <a href="${context/absolute_url}/show-feedbacks">
-      <span class="feedback-label"><i class="glyphicon glyphicon-erase"/></span>
-      <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
-    </a>
-  </div>
-  <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
-
-  <div class="feedbacks-wrapper" tal:condition="data">
-    <tal:feedback repeat="feedback batch">
-      <div class="feedback"
-           tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
-                       icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
-                       comment feedback/comment|nothing">
-        <p class="feedback-date" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></p>
-        <div class="feedback-body">
-          <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
-          <div class="feedback-comment" tal:condition="comment" tal:content="comment" />
+  <p tal:condition="not:batch" i18n:translate="no_comments_label">No comments for this content.</p>
+  <tal:comments condition="batch">
+    <div class="filters">
+      <span i18n:translate="filters_label">Filter:&nbsp;</span>
+      <a href="${context/absolute_url}/show-feedbacks?vote=ok">
+        <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
+        <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
+      </a>
+      <a href="${context/absolute_url}/show-feedbacks?vote=nok">
+        <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
+        <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
+      </a>
+      <a href="${context/absolute_url}/show-feedbacks">
+        <span class="feedback-label"><i class="glyphicon glyphicon-erase"/></span>
+        <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
+      </a>
+    </div>
+    
+    <div class="feedbacks-wrapper" tal:condition="data">
+      <tal:feedback repeat="feedback batch">
+        <div class="feedback"
+            tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
+                        icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
+                        comment feedback/comment|nothing">
+          <p class="feedback-date" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></p>
+          <div class="feedback-body">
+            <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
+            <div class="feedback-comment" tal:condition="comment" tal:content="comment" />
+          </div>
         </div>
-      </div>
-    </tal:feedback>
+      </tal:feedback>
 
-    <div metal:use-macro="context/batch_macros/macros/navigation" />
-  </div>
+      <div metal:use-macro="context/batch_macros/macros/navigation" />
+    </div>
+  </tal:comments>
 
 </metal:content-core>
 </body>
