@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeStep
+    source="1000"
+    destination="1100"
+    title="Upgrade to 1100"
+    description=""
+    profile="rer.customersatisfaction:default"
+    handler=".upgrades.update_registry"
+    />
+
+</configure>

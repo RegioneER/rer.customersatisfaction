@@ -5,7 +5,7 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-- Add flag to disable captcha validation.
+- Add a flag to disable captcha validation.
   [cekk]
 
 
