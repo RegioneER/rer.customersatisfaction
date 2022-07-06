@@ -28,6 +28,15 @@ If you want to add it, you need to add the extra required part (see **Installati
 
 After installing it, you need to setup proper keys into its control panel.
 
+Disable captcha protection
+--------------------------
+
+By default this product needs a captcha validation to protect spam and form submission raise an error if missing.
+
+There are some edge cases when you need to temporary disable this protection and you can do this with a flag in registry named **rer.customersatisfaction.disable_recaptcha**.
+
+Use this flag **ONLY** if needed because it can open your site to bot spam.
+
 
 Permissions
 ===========

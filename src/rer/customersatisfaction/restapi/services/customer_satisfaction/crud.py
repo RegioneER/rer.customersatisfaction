@@ -52,8 +52,15 @@ class CustomerSatisfactionAdd(DataAdd):
         return os.environ.get("RECAPTCHA_PRIVATE_KEY", "")
 
     def check_recaptcha(self, form_data):
+        disable_captcha = api.portal.get_registry_record(
+            "rer.customersatisfaction.disable_recaptcha"
+        )
         if "g-recaptcha-response" not in form_data:
-            raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
+            if disable_captcha == True:
+                logger.warning("Sottomissione form con captcha disabilitato.")
+                return True
+            else:
+                raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
         secret = self.get_secret_key()
 
         if not secret:
