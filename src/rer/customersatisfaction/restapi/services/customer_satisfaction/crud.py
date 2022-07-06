@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from rer.customersatisfaction.restapi.services.common import DataAdd
@@ -52,8 +53,18 @@ class CustomerSatisfactionAdd(DataAdd):
         return os.environ.get("RECAPTCHA_PRIVATE_KEY", "")
 
     def check_recaptcha(self, form_data):
+        try:
+            disable_recaptcha = api.portal.get_registry_record(
+                "rer.customersatisfaction.disable_recaptcha"
+            )
+        except InvalidParameterError:
+            disable_recaptcha = False
         if "g-recaptcha-response" not in form_data:
-            raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
+            if disable_recaptcha:
+                logger.warning("Sottomissione form con captcha disabilitato.")
+                return True
+            else:
+                raise BadRequest("Campo obbligatorio mancante: Non sono un robot")
         secret = self.get_secret_key()
 
         if not secret:

@@ -5,7 +5,8 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add a flag to disable captcha validation.
+  [cekk]
 
 
 1.1.2 (2021-12-27)

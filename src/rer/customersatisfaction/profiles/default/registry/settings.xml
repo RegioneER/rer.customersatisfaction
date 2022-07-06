@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="rer.customersatisfaction">
+
+  <record name="rer.customersatisfaction.disable_recaptcha">
+        <field type="plone.registry.field.Bool">
+            <title>Disable Recaptcha check for Customer Satisfaction</title>
+            <description>At your own risk!</description>
+        </field>
+        <value>False</value>
+    </record>
+</registry>

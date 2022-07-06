@@ -173,3 +173,30 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
             self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
         )
         self.assertEqual(res.status_code, 400)
+
+    def test_skip_captcha_validation_with_flag(self):
+
+        api.portal.set_registry_record(
+            "rer.customersatisfaction.disable_recaptcha", True
+        )
+        transaction.commit()
+
+        res = self.anon_api_session.post(
+            self.url,
+            json={
+                "vote": "ok",
+                "comment": "i disagree",
+            },
+        )
+        self.assertNotEqual(res.status_code, 400)
+        self.assertEqual(res.status_code, 204)
+
+        transaction.commit()
+        tool = getUtility(ICustomerSatisfactionStore)
+        self.assertEqual(len(tool.search()), 1)
+
+        # go back with default value
+        api.portal.set_registry_record(
+            "rer.customersatisfaction.disable_recaptcha", False
+        )
+        transaction.commit()
