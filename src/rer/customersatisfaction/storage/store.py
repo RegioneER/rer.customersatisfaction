@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 @implementer(ICustomerSatisfactionStore)
 class CustomerSatisfactionStore(object):
-    """
-    """
+    """ """
 
     fields = [
         "uid",
@@ -71,13 +70,10 @@ class CustomerSatisfactionStore(object):
                 key=lambda k: k.attrs[sort_index] or None,
                 reverse=reverse,
             )
-        return sorted(
-            records, key=lambda k: k.attrs[sort_index] or "", reverse=reverse
-        )
+        return sorted(records, key=lambda k: k.attrs[sort_index] or "", reverse=reverse)
 
     def parse_query_params(self, index, value):
-        """
-        """
+        """ """
         if index == self.text_index:
             return "'{}' in {}".format(value, self.text_index)
         elif index in self.keyword_indexes:
@@ -122,9 +118,7 @@ class CustomerSatisfactionStore(object):
         try:
             record = self.soup.get(id)
         except KeyError:
-            logger.error(
-                '[DELETE] Subscription with id "{}" not found.'.format(id)
-            )
+            logger.error('[DELETE] Subscription with id "{}" not found.'.format(id))
             return {"error": "NotFound"}
         del self.soup[record]
 
