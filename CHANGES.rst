@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.1.3 (unreleased)
+1.2.0 (2022-07-06)
 ------------------
 
 - Add a flag to disable captcha validation.
