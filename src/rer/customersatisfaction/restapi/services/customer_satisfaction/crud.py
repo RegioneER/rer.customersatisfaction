@@ -56,7 +56,7 @@ class CustomerSatisfactionAdd(DataAdd):
             "rer.customersatisfaction.disable_recaptcha"
         )
         if "g-recaptcha-response" not in form_data:
-            if disable_captcha == True:
+            if disable_captcha:
                 logger.warning("Sottomissione form con captcha disabilitato.")
                 return True
             else:
