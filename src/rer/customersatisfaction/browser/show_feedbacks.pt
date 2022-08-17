@@ -20,11 +20,11 @@
   <p class="feedbacks_summary">
     <span i18n:translate="reveived_label">Received <tal:total i18n:name="total">${data/total}</tal:total> feedbacks:</span>
     <span i18n:translate="ok_total_label"><tal:ok i18n:name="ok">${data/ok}</tal:ok> positives</span>
-    and
+    <span i18n:translate="and_label">and</span>
     <span i18n:translate="nok_total_label"><tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives</span>
   </p>
   <h4 i18n:translate="comments_label">Comments</h4>
-  <div class="filters">
+  <div class="filters" tal:condition="batch">
     <span i18n:translate="filters_label">Filter:&nbsp;</span>
     <a href="${context/absolute_url}/show-feedbacks?vote=ok">
       <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
@@ -39,9 +39,8 @@
       <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
     </a>
   </div>
-  <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
-
-  <div class="feedbacks-wrapper" tal:condition="data">
+  <p tal:condition="not:batch" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
+  <div class="feedbacks-wrapper" tal:condition="batch">
     <tal:feedback repeat="feedback batch">
       <div class="feedback"
            tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';

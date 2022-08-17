@@ -58,3 +58,9 @@ msgstr ""
 
 msgid "reset_feedbacks_label"
 msgstr ""
+
+msgid "rows_per_page_label"
+msgstr ""
+
+msgid "range_separator_label"
+msgstr ""

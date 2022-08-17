@@ -1,10 +1,10 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#--- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+#SOME DESCRIPTIVE TITLE.
+#FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-08-18 09:02+0000\n"
+"POT-Creation-Date: 2022-08-17 09:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,24 +21,37 @@ msgstr ""
 msgid "Customer satisfaction"
 msgstr ""
 
-#: rer/customersatisfaction/configure.zcml:23
+#: rer/customersatisfaction/configure.zcml:41
+msgid "Install the rer.customersatisfaction dependency."
+msgstr ""
+
+#: rer/customersatisfaction/configure.zcml:24
 msgid "Installs the rer.customersatisfaction add-on."
 msgstr ""
 
-#: rer/customersatisfaction/configure.zcml:23
+#: rer/customersatisfaction/configure.zcml:24
 msgid "RER: Customer satisfaction"
 msgstr ""
 
-#: rer/customersatisfaction/configure.zcml:32
+#: rer/customersatisfaction/configure.zcml:33
 msgid "RER: Customer satisfaction (uninstall)"
 msgstr ""
 
-#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:18
+#: rer/customersatisfaction/configure.zcml:41
+msgid "RER: Customer satisfaction (with recaptcha)"
+msgstr ""
+
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:20
 msgid "Tell us why and help us to improve site quality"
 msgstr ""
 
-#: rer/customersatisfaction/configure.zcml:32
+#: rer/customersatisfaction/configure.zcml:33
 msgid "Uninstalls the rer.customersatisfaction add-on."
+msgstr ""
+
+#. Default: "and"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:23
+msgid "and_label"
 msgstr ""
 
 #. Default: "Comments"
@@ -114,6 +127,9 @@ msgstr ""
 msgid "positive_votes_label"
 msgstr ""
 
+msgid "range_separator_label"
+msgstr ""
+
 msgid "reset_feedbacks_confirm_label"
 msgstr ""
 
@@ -123,6 +139,9 @@ msgstr ""
 #. Default: "Received ${total} feedbacks:"
 #: rer/customersatisfaction/browser/show_feedbacks.pt:21
 msgid "reveived_label"
+msgstr ""
+
+msgid "rows_per_page_label"
 msgstr ""
 
 #. Default: "Vai alla ricerca per commenti negativi"
@@ -144,6 +163,6 @@ msgid "search_no_filters"
 msgstr ""
 
 #. Default: "Send your feedback"
-#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:23
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:28
 msgid "send_feedback"
 msgstr ""

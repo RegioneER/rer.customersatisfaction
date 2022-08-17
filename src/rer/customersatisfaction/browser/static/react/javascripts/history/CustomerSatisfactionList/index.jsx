@@ -86,7 +86,7 @@ const CustomerSatisfactionList = () => {
     {
       name: labels.comments,
       selector: 'comments',
-      sortable: false,
+      sortable: true,
       width: '80px',
       cell: row => (
         <div className="comments-count">
@@ -214,6 +214,10 @@ const CustomerSatisfactionList = () => {
         paginationServerOptions={{
           persistSelectedOnPageChange: true,
           persistSelectedOnSort: false,
+        }}
+        paginationComponentOptions={{
+          rowsPerPageText: labels.rowsPerPageText,
+          rangeSeparatorText: labels.rangeSeparatorText,
         }}
         paginationTotalRows={data.items_total}
         onChangeRowsPerPage={size => setB_size(size)}

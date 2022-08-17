@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "dd0b08b09fa680076409";
+/******/ 	var hotCurrentHash = "665e5b95d183f68b40cc";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -54082,7 +54082,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
   }, {
     name: labels.comments,
     selector: 'comments',
-    sortable: false,
+    sortable: true,
     width: '80px',
     cell: function cell(row) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -54203,6 +54203,10 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     paginationServerOptions: {
       persistSelectedOnPageChange: true,
       persistSelectedOnSort: false
+    },
+    paginationComponentOptions: {
+      rowsPerPageText: labels.rowsPerPageText,
+      rangeSeparatorText: labels.rangeSeparatorText
     },
     paginationTotalRows: data.items_total,
     onChangeRowsPerPage: function onChangeRowsPerPage(size) {
@@ -54399,8 +54403,10 @@ var getCustomerSatisfactionLables = function getCustomerSatisfactionLables(getTr
     exportCsv: getTranslationFor('export_csv_label', 'Export in CSV'),
     singularSelected: getTranslationFor('item_selected', 'item selected'),
     pluralSelected: getTranslationFor('items_selected', 'items selected'),
-    resetFeedbacksConfirm: getTranslationFor('reset_feedbacks_confirm_label', 'Are you sure you want to reset this page\'s feedbacks?'),
-    resetFeedbacksButton: getTranslationFor('reset_feedbacks_label', 'Reset feedbacks')
+    resetFeedbacksConfirm: getTranslationFor('reset_feedbacks_confirm_label', "Are you sure you want to reset this page's feedbacks?"),
+    resetFeedbacksButton: getTranslationFor('reset_feedbacks_label', 'Reset feedbacks'),
+    rowsPerPageText: getTranslationFor('rows_per_page_label', 'Rows per page:'),
+    rangeSeparatorText: getTranslationFor('range_separator_label', 'of')
   };
 };
 

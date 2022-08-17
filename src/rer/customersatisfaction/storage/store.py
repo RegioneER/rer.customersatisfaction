@@ -5,6 +5,10 @@ from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from souper.soup import get_soup
 from souper.soup import Record
 from zope.interface import implementer
+from repoze.catalog.query import Eq
+from repoze.catalog.query import Contains
+from repoze.catalog.query import Any
+from repoze.catalog.query import And
 
 import logging
 import six
@@ -57,7 +61,7 @@ class CustomerSatisfactionStore(object):
             return [
                 x
                 for x in self.soup.query(
-                    " and ".join(queries),
+                    And(*queries),
                     sort_index=sort_index,
                     reverse=reverse,
                 )
@@ -75,13 +79,16 @@ class CustomerSatisfactionStore(object):
     def parse_query_params(self, index, value):
         """ """
         if index == self.text_index:
-            return "'{}' in {}".format(value, self.text_index)
+            return Contains(self.text_index, value)
+            # return "'{}' in {}".format(value, self.text_index)
         elif index in self.keyword_indexes:
-            if isinstance(value, list):
-                return "{} in any({})".format(index, value)
-            elif isinstance(value, six.text_type) or isinstance(value, str):
-                return "{} in any('{}')".format(index, value)
+            return Any(index, value)
+            # if isinstance(value, list):
+            #     return "{} in any({})".format(index, value)
+            # elif isinstance(value, six.text_type) or isinstance(value, str):
+            #     return "{} in any('{}')".format(index, value)
         else:
+            return Eq(index, value)
             if isinstance(value, int):
                 return "{} == {}".format(index, value)
             else:
