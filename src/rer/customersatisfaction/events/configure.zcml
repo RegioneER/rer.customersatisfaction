@@ -5,7 +5,7 @@
     i18n_domain="rer.customersatisfaction">
     
     <subscriber
-        for="*
+        for="plone.dexterity.interfaces.IDexterityContent
             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
         handler=".delete.deleteContent"
         />
