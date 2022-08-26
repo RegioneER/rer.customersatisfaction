@@ -21,6 +21,10 @@
   max-height: 600px;
 }
 
+#cs-collapsible-form-area[aria-expanded='true'] textarea{
+  margin-bottom: 1rem;
+}
+
 #cs-collapsible-form-area button[type='submit'].plone-btn-primary {
   color: #fff;
   background-color: #cb1d15;
@@ -48,35 +52,41 @@
 }
 
 .feedback-label.feedback-success {
+  color: #448644;
+  border-color: #448644;
+  background-color: #fff;
+}
+
+.feedback-label.feedback-success.active {
   background-color: #448644;
   color: #fff;
 }
 
 .feedback-label.feedback-success:focus-within,
-.feedback-label.feedback-success:focus {
+.feedback-label.feedback-success:focus,
+.feedback-label.feedback-success:hover,
+.feedback-label.feedback-success.active {
   border-color: #448644;
-  background: #fff;
-  color: #448644;
-}
-
-.feedback-label.feedback-danger {
-  background-color: #c00000;
+  background: #448644;
   color: #fff;
 }
 
-.feedback-label.feedback-danger:focus-within,
-.feedback-label.feedback-danger:focus {
-  border-color: #c00000;
-  background: #fff;
+.feedback-label.feedback-danger {
+  background-color: #fff;
   color: #c00000;
+  border-color: #c00000;
 }
 
-.feedback-label.feedback-success.active,
+.feedback-label.feedback-danger:focus-within,
+.feedback-label.feedback-danger:focus,
+.feedback-label.feedback-danger:hover,
 .feedback-label.feedback-danger.active {
-  border-color: #8c8c8c;
-  background-color: #d4d4d4;
-  color: #333;
+  background: #c00000;
+  color: #fff;
+  border-color: #c00000;
 }
+
+
 
 body.template-show-feedbacks #content-core .filters a {
   border-bottom: 0;

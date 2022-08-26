@@ -56,6 +56,9 @@ function ApiWrapper({ endpoint, children, canDelete }) {
             return;
           }
           handleApiResponse(data);
+          const _data = data.data.items.map(
+            item => (item.comments_length = item.comments.length),
+          );
           setData(data.data);
           setLoading(false);
         })

@@ -85,13 +85,13 @@ const CustomerSatisfactionList = () => {
     },
     {
       name: labels.comments,
-      selector: 'comments',
+      selector: 'comments_length',
       sortable: true,
       width: '80px',
       cell: row => (
         <div className="comments-count">
           <a href={`${row.url}/show-feedbacks`} title="Vai ai commenti">
-            {row.comments.length}
+            {row.comments_length}
           </a>
         </div>
       ),
