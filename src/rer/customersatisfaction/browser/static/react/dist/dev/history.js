@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "52d3618d80c454d1b0d8";
+/******/ 	var hotCurrentHash = "25156ed3fe827a39c249";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -54515,11 +54515,15 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     console.log(selectedRows);
   }, [selectedRows]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setSelectedRows([]);
+    setToggleCleared(!toggleCleared);
+  }, [b_size]);
   var contextActions = react__WEBPACK_IMPORTED_MODULE_0___default.a.useMemo(function () {
     var handleDelete = function handleDelete() {
       // eslint-disable-next-line no-alert
       if (window.confirm("".concat(labels.resetFeedbacksConfirm, " \n").concat(selectedRows.map(function (r) {
-        return r.title;
+        return '- ' + r.title;
       }).join('\n')))) {
         setToggleCleared(!toggleCleared); //call delete foreach item selected
 
@@ -54601,12 +54605,13 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
       type: "button",
       onClick: handleClearText
     }, "\xD7")));
-  }, [filters, resetPaginationToggle, data.items]);
+  }, [filters, resetPaginationToggle, data.items, selectedRows]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "customer-satisfaction-history-list"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_data_table_component__WEBPACK_IMPORTED_MODULE_1___default.a, {
     columns: columns,
     data: data.items,
+    keyField: "uid",
     striped: true,
     highlightOnHover: true,
     pointerOnHover: false,
@@ -54643,6 +54648,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
     selectableRows: true,
     onSelectedRowsChange: handleRowSelected,
     contextActions: contextActions,
+    actions: true,
     clearSelectedRows: toggleCleared,
     contextMessage: {
       singular: labels.singularSelected,

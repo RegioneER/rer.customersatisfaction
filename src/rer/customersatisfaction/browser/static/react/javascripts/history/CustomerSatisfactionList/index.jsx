@@ -115,8 +115,9 @@ const CustomerSatisfactionList = () => {
   }, []);
 
   useEffect(() => {
-    console.log(selectedRows);
-  }, [selectedRows]);
+    setSelectedRows([]);
+    setToggleCleared(!toggleCleared);
+  }, [b_size]);
 
   const contextActions = React.useMemo(() => {
     const handleDelete = () => {
@@ -124,7 +125,7 @@ const CustomerSatisfactionList = () => {
       if (
         window.confirm(
           `${labels.resetFeedbacksConfirm} \n${selectedRows
-            .map(r => r.title)
+            .map(r => '- ' + r.title)
             .join('\n')}`,
         )
       ) {
@@ -208,13 +209,14 @@ const CustomerSatisfactionList = () => {
         </div>
       </>
     );
-  }, [filters, resetPaginationToggle, data.items]);
+  }, [filters, resetPaginationToggle, data.items, selectedRows]);
 
   return (
     <div className="customer-satisfaction-history-list">
       <DataTable
         columns={columns}
         data={data.items}
+        keyField="uid"
         striped={true}
         highlightOnHover={true}
         pointerOnHover={false}
@@ -246,6 +248,7 @@ const CustomerSatisfactionList = () => {
         selectableRows
         onSelectedRowsChange={handleRowSelected}
         contextActions={contextActions}
+        actions={true}
         clearSelectedRows={toggleCleared}
         contextMessage={{
           singular: labels.singularSelected,
