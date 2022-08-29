@@ -38,9 +38,11 @@ const CustomerSatisfactionList = () => {
   //------------------COLUMNS----------------------
   const columns = [
     {
+      id: 'title',
       name: labels.page,
-      selector: 'title',
+      selector: row => row.title,
       sortable: true,
+      sortField: 'title',
       cell: row => {
         return row.url ? (
           <div className="col-title">
@@ -59,21 +61,27 @@ const CustomerSatisfactionList = () => {
       },
     },
     {
+      id: 'ok',
       name: labels.ok,
-      selector: 'ok',
+      selector: row => row.ok,
       sortable: true,
+      sortField: 'ok',
       width: '120px',
     },
     {
+      id: 'nok',
       name: labels.nok,
-      selector: 'nok',
+      selector: row => row.nok,
       sortable: true,
+      sortField: 'nok',
       width: '120px',
     },
     {
+      id: 'last_vote',
       name: labels.last_voted,
-      selector: 'last_vote',
+      selector: row => row.last_vote,
       sortable: true,
+      sortField: 'last_vote',
       cell: row => (
         <div>
           {row.last_vote
@@ -84,14 +92,17 @@ const CustomerSatisfactionList = () => {
       width: '160px',
     },
     {
+      id: 'comments',
       name: labels.comments,
-      selector: 'comments_length',
+      selector: row => row.comment,
       sortable: true,
-      width: '80px',
+      sortField: 'comments',
+      width: '100px',
+
       cell: row => (
         <div className="comments-count">
           <a href={`${row.url}/show-feedbacks`} title="Vai ai commenti">
-            {row.comments_length}
+            {row.comments.length}
           </a>
         </div>
       ),
@@ -102,6 +113,10 @@ const CustomerSatisfactionList = () => {
   const handleRowSelected = React.useCallback(state => {
     setSelectedRows(state.selectedRows);
   }, []);
+
+  useEffect(() => {
+    console.log(selectedRows);
+  }, [selectedRows]);
 
   const contextActions = React.useMemo(() => {
     const handleDelete = () => {
@@ -205,7 +220,7 @@ const CustomerSatisfactionList = () => {
         pointerOnHover={false}
         noDataComponent={labels.noData}
         responsive={true}
-        defaultSortField={DEFAULT_SORT_ON}
+        defaultSortFieldId={DEFAULT_SORT_ON}
         defaultSortAsc={DEFAULT_SORT_ORDER == 'ascending'}
         pagination={true}
         paginationRowsPerPageOptions={[5, 25, 50, 100]}
@@ -224,7 +239,7 @@ const CustomerSatisfactionList = () => {
         onChangePage={handlePageChange}
         progressPending={loading}
         sortServer={true}
-        onSort={(column, direction) => setSorting(column.selector, direction)}
+        onSort={(column, direction) => setSorting(column.sortField, direction)}
         paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
         subHeader
         subHeaderComponent={SubHeaderComponent}
