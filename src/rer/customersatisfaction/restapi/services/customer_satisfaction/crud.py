@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.api.exc import InvalidParameterError
 from plone.protect.interfaces import IDisableCSRFProtection
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from rer.customersatisfaction.restapi.services.common import DataAdd
@@ -9,7 +8,6 @@ from rer.customersatisfaction.restapi.services.common import DataDelete
 from zExceptions import BadRequest
 from zope.component import getUtility
 from zope.interface import alsoProvides
-from collective.honeypot.utils import check_post
 
 import logging
 
