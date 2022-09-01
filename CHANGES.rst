@@ -11,6 +11,8 @@ Changelog
   [cekk]
 - Remove entries in souper when an object is deleted.
   [cekk]
+- Some fixes in layout.
+  [cekk]
 
 1.2.0 (2022-07-06)
 ------------------
