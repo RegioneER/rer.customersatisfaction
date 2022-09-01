@@ -13,6 +13,8 @@ Changelog
   [cekk]
 - Some fixes in layout.
   [cekk]
+- Do not use recaptcha, but honeypot to prevent bots.
+  [cekk]
 
 1.2.0 (2022-07-06)
 ------------------

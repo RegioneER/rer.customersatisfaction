@@ -48,7 +48,7 @@ setup(
     package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
-    #python_requires=">3.6",
+    # python_requires=">3.6",
     install_requires=[
         "setuptools",
         # -*- Extra requirements: -*-
@@ -57,9 +57,9 @@ setup(
         "plone.restapi",
         "plone.app.dexterity",
         "souper.plone",
+        "collective.honeypot",
     ],
     extras_require={
-        "collective_recaptcha": ["collective.recaptcha"],
         "test": [
             "plone.app.testing",
             # Plone KGS does not use this version, because it would break

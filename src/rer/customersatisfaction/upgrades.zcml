@@ -10,5 +10,12 @@
     profile="rer.customersatisfaction:default"
     handler=".upgrades.update_registry"
     />
-
+  <genericsetup:upgradeStep
+    source="1100"
+    destination="2000"
+    title="Upgrade to 2000"
+    description=""
+    profile="rer.customersatisfaction:default"
+    handler=".upgrades.update_registry"
+    />
 </configure>

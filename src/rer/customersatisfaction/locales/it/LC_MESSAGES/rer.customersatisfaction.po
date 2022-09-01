@@ -34,10 +34,6 @@ msgstr "RER: Customer satisfaction"
 msgid "RER: Customer satisfaction (uninstall)"
 msgstr "RER: Customer satisfaction (uninstall)"
 
-#: rer/customersatisfaction/configure.zcml:41
-msgid "RER: Customer satisfaction (with recaptcha)"
-msgstr ""
-
 #: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:20
 msgid "Tell us why and help us to improve site quality"
 msgstr "Spiegaci perché e aiutaci a migliorare la qualità del sito"

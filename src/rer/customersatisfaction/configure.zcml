@@ -34,10 +34,10 @@
       />
   
   <genericsetup:registerProfile
-      name="collective_recaptcha"
-      title="RER: Customer satisfaction (with recaptcha)"
-      directory="profiles/collective_recaptcha"
-      description="Install the rer.customersatisfaction dependency."
+      name="2000"
+      title="RER: Customer satisfaction (remove recaptcha)"
+      directory="profiles/2000"
+      description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
