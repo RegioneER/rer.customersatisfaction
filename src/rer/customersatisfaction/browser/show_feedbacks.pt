@@ -11,6 +11,8 @@
     <tal:title i18n:name="title">${context/Title}</tal:title> - feedbacks
   </h1>
 </metal:content-title>
+<metal:content-description fill-slot="content-description">
+</metal:content-description>
 <metal:content-core fill-slot="content-core"
   tal:define="data view/get_data;
               batch data/comments|nothing;
@@ -24,14 +26,20 @@
     <span i18n:translate="nok_total_label"><tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives</span>
   </p>
   <h4 i18n:translate="comments_label">Comments</h4>
-  <div class="filters" tal:condition="batch">
+  <div class="filters" tal:condition="data/total"
+       tal:define="selected_ok python: request.get('vote', '') == 'ok';
+                   selected_nok python: request.get('vote', '') == 'nok'">
     <span i18n:translate="filters_label">Filter:&nbsp;</span>
     <a href="${context/absolute_url}/show-feedbacks?vote=ok">
-      <span class="feedback-label feedback-success"><i class="glyphicon glyphicon-thumbs-up"/></span>
+      <span tal:attributes="class python:selected_ok and 'feedback-label feedback-success active' or 'feedback-label feedback-success'">
+        <i class="glyphicon glyphicon-thumbs-up"/>
+      </span>
       <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
     </a>
     <a href="${context/absolute_url}/show-feedbacks?vote=nok">
-      <span class="feedback-label feedback-danger"><i class="glyphicon glyphicon-thumbs-down"/></span>
+      <span tal:attributes="class python:selected_nok and 'feedback-label feedback-danger active' or 'feedback-label feedback-danger'">
+        <i class="glyphicon glyphicon-thumbs-down"/>
+      </span>
       <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
     </a>
     <a href="${context/absolute_url}/show-feedbacks">

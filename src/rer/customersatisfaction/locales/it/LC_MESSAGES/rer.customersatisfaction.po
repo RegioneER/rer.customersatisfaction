@@ -65,7 +65,7 @@ msgid "delete_feedbacks_confirm_label"
 msgstr "Sei sicuro di voler cancellare tutte le recensioni?"
 
 msgid "delete_feedbacks_label"
-msgstr "Cancella le recensioni"
+msgstr "Cancella TUTTE le recensioni"
 
 msgid "export_csv_label"
 msgstr "Esporta in CSV"
