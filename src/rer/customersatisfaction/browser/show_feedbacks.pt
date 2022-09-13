@@ -8,7 +8,7 @@
 <body>
 <metal:content-title fill-slot="content-title">
   <h1 class="documentFirstHeading" i18n:translate="feedbacks_title">
-    <tal:title i18n:name="title">${context/Title}</tal:title> - feedbacks
+    <tal:title i18n:name="title">${context/Title}</tal:title> - comments
   </h1>
 </metal:content-title>
 <metal:content-description fill-slot="content-description">
@@ -18,14 +18,7 @@
               batch data/comments|nothing;
               toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
-  <p tal:condition="not:data" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
-  <p class="feedbacks_summary">
-    <span i18n:translate="reveived_label">Received <tal:total i18n:name="total">${data/total}</tal:total> feedbacks:</span>
-    <span i18n:translate="ok_total_label"><tal:ok i18n:name="ok">${data/ok}</tal:ok> positives</span>
-    <span i18n:translate="and_label">and</span>
-    <span i18n:translate="nok_total_label"><tal:nok i18n:name="nok">${data/nok}</tal:nok> negatives</span>
-  </p>
-  <h4 i18n:translate="comments_label">Comments</h4>
+  <p tal:condition="not:data" i18n:translate="no_comments_label">No comments for this content.</p>
   <div class="filters" tal:condition="data/total"
        tal:define="selected_ok python: request.get('vote', '') == 'ok';
                    selected_nok python: request.get('vote', '') == 'nok'">
