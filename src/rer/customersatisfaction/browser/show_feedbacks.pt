@@ -31,13 +31,15 @@
                    selected_nok python: request.get('vote', '') == 'nok'">
     <span i18n:translate="filters_label">Filter:&nbsp;</span>
     <a href="${context/absolute_url}/show-feedbacks?vote=ok">
-      <span tal:attributes="class python:selected_ok and 'feedback-label feedback-success active' or 'feedback-label feedback-success'">
+      <span tal:attributes="class python:selected_ok and 'feedback-label feedback-success active' or 'feedback-label feedback-success';
+                            aria-selected python: selected_ok and 'true' or 'false'">
         <i class="glyphicon glyphicon-thumbs-up"/>
       </span>
       <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
     </a>
     <a href="${context/absolute_url}/show-feedbacks?vote=nok">
-      <span tal:attributes="class python:selected_nok and 'feedback-label feedback-danger active' or 'feedback-label feedback-danger'">
+      <span tal:attributes="class python:selected_nok and 'feedback-label feedback-danger active' or 'feedback-label feedback-danger';
+                            aria-selected python: selected_nok and 'true' or 'false'">
         <i class="glyphicon glyphicon-thumbs-down"/>
       </span>
       <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
