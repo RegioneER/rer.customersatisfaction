@@ -13,8 +13,6 @@ from zope.component import getUtility
 
 import transaction
 import unittest
-import requests_mock
-import os
 
 
 class TestCustomerSatisfactionAdd(unittest.TestCase):
@@ -22,7 +20,6 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
     layer = RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING
 
     def setUp(self):
-        os.environ["RECAPTCHA_PRIVATE_KEY"] = "foo"
         self.app = self.layer["app"]
         self.portal = self.layer["portal"]
         self.portal_url = self.portal.absolute_url()
@@ -51,104 +48,42 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.api_session.close()
         self.anon_api_session.close()
 
-    def test_anon_can_post_data(self):
-        # 400 because there are some missing fields
-        self.assertEqual(self.anon_api_session.post(self.url, json={}).status_code, 400)
-
-    @requests_mock.Mocker(real_http=True)
-    def test_required_params(self, m):
-        """
-        email and channel are required.
-        """
-        self.assertEqual(self.anon_api_session.post(self.url).status_code, 400)
-
+    def test_required_params(self):
+        """ """
         # vote is required
-        res = self.anon_api_session.post(self.url, json={})
+        res = self.anon_api_session.post(self.url, json={"honey": ""})
         self.assertEqual(res.status_code, 400)
         self.assertEqual(res.json()["message"], "Campo obbligatorio mancante: vote")
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": False},
-        )
 
-        # captcha is required
-        res = self.anon_api_session.post(self.url, json={"vote": "ok"})
-        self.assertEqual(res.status_code, 400)
-        self.assertEqual(
-            res.json()["message"], "Campo obbligatorio mancante: Non sono un robot"
-        )
-
-        # captcha code is invalid
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": False},
-        )
-        res = self.anon_api_session.post(
-            self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
-        )
-        self.assertEqual(res.status_code, 400)
-        self.assertEqual(
-            res.json()["message"],
-            "Validazione richiesta per il campo: Non sono un robot",
-        )
-
-        # captcha code is valid
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": True},
-        )
-        res = self.anon_api_session.post(
-            self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
-        )
-        self.assertEqual(res.status_code, 204)
-
-    @requests_mock.Mocker(real_http=True)
-    def test_validate_vote(self, m):
-        # mock captcha verification
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": True},
-        )
+    def test_validate_vote(self):
         resp = self.anon_api_session.post(
             self.url,
-            json={"vote": 1, "comment": "i disagree", "g-recaptcha-response": "xyz"},
+            json={"vote": 1, "comment": "i disagree", "honey": ""},
         )
         self.assertEqual(resp.status_code, 400)
         self.assertEqual(resp.json()["message"], "Voto non valido: 1")
 
-    @requests_mock.Mocker(real_http=True)
-    def test_correctly_save_data(self, m):
-        # mock captcha verification
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": True},
-        )
+    def test_correctly_save_data(self):
         self.anon_api_session.post(
             self.url,
             json={
                 "vote": "ok",
                 "comment": "i disagree",
-                "g-recaptcha-response": "xyz",
+                "honey": "",
             },
         )
         transaction.commit()
         tool = getUtility(ICustomerSatisfactionStore)
         self.assertEqual(len(tool.search()), 1)
 
-    @requests_mock.Mocker(real_http=True)
-    def test_store_only_known_fields(self, m):
-        # mock captcha verification
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": True},
-        )
+    def test_store_only_known_fields(self):
         self.anon_api_session.post(
             self.url,
             json={
                 "vote": "nok",
                 "comment": "i disagree",
                 "unknown": "mistery",
-                "g-recaptcha-response": "xyz",
+                "honey": "",
             },
         )
         transaction.commit()
@@ -159,44 +94,21 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.assertEqual(res[0]._attrs.get("vote", None), "nok")
         self.assertEqual(res[0]._attrs.get("comment", None), "i disagree")
 
-    @requests_mock.Mocker(real_http=True)
-    def test_raise_error_if_private_key_not_set(self, m):
-        """ """
-        del os.environ["RECAPTCHA_PRIVATE_KEY"]
+    def test_honeypot_is_required(self):
 
-        # captcha code is valid
-        m.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            json={"success": True},
-        )
-        res = self.anon_api_session.post(
-            self.url, json={"vote": "ok", "g-recaptcha-response": "xyz"}
-        )
-        self.assertEqual(res.status_code, 400)
+        res = self.anon_api_session.post(self.url, json={})
+        self.assertEqual(res.status_code, 403)
 
-    def test_skip_captcha_validation_with_flag(self):
+        res = self.anon_api_session.post(self.url, json={"vote": "ok"})
+        self.assertEqual(res.status_code, 403)
 
-        api.portal.set_registry_record(
-            "rer.customersatisfaction.disable_recaptcha", True
-        )
-        transaction.commit()
+        # HONEYPOT_FIELD is set in testing.py
 
-        res = self.anon_api_session.post(
-            self.url,
-            json={
-                "vote": "ok",
-                "comment": "i disagree",
-            },
-        )
-        self.assertNotEqual(res.status_code, 400)
+        res = self.anon_api_session.post(self.url, json={"vote": "ok", "honey": ""})
         self.assertEqual(res.status_code, 204)
 
-        transaction.commit()
-        tool = getUtility(ICustomerSatisfactionStore)
-        self.assertEqual(len(tool.search()), 1)
-
-        # go back with default value
-        api.portal.set_registry_record(
-            "rer.customersatisfaction.disable_recaptcha", False
+        # this is compiled by a bot
+        res = self.anon_api_session.post(
+            self.url, json={"vote": "ok", "honey": "i'm a bot"}
         )
-        transaction.commit()
+        self.assertEqual(res.status_code, 403)

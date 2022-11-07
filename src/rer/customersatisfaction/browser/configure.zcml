@@ -45,14 +45,5 @@
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     
-    <browser:page
-      zcml:condition="installed collective.recaptcha"
-      name="collective-recaptcha-settings"
-      for="Products.CMFCore.interfaces.ISiteRoot"
-      class="collective.recaptcha.settings.RecaptchaSettingsForm"
-      permission="zope2.ManageProperties"
-      layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
-      />
-
     <adapter factory=".adapters.CustomerSatisfactionBodyClasses" />
 </configure>

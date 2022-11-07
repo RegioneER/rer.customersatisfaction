@@ -13,13 +13,11 @@ import collective.MockMailHost
 import rer.customersatisfaction
 import souper.plone
 import plone.restapi
+import collective.honeypot
+import collective.honeypot.config
 
-try:
-    import collective.recaptcha
-
-    HAS_COLLECTIVE_RECAPTCHA = True
-except ImportError:
-    HAS_COLLECTIVE_RECAPTCHA = False
+collective.honeypot.config.EXTRA_PROTECTED_ACTIONS = set(["customer-satisfaction-add"])
+collective.honeypot.config.HONEYPOT_FIELD = "honey"
 
 
 class RerCustomersatisfactionLayer(PloneSandboxLayer):
@@ -30,11 +28,10 @@ class RerCustomersatisfactionLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        if HAS_COLLECTIVE_RECAPTCHA:
-            self.loadZCML(package=collective.recaptcha)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=rer.customersatisfaction)
         self.loadZCML(package=souper.plone)
+        self.loadZCML(package=collective.honeypot)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "rer.customersatisfaction:default")
@@ -63,11 +60,10 @@ class RerCustomersatisfactionLayerApi(PloneRestApiDXLayer):
         super(RerCustomersatisfactionLayerApi, self).setUpZope(
             app, configurationContext
         )
-        if HAS_COLLECTIVE_RECAPTCHA:
-            self.loadZCML(package=collective.recaptcha)
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=rer.customersatisfaction)
         self.loadZCML(package=souper.plone)
+        self.loadZCML(package=collective.honeypot)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "rer.customersatisfaction:default")

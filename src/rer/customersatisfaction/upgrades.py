@@ -28,3 +28,7 @@ def update_controlpanel(context):
 
 def update_catalog(context):
     update_profile(context, "catalog")
+
+
+def to_2000(context):
+    context.runAllImportStepsFromProfile("profile-rer.customersatisfaction:2000")

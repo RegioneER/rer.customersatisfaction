@@ -10,32 +10,19 @@ Users can add a vote (positive or negative) and a comment to every page on the s
    :alt: Review
 
 
-Captcha protection
-==================
+Bot protection
+==============
 
-This product can use `collective.recaptcha <https://pypi.org/project/collective.recaptcha/>`_ or just an environment variable (*RECAPTCHA_PRIVATE_KEY*)
-to recaptcha validation.
+This product use `collective.honeypot <https://pypi.org/project/collective.honeypot/>`_ to prevent bot submissions.
 
-collective.recaptcha usage is the preferred one for classic Plone because it's used in the viewlet.
+You just need to set two environment variables:
 
-For Volto integration, we need to use recaptcha v3, so we can't use collective.recaptcha right now.
+- *EXTRA_PROTECTED_ACTIONS customer-satisfaction-add*
+- *HONEYPOT_FIELD xxx*
 
-You just need to set and environment variable *RECAPTCHA_PRIVATE_KEY* with the private key value.
+xxx should be a field name that bot should compile.
 
-The default is without collective.recaptcha.
-
-If you want to add it, you need to add the extra required part (see **Installation** section).
-
-After installing it, you need to setup proper keys into its control panel.
-
-Disable captcha protection
---------------------------
-
-By default this product needs a captcha validation to protect spam and form submission raise an error if missing.
-
-There are some edge cases when you need to temporary disable this protection and you can do this with a flag in registry named **rer.customersatisfaction.disable_recaptcha**.
-
-Use this flag **ONLY** if needed because it can open your site to bot spam.
+If you get hacked, you could simply change that variable.
 
 
 Permissions
@@ -102,7 +89,7 @@ Add a vote
 
 Only users with "rer.customersatisfaction.AddCustomerSatisfactionVote" can post it::
 
-> curl -i -X POST http://localhost:8080/Plone/front-page/@customer-satisfaction-add -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{"vote": "1"}' --user admin:admin
+> curl -i -X POST http://localhost:8080/Plone/front-page/@customer-satisfaction-add -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{"vote": "1", "xxx": ""}' --user admin:admin
 
 If vote is successful, the response is a ``204``.
 
