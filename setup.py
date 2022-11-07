@@ -57,7 +57,7 @@ setup(
         "plone.restapi",
         "plone.app.dexterity",
         "souper.plone",
-        "collective.honeypot>=2.1.1",
+        "collective.honeypot>=2.1",
     ],
     extras_require={
         "test": [
