@@ -15,6 +15,8 @@ Changelog
   [cekk]
 - Do not use recaptcha, but honeypot to prevent bots.
   [cekk]
+- Remove role="radio" from labels to improve accessibility.
+  [cekk]
 
 1.2.0 (2022-07-06)
 ------------------
