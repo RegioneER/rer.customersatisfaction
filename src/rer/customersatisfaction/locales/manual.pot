@@ -64,3 +64,6 @@ msgstr ""
 
 msgid "range_separator_label"
 msgstr ""
+
+msgid "comments_label"
+msgstr ""

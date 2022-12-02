@@ -9,8 +9,6 @@ Changelog
   [cekk]
 - Fix python3.8 compatibility (https://github.com/repoze/repoze.catalog/issues/13) using python operators instead CQE.
   [cekk]
-- Remove entries in souper when an object is deleted.
-  [cekk]
 - Some fixes in layout.
   [cekk]
 - Do not use recaptcha, but honeypot to prevent bots.

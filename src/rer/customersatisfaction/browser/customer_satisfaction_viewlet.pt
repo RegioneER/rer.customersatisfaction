@@ -1,30 +1,32 @@
 <div id="customer-satisfaction"
     i18n:domain="rer.customersatisfaction">
     <form action="${context/absolute_url}/@customer-satisfaction-add" method="POST">
-        <div tal:replace="structure context/@@honeypot_field|nothing" />
-        <div class="field">
-            <h2 id="cs-form-radiogroup-label" i18n:translate="page_useful_label">Does this page was useful?</h2>
-            <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
-                <label class="plone-btn plone-btn-default feedback-label feedback-success" for="si">
-                    <input type="radio" id="si" name="vote" value="ok" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    <i aria-hidden="true" class="glyphicon glyphicon-thumbs-up"/>
-                    <span class="sr-only">Si</span>
-                </label>
-                <label class="plone-btn plone-btn-default feedback-label feedback-danger" for="no">
-                    <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only">
-                    <i aria-hidden="true" class="glyphicon glyphicon-thumbs-down"/>
-                    <span class="sr-only">No</span>
-                </label>
+        <fieldset>
+            <div tal:replace="structure context/@@honeypot_field|nothing" />
+            <div class="field">
+                <legend i18n:translate="page_useful_label">Does this page was useful?</legend>
+                <div class="btn-group" role="radiogroup" aria-labelledby="cs-form-radiogroup-label">
+                    <label class="plone-btn plone-btn-default feedback-label feedback-success" for="si">
+                        <input type="radio" id="si" name="vote" value="ok" aria-controls="cs-collapsible-form-area" class="sr-only">
+                        <i aria-hidden="true" class="glyphicon glyphicon-thumbs-up"/>
+                        <span class="sr-only">Si</span>
+                    </label>
+                    <label class="plone-btn plone-btn-default feedback-label feedback-danger" for="no">
+                        <input type="radio" id="no" name="vote" value="nok" aria-controls="cs-collapsible-form-area" class="sr-only">
+                        <i aria-hidden="true" class="glyphicon glyphicon-thumbs-down"/>
+                        <span class="sr-only">No</span>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div id="cs-collapsible-form-area" role="region" aria-expanded="false" aria-hidden="true" style="display: none;">
-            <label for="rer-customersatisfaction-comment" class="sr-only" i18n:translate="">Tell us why and help us to improve site quality</label>
-            <textarea i18n:attributes="title;placeholder"
-                      title="Tell us why and help us to improve site quality"
-                      placeholder="Tell us why and help us to improve site quality"
-                      id="rer-customersatisfaction-comment"
-                      name="comment" />
-            <button type="submit" class="plone-btn plone-btn-primary" i18n:translate="send_feedback">Send your feedback</button>
-        </div>
+            <div id="cs-collapsible-form-area" role="region" aria-expanded="false" aria-hidden="true" style="display: none;">
+                <label for="rer-customersatisfaction-comment" class="sr-only" i18n:translate="">Tell us why and help us to improve site quality</label>
+                <textarea i18n:attributes="title;placeholder"
+                        title="Tell us why and help us to improve site quality"
+                        placeholder="Tell us why and help us to improve site quality"
+                        id="rer-customersatisfaction-comment"
+                        name="comment" />
+                <button type="submit" class="plone-btn plone-btn-primary" i18n:translate="send_feedback">Send your feedback</button>
+            </div>
+        </fieldset>
     </form>
 </div>

@@ -4,6 +4,8 @@ from Products.Five import BrowserView
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 from zope.component import getUtility
 from Products.CMFPlone.PloneBatch import Batch
+from rer.customersatisfaction import _
+from plone.memoize import view
 
 import logging
 
@@ -11,22 +13,38 @@ logger = logging.getLogger(__name__)
 
 
 class View(BrowserView):
+    @view.memoize
     def get_data(self):
+        logger.info("QUI")
         tool = getUtility(ICustomerSatisfactionStore)
         query_vote = self.request.form.get("vote", "")
-        query = {"uid": self.context.UID()}
-        # if vote in ["ok", "nok"]:
-        #     query["vote"] = vote
+        uid = self.request.form.get("uid", "")
+        if not uid:
+            return {
+                "error": _(
+                    "show_feedbacks_missing_uid",
+                    default=u"You need to provide a UID.",
+                )
+            }
+        query = {"uid": uid}
         search_results = tool.search(query=query)
+        tot = len(search_results)
+
         res = {
             "ok": 0,
             "ok_with_comments": 0,
             "nok": 0,
             "nok_with_comments": 0,
-            "total": len(search_results),
+            "total": tot,
             "comments": [],
+            "title": "",
         }
-        for review in tool.search(query=query):
+
+        if tot == 0:
+            return res
+
+        res["title"] = search_results[0]._attrs.get("title", "")
+        for review in search_results:
             data = self.format_data(review)
             vote = data.get("vote", "")
             comment = data.get("comment", "")
