@@ -62,7 +62,7 @@ msgstr "Esporta in CSV"
 #. Default: "Comments - ${title}"
 #: rer/customersatisfaction/browser/show_feedbacks.pt:13
 msgid "feedbacks_title"
-msgstr "Comments - ${title}"
+msgstr "Commenti - ${title}"
 
 msgid "filter_title_label"
 msgstr "Filtra per titolo"
