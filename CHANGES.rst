@@ -5,8 +5,10 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Handle comments view (aka do not break) when a content is deleted but has some comments.
+  [cekk]
+- Some fixes in accessibility and styles.
+  [cekk]
 
 2.0.0 (2022-11-07)
 ------------------
