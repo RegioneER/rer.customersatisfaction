@@ -87,7 +87,7 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
         soup = get_soup("customer_satisfaction_soup", self.portal)
         soup.clear()
 
-    def test_delete_remove_entries(self):
+    def test_deleting_a_content_does_not_remove_entries(self):
 
         response = self.api_session.get(self.url)
         res = response.json()
@@ -98,4 +98,4 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
 
         response = self.api_session.get(self.url)
         res = response.json()
-        self.assertEqual(res["items_total"], 1)
+        self.assertEqual(res["items_total"], 2)

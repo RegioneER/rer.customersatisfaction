@@ -101,7 +101,10 @@ const CustomerSatisfactionList = () => {
 
       cell: row => (
         <div className="comments-count">
-          <a href={`${row.url}/show-feedbacks`} title="Vai ai commenti">
+          <a
+            href={`${portalUrl}/show-feedbacks?uid=${row.uid}`}
+            title="Vai ai commenti"
+          >
             {row.comments.length}
           </a>
         </div>

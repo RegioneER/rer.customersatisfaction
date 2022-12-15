@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "96049fd209d7af146725";
+/******/ 	var hotCurrentHash = "fd46dfd3e444672aedef";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -54108,7 +54108,7 @@ var CustomerSatisfactionList = function CustomerSatisfactionList() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments-count"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "".concat(row.url, "/show-feedbacks"),
+        href: "".concat(portalUrl, "/show-feedbacks?uid=").concat(row.uid),
         title: "Vai ai commenti"
       }, row.comments.length));
     }

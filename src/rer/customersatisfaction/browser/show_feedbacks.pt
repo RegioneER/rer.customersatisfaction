@@ -7,8 +7,10 @@
 
 <body>
 <metal:content-title fill-slot="content-title">
-  <h1 class="documentFirstHeading" i18n:translate="feedbacks_title">
-    <tal:title i18n:name="title">${context/Title}</tal:title> - comments
+  <h1 class="documentFirstHeading" i18n:translate="feedbacks_title"
+    tal:define="data view/get_data;
+                title python: data.get('title', '') or request.form.get('uid', '')">
+    Comments - <tal:title i18n:name="title">${title}</tal:title>
   </h1>
 </metal:content-title>
 <metal:content-description fill-slot="content-description">
@@ -16,49 +18,61 @@
 <metal:content-core fill-slot="content-core"
   tal:define="data view/get_data;
               batch data/comments|nothing;
+              error data/error|nothing;
               toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
-
+  
   <p tal:condition="not:data" i18n:translate="no_comments_label">No comments for this content.</p>
-  <div class="filters" tal:condition="data/total"
-       tal:define="selected_ok python: request.get('vote', '') == 'ok';
-                   selected_nok python: request.get('vote', '') == 'nok'">
-    <span i18n:translate="filters_label">Filter:&nbsp;</span>
-    <a href="${context/absolute_url}/show-feedbacks?vote=ok">
-      <span tal:attributes="class python:selected_ok and 'feedback-label feedback-success active' or 'feedback-label feedback-success';
-                            aria-selected python: selected_ok and 'true' or 'false'">
-        <i class="glyphicon glyphicon-thumbs-up"/>
-      </span>
-      <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
-    </a>
-    <a href="${context/absolute_url}/show-feedbacks?vote=nok">
-      <span tal:attributes="class python:selected_nok and 'feedback-label feedback-danger active' or 'feedback-label feedback-danger';
-                            aria-selected python: selected_nok and 'true' or 'false'">
-        <i class="glyphicon glyphicon-thumbs-down"/>
-      </span>
-      <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
-    </a>
-    <a href="${context/absolute_url}/show-feedbacks">
-      <span class="feedback-label"><i class="glyphicon glyphicon-erase"/></span>
-      <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
-    </a>
-  </div>
-  <p tal:condition="not:batch" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
-  <div class="feedbacks-wrapper" tal:condition="batch">
-    <tal:feedback repeat="feedback batch">
-      <div class="feedback"
-           tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
-                       icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
-                       comment feedback/comment|nothing">
-        <p class="feedback-date" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></p>
-        <div class="feedback-body">
-          <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
-          <div class="feedback-comment" tal:condition="comment" tal:content="comment" />
-        </div>
+  <tal:data>
+    <tal:error condition="error">
+      <dl class="portalMessage warning" role="status">
+          <dt>Warning</dt>
+          <dd>${error}</dd>
+      </dl>
+    </tal:error>
+    <tal:no-error condition="not:error">
+      <div class="filters" tal:condition="data/total"
+          tal:define="selected_ok python: request.get('vote', '') == 'ok';
+                      selected_nok python: request.get('vote', '') == 'nok'">
+        <span i18n:translate="filters_label">Filter:&nbsp;</span>
+        <a href="${context/portal_url}/show-feedbacks?uid=${request/uid}&vote=ok">
+          <span tal:attributes="class python:selected_ok and 'feedback-label feedback-success active' or 'feedback-label feedback-success';
+                                aria-selected python: selected_ok and 'true' or 'false'">
+            <i class="glyphicon glyphicon-thumbs-up"/>
+          </span>
+          <span class="sr-only" i18n:translate="search_feedback_ok">Vai alla ricerca per commenti positivi</span>
+        </a>
+        <a href="${context/portal_url}/show-feedbacks?uid=${request/uid}&vote=nok">
+          <span tal:attributes="class python:selected_nok and 'feedback-label feedback-danger active' or 'feedback-label feedback-danger';
+                                aria-selected python: selected_nok and 'true' or 'false'">
+            <i class="glyphicon glyphicon-thumbs-down"/>
+          </span>
+          <span class="sr-only" i18n:translate="search_feedback_nok">Vai alla ricerca per commenti negativi</span>
+        </a>
+        <a href="${context/portal_url}/show-feedbacks?uid=${request/uid}">
+          <span class="feedback-label"><i class="glyphicon glyphicon-erase"/></span>
+          <span class="sr-only" i18n:translate="search_no_filters">Vai alla ricerca dei commenti non filtrata</span>
+        </a>
       </div>
-    </tal:feedback>
+      <p tal:condition="not:batch" i18n:translate="no_feedbacks_label">No feedbacks for this content.</p>
+      <div class="feedbacks-wrapper" tal:condition="batch">
+        <tal:feedback repeat="feedback batch">
+          <div class="feedback"
+              tal:define="vote python:feedback.get('vote', '') == 'ok' and 'success' or 'danger';
+                          icon python:feedback.get('vote', '') == 'ok' and 'up' or 'down';
+                          comment feedback/comment|nothing">
+            <p class="feedback-date" tal:content="python:toLocalizedTime(feedback['date'], long_format=True)"></p>
+            <div class="feedback-body">
+              <span class="feedback-label feedback-${vote}"><i class="glyphicon glyphicon-thumbs-${icon}"/></span>
+              <div class="feedback-comment" tal:condition="comment" tal:content="comment" />
+            </div>
+          </div>
+        </tal:feedback>
 
-    <div metal:use-macro="context/batch_macros/macros/navigation" />
-  </div>
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+      </div>
+    </tal:no-error>
+  </tal:data>
+  
 
 </metal:content-core>
 </body>
