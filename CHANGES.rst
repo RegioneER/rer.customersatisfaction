@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.1 (unreleased)
+2.1.0 (2022-12-15)
 ------------------
 
 - Handle comments view (aka do not break) when a content is deleted but has some comments.
