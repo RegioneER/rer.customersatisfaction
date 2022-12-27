@@ -41,7 +41,7 @@
       name="show-feedbacks"
       class=".show_feedbacks.View"
       template="show_feedbacks.pt"
-      permission="rer.customersatisfaction.AccessCustomerSatisfaction"
+      permission="zope2.View"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     

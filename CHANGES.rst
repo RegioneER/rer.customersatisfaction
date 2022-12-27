@@ -5,7 +5,8 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix permissions to access feedbacks view.
+  [cekk]
 
 
 2.1.0 (2022-12-15)
