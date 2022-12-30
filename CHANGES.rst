@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1.1 (unreleased)
+2.1.1 (2022-12-30)
 ------------------
 
 - Fix permissions to access feedbacks view.
