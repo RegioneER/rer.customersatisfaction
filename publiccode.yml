@@ -18,7 +18,6 @@ description:
     features:
       - Feedback
       - Customer satisfaction
-    genericName: Plone addon
     longDescription: |
       Plugin per Plone per rilevare la soddisfazione degli utenti nella
       consultazione dei contenuti dei siti web della PA (come previsto dal CAD).
