@@ -32,7 +32,7 @@ description:
       ricevuto dei feedback. Si possono esportare in CSV, cancellare
       periodicamente, ordinare a piacere, filtrare.
     shortDescription: Modulo per rilevare la soddisfazione degli utenti nei siti web
-    documentation: docs/docs/MA_Plone5_uso_CustomerSatisfaction.pdf
+    documentation: https://github.com/RegioneER/rer.customersatisfaction/blob/main/docs/MA_Plone5_uso_CustomerSatisfaction.pdf
     screenshots:
       - docs/customer-satisfaction_1-Recensione.jpg
       - docs/customer-satisfaction_2-Elenco-Recensioni.jpg
