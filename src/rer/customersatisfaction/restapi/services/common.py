@@ -90,7 +90,6 @@ class DataAdd(Service):
                     message=getattr(e, "message", e.__str__()),
                 )
             )
-
         if res:
             return self.reply_no_content()
 
@@ -111,7 +110,7 @@ class DataAdd(Service):
 
 @implementer(IPublishTraverse)
 class TraversableService(Service):
-    """ Update an entry """
+    """Update an entry"""
 
     def __init__(self, context, request):
         super(TraversableService, self).__init__(context, request)
@@ -131,7 +130,7 @@ class TraversableService(Service):
 
 
 class DataUpdate(TraversableService):
-    """ Update an entry """
+    """Update an entry"""
 
     def reply(self):
         alsoProvides(self.request, IDisableCSRFProtection)

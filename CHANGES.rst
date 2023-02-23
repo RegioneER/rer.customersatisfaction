@@ -5,7 +5,8 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fire content rules event on new vote.
+  [ksuess]
 
 
 2.1.1 (2022-12-30)
