@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.1.2 (unreleased)
+2.2.0 (2023-03-06)
 ------------------
 
 - Fire content rules event on new vote.
