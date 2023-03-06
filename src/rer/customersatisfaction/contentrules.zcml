@@ -1,0 +1,38 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml">
+
+
+  <configure zcml:condition="installed plone.contentrules">
+    <!-- Content rules event -->
+    <interface
+      interface="rer.customersatisfaction.interfaces.IVoteAddedEvent"
+      type="plone.contentrules.rule.interfaces.IRuleEventType"
+      name="Vote added"
+      />
+
+    <!-- Content rules subscriber -->
+    <subscriber
+      for="rer.customersatisfaction.interfaces.IVoteAddedEvent"
+      handler=".contentrules.execute_vote_rules"
+      />
+
+    <!-- Content rules strings -->
+
+    <adapter
+      for="zope.interface.Interface"
+      provides="plone.stringinterp.interfaces.IStringSubstitution"
+      factory=".contentrules.Text"
+      name="vote_text"
+      />
+
+    <adapter
+      for="zope.interface.Interface"
+      provides="plone.stringinterp.interfaces.IStringSubstitution"
+      factory=".contentrules.Vote"
+      name="vote_vote"
+      />
+
+  </configure>
+
+</configure>

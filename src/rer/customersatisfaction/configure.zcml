@@ -7,6 +7,7 @@
 
   <i18n:registerTranslations directory="locales" />
 
+  <include file="contentrules.zcml" />
   <include file="permissions.zcml" />
   <include file="upgrades.zcml" />
   <include package=".browser" />
@@ -46,5 +47,6 @@
       />
 
   <!-- -*- extra stuff goes here -*- -->
+  
 
 </configure>

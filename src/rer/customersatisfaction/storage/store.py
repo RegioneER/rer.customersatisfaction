@@ -9,6 +9,8 @@ from repoze.catalog.query import Eq
 from repoze.catalog.query import Contains
 from repoze.catalog.query import Any
 from repoze.catalog.query import And
+from rer.customersatisfaction.events import VoteAddedEvent
+from zope.event import notify
 
 import logging
 import six
@@ -44,7 +46,10 @@ class CustomerSatisfactionStore(object):
                 continue
             record.attrs[k] = v
         record.attrs["date"] = datetime.now()
-        return self.soup.add(record)
+        soup_id = self.soup.add(record)
+        if data.get("uid", None) and api.content.get(UID=data.get("uid", None)):
+            notify(VoteAddedEvent(api.content.get(UID=data.get("uid", None)), data))
+        return soup_id
 
     def length(self):
         return len([x for x in self.soup.data.values()])

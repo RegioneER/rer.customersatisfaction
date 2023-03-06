@@ -34,6 +34,12 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.document = api.content.create(
             title="Document", container=self.portal, type="Document"
         )
+        api.content.transition(obj=self.document, transition="publish")
+
+        self.private_document = api.content.create(
+            title="restricted document", container=self.portal, type="Document"
+        )
+        transaction.commit()
 
         self.api_session = RelativeSession(self.portal_url)
         self.api_session.headers.update({"Accept": "application/json"})
@@ -42,7 +48,9 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.anon_api_session.headers.update({"Accept": "application/json"})
 
         self.url = "{}/@customer-satisfaction-add".format(self.document.absolute_url())
-        transaction.commit()
+        self.url_private_document = "{}/@customer-satisfaction-add".format(
+            self.private_document.absolute_url()
+        )
 
     def tearDown(self):
         self.api_session.close()
@@ -74,6 +82,19 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         )
         transaction.commit()
         tool = getUtility(ICustomerSatisfactionStore)
+        self.assertEqual(len(tool.search()), 1)
+
+        # Anonymous cannot vote without access to document
+        self.anon_api_session.post(
+            self.url_private_document,
+            json={
+                "vote": "ok",
+                "comment": "i disagree",
+                "honey": "",
+            },
+        )
+        transaction.commit()
+        # Number of results did not increase, cause user is unauthorized to vote
         self.assertEqual(len(tool.search()), 1)
 
     def test_store_only_known_fields(self):
