@@ -7,7 +7,6 @@ from zope.component import getUtility
 from rer.customersatisfaction.interfaces import ICustomerSatisfactionStore
 
 import Products.Five
-import transaction
 import unittest
 
 
