@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2.1 (unreleased)
+2.2.1 (2023-03-24)
 ------------------
 
 - Fix english label.
