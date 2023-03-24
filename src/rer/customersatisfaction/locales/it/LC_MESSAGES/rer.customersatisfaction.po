@@ -100,7 +100,7 @@ msgstr "Nessuna recensione per questo contenuto."
 msgid "page_label"
 msgstr "Titolo"
 
-#. Default: "Does this page was useful?"
+#. Default: "Is this page useful?"
 #: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:7
 msgid "page_useful_label"
 msgstr "Questa pagina ti è stata utile?"
