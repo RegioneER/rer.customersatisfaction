@@ -19,6 +19,12 @@
       directory="static"
       />
 
+  <plone:static
+      directory="customer_satisfaction_global/build"
+      type="plone"
+      name="customer-satisfaction-global"
+    />
+
     <browser:viewlet
       name="rer-customersatisfaction"
       manager="plone.app.layout.viewlets.interfaces.IBelowContent"
@@ -44,6 +50,5 @@
       permission="zope2.View"
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
-    
     <adapter factory=".adapters.CustomerSatisfactionBodyClasses" />
 </configure>
