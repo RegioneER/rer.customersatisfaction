@@ -20,9 +20,9 @@
       />
 
   <plone:static
-      directory="customer_satisfaction_global/build"
+      directory="idler_apps/dist"
       type="plone"
-      name="customer-satisfaction-global"
+      name="idler-apps"
     />
 
     <browser:viewlet
@@ -51,4 +51,13 @@
       layer="rer.customersatisfaction.interfaces.IRerCustomersatisfactionLayer"
     />
     <adapter factory=".adapters.CustomerSatisfactionBodyClasses" />
+
+    <browser:page
+      for="OFS.interfaces.IApplication"
+      name="customer-satisfaction-global"
+      class=".customer_satisfaction_global.View"
+      template="customer_satisfaction_global.pt"
+      permission="zope2.ViewManagementScreens"
+    />
+
 </configure>

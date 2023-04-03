@@ -9,8 +9,12 @@ from AccessControl import Unauthorized
 import pkg_resources
 
 
-JS_TEMPLATE = "{portal_url}/++plone++rer.customersatisfaction/react/dist/{env_mode}/{name}.js?v={version}"  # noqa
-CSS_TEMPLATE = "{portal_url}/++plone++rer.customersatisfaction/react/dist/{env_mode}/{name}.css?v={version}"  # noqa
+JS_TEMPLATE = (
+    "{portal_url}/++plone++idler-apps/{env_mode}/{name}.js?v={version}"  # noqa
+)
+CSS_TEMPLATE = (
+    "{portal_url}/++plone++idler-apps/{env_mode}/{name}.css?v={version}"  # noqa
+)
 
 
 class View(BrowserView):
