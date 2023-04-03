@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "regenerator-runtime/runtime.js";
 
-//Handling backwaed compatibility with redundant version of webpack used in our buildout
+//Handling backward compatibility with redundant version of webpack used in our buildout
 window.React = React;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
