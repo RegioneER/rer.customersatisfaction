@@ -7,7 +7,7 @@ class View(Overview):
     def __call__(self):
         data = []
         for site in self.sites():
-            site_url = site.absolute_url()
+            site_url = site.portal_url()
             data.append(
                 {
                     "id": site.id,
