@@ -134,7 +134,7 @@ Customer satisfaction global
 ============================
 
 Users with *zope2.ViewManagementScreens* can call **@@customer-satisfaction-global**
-view on a application root(`/`) to see customer satisfaction report for all the sites
+view on the application root(`/`) to see customer satisfaction report for all the sites
 
 .. image:: docs/customer-satisfaction-global.png
    :alt: All sites summary comments listing
