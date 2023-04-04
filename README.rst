@@ -114,6 +114,21 @@ view on a content, to see a detailed list of feedbacks and comments.
 .. image:: docs/customer-satisfaction_3-Dettaglio-Commenti.jpg
    :alt: Comments listing
 
+Sites list
+==========
+
+Lists all sites in the current installation, route: 
+
+*@@sites-list*
+
+**GET**
+
+Only users with "zope2.ViewManagementScreens" can get it::
+
+> curl -i -X POST http://localhost:8080/sites-list -H 'Accept: application/json' -H 'Content-Type: application/json' --user admin:admin
+
+result: [{"id": "Plone", "url": "http://localhost:8080/Plone", "title": "Site"}]
+
 Installation
 ============
 
