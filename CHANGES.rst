@@ -5,6 +5,8 @@ Changelog
 2.2.1 (unreleased)
 ------------------
 
+- Add customer-satisfaction-global view
+  [foxtrot-dfm1]
 - Fix english label.
   [cekk]
 
