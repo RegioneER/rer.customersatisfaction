@@ -19,7 +19,7 @@ module.exports = (webpackEnv, argv) => {
   // browser dir so as we have all the messaround with staticfiles there
   const pkgDir = path.resolve(
     __dirname,
-    './src/rer/customersatisfaction/browser/idler_apps',
+    './src/rer/customersatisfaction/browser/static',
   );
   const buildPath = isProduction
     ? path.resolve(pkgDir, './dist/prod')
