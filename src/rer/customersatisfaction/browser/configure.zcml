@@ -19,12 +19,6 @@
       directory="static"
       />
 
-  <plone:static
-      directory="idler_apps/dist"
-      type="plone"
-      name="idler-apps"
-    />
-
     <browser:viewlet
       name="rer-customersatisfaction"
       manager="plone.app.layout.viewlets.interfaces.IBelowContent"

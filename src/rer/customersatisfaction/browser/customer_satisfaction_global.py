@@ -8,8 +8,12 @@ from time import time
 import pkg_resources
 
 APP_NAME = "customer_satisfaction_global"
-JS_TEMPLATE = "/++plone++idler-apps/prod/{name}.js?v={version}"  # noqa
-CSS_TEMPLATE = "/++plone++idler-apps/prod/{name}.css?v={version}"  # noqa
+JS_TEMPLATE = (
+    "/++plone++rer.customersatisfaction/dist/prod/{name}.js?v={version}"  # noqa
+)
+CSS_TEMPLATE = (
+    "/++plone++rer.customersatisfaction/dist/prod/{name}.css?v={version}"  # noqa
+)
 
 
 class View(Overview, BrowserView):
