@@ -161,7 +161,7 @@ const CommentsTable = () => {
   useEffect(() => {
     setFilters(
       (oldFilters) => {
-        return { ...oldFilters, siteId: { ...oldFilters.siteId, possibleValues: aggregatedData && aggregatedData.map(item => item.siteId) } }
+        return { ...oldFilters, siteId: { ...oldFilters.siteId, possibleValues: aggregatedData && [...new Set(aggregatedData.map(item => item.siteId))] } }
       }
     )
   }, [aggregatedData]);
