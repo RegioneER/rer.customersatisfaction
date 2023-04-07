@@ -1,4 +1,4 @@
-const commentsDataAggregator (data) => {
+const commentsDataAggregator = (data) => {
   return new Promise((resolve, reject) => {
     let result = [];
 
