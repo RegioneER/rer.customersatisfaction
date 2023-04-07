@@ -3,13 +3,13 @@ import CommentsTable from './CommentsTable'
 
 const Comments = () => {
   return (
-    <Box  sx={{
+    <Box sx={{
       width: "98%",
       mt: 5,
       ml: "auto",
       mr: "auto"
-      }}>
-        <CommentsTable />
+    }}>
+      <CommentsTable />
     </Box>
   )
 }
