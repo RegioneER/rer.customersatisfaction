@@ -9,6 +9,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import Comments from './Comments';
 
+import '../App.css';
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
