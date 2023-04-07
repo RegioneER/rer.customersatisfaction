@@ -52,6 +52,8 @@ const columns = [
         <div>{row.contentTitle}</div>
       );
     },
+    sortable: true,
+    sortField: 'siteId',
   },
   {
     name: 'Voti positivi',
@@ -73,6 +75,7 @@ const columns = [
   },
   {
     name: 'Ultimo voto',
+    id: 'last_vote_date',
     selector: row => row.last_vote,
     sortable: true,
     sortField: 'last_vote',
@@ -175,6 +178,8 @@ const CommentsTable = () => {
         <DataTable
           columns={columns}
           data={filteredData}
+          defaultSortAsc="descending"
+          defaultSortFieldId="last_vote_date"
         />
         :
         <Box sx={{ display: 'flex', "justify-content": "center", "padding-top": "2em" }}>
