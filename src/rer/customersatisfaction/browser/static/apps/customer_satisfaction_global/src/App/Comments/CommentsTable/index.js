@@ -132,12 +132,6 @@ const CommentsTable = () => {
       ).then(
         () => commentsDataAggregator(data).then(result => setAggregatedData(result))
       );
-
-      setFilters(
-        (oldFilters) => {
-          return { ...oldFilters, siteId: { ...oldFilters.siteId, possibleValues: result.data && result.data.map(item => item.id) } }
-        }
-      )
     }, error => console.log(error));
   }, []);
 
@@ -163,6 +157,14 @@ const CommentsTable = () => {
     setFilteredData(result);
 
   }, [filters, aggregatedData]);
+
+  useEffect(() => {
+    setFilters(
+      (oldFilters) => {
+        return { ...oldFilters, siteId: { ...oldFilters.siteId, possibleValues: aggregatedData && aggregatedData.map(item => item.siteId) } }
+      }
+    )
+  }, [aggregatedData]);
 
   return (
     <>
