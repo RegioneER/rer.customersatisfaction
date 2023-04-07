@@ -178,7 +178,7 @@ const CommentsTable = () => {
         <DataTable
           columns={columns}
           data={filteredData}
-          defaultSortAsc="ascending"
+          defaultSortAsc={false}
           defaultSortFieldId="last_vote_date"
         />
         :
