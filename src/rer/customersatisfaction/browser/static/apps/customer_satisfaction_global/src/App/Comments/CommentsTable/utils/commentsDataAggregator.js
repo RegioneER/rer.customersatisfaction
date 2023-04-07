@@ -1,9 +1,9 @@
-const commentsDataAggregator = async (data) => {
+const commentsDataAggregator (data) => {
   return new Promise((resolve, reject) => {
     let result = [];
 
-    try{
-      if (!data){
+    try {
+      if (!data) {
         resolve([]);
       }
       data.forEach(element => {
@@ -32,4 +32,4 @@ const commentsDataAggregator = async (data) => {
   })
 };
 
-export {commentsDataAggregator};
+export { commentsDataAggregator };
