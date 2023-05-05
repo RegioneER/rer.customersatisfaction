@@ -3,7 +3,6 @@ const path = require('path');
 const dotenv = require('dotenv');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (webpackEnv, argv) => {
   const env = dotenv.config().parsed;
@@ -16,16 +15,19 @@ module.exports = (webpackEnv, argv) => {
   }
 
   const isProduction = argv.mode === 'production';
+
+  // browser dir so as we have all the messaround with staticfiles there
   const pkgDir = path.resolve(
     __dirname,
-    './src/rer/customersatisfaction/browser/static/react',
+    './src/rer/customersatisfaction/browser/static',
   );
   const buildPath = isProduction
     ? path.resolve(pkgDir, './dist/prod')
     : path.resolve(pkgDir, './dist/dev');
   return {
     entry: {
-      history: path.resolve(pkgDir, './javascripts/history/index.js'),
+      history: path.resolve(pkgDir, './apps/history/javascripts/history/index.js'),
+      customer_satisfaction_global: path.resolve(pkgDir, './apps/customer_satisfaction_global/src/index.js'),
     },
     output: {
       path: buildPath,
@@ -49,7 +51,8 @@ module.exports = (webpackEnv, argv) => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: ['babel-loader'],
+          loader: 'babel-loader',
+          options: { presets: ['@babel/env','@babel/preset-react'] },
         },
         {
           test: /\.css$/,

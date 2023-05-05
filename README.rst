@@ -94,6 +94,22 @@ Only users with "rer.customersatisfaction.AddCustomerSatisfactionVote" can post 
 If vote is successful, the response is a ``204``.
 
 
+Sites list
+----------
+
+Lists all sites in the current installation
+
+*sites-list*
+
+**GET**
+
+Only users with "zope2.ViewManagementScreens" can get it::
+
+> curl -i -X POST http://localhost:8080/sites-list -H 'Accept: application/json' -H 'Content-Type: application/json' --user admin:admin
+
+result: [{"id": "Plone", "url": "http://localhost:8080/Plone", "title": "Site"}]
+
+
 Feedbacks listing
 =================
 
@@ -113,6 +129,15 @@ view on a content, to see a detailed list of feedbacks and comments.
 
 .. image:: docs/customer-satisfaction_3-Dettaglio-Commenti.jpg
    :alt: Comments listing
+
+Customer satisfaction global
+============================
+
+Users with *zope2.ViewManagementScreens* can call **@@customer-satisfaction-global**
+view on the application root(`/`) to see customer satisfaction report for all the sites
+
+.. image:: docs/customer-satisfaction-global.png
+   :alt: All sites summary comments listing
 
 Installation
 ============

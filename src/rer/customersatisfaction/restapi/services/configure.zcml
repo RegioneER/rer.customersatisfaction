@@ -3,5 +3,6 @@
     xmlns:zcml="http://namespaces.zope.org/zcml">
 
   <include package=".customer_satisfaction" />
+  <include package=".sites_list" />
 
 </configure>

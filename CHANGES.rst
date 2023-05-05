@@ -11,6 +11,8 @@ Changelog
 2.2.1 (2023-03-24)
 ------------------
 
+- Add customer-satisfaction-global view
+  [foxtrot-dfm1]
 - Fix english label.
   [cekk]
 
