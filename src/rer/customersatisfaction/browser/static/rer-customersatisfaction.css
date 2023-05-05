@@ -1,0 +1,138 @@
+#customer-satisfaction .customer-satisfaction-message {
+  display: flex;
+  align-items: center;
+}
+
+#customer-satisfaction .customer-satisfaction-message button {
+  margin-left: auto;
+}
+
+#cs-collapsible-form-area {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.2s max-height ease;
+}
+
+#cs-collapsible-form-area[aria-expanded='true'] {
+  max-height: 600px;
+}
+
+#cs-collapsible-form-area[aria-expanded='true'] textarea{
+  margin-bottom: 1rem;
+}
+
+#cs-collapsible-form-area button[type='submit'].plone-btn-primary {
+  color: #fff;
+  background-color: #cb1d15;
+  border-color: #b41a13;
+}
+
+#reviews-count {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.feedback-label {
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: bold;
+  background-color: #e3e3e3;
+  color: #000;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: baseline;
+  border-radius: 2px;
+  border: 2px solid transparent;
+}
+
+.feedback-label.feedback-success {
+  color: #448644;
+  border-color: #448644;
+  background-color: #fff;
+}
+
+.feedback-label.feedback-success.active {
+  background-color: #448644;
+  color: #fff;
+}
+
+.feedback-label.feedback-success:focus-within,
+.feedback-label.feedback-success:focus,
+.feedback-label.feedback-success:hover,
+.feedback-label.feedback-success.active {
+  border-color: #448644;
+  background: #448644;
+  color: #fff;
+}
+
+.feedback-label.feedback-danger {
+  background-color: #fff;
+  color: #c00000;
+  border-color: #c00000;
+}
+
+.feedback-label.feedback-danger:focus-within,
+.feedback-label.feedback-danger:focus,
+.feedback-label.feedback-danger:hover,
+.feedback-label.feedback-danger.active {
+  background: #c00000;
+  color: #fff;
+  border-color: #c00000;
+}
+
+
+
+body.template-show-feedbacks #content-core .filters a {
+  border-bottom: 0;
+}
+
+body.template-show-feedbacks .filters {
+  margin: 2rem 0 3rem;
+}
+
+body.template-show-feedbacks .feedback {
+  margin: 0.5em 0;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+
+body.template-show-feedbacks .feedback .feedback-date {
+  color: #696969;
+  font-weight: 400;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+body.template-show-feedbacks .feedback .feedback-body {
+  display: flex;
+}
+
+body.template-show-feedbacks .feedback .feedback-body .feedback-label {
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.template-show-feedbacks .feedback .feedback-body .feedback-comment {
+  margin-left: 1rem;
+}
+
+.feedback-label .badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 10px;
+}
