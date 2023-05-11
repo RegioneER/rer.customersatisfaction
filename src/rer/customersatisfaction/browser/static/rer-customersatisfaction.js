@@ -1,6 +1,10 @@
 require(['jquery'], function($) {
   'use strict';
-  $(document).ready(function(){
+  $(document).ready(function() {
+    let thankYouMsg = $('body').hasClass('site-it')
+      ? 'Grazie per il tuo feedback'
+      : 'Thank you for your feedback';
+    let closeMsg = $('body').hasClass('site-it') ? 'Chiudi' : 'Close';
     function addErrorMessage(err) {
       const resp = err.responseJSON;
       if (!resp) {
@@ -9,13 +13,19 @@ require(['jquery'], function($) {
       $('#customer-satisfaction').prepend(
         '<div class="customer-satisfaction-message portalMessage error" role="alert"><strong>' +
           resp.message +
-          '</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio">&times;</button></div>',
+          '</strong><button class="plone-btn plone-btn-link delete-message" title="' +
+          closeMsg +
+          '">&times;</button></div>',
       );
     }
 
     function doSuccessCleanup() {
       $('#customer-satisfaction').prepend(
-        '<div class="customer-satisfaction-message portalMessage info" role="alert"><strong>Grazie per il tuo feedbak</strong><button class="plone-btn plone-btn-link delete-message" title="Elimina messaggio">&times;</button></div>',
+        '<div class="customer-satisfaction-message portalMessage info" role="alert"><strong>' +
+          thankYouMsg +
+          '</strong><button class="plone-btn plone-btn-link delete-message" title="' +
+          closeMsg +
+          '">&times;</button></div>',
       );
       $('#customer-satisfaction form').remove();
     }
@@ -95,11 +105,9 @@ require(['jquery'], function($) {
       },
     );
 
-  
     $('#customer-satisfaction form input[type="radio"]').on('click', function(
       event,
-      ) {
-      console.log("cliccato")
+    ) {
       var currentLabel = $(event.target).closest('label');
       if (currentLabel && !currentLabel.hasClass('active')) {
         cleanVotes();
@@ -110,6 +118,5 @@ require(['jquery'], function($) {
         expandCollapse(false);
       }
     });
-  })
-
+  });
 });

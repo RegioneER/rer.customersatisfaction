@@ -13,6 +13,9 @@
   <!-- BUNDLE -->
   <records prefix="plone.bundles/rer-customer-satisfaction"
             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>rer-customer-satisfaction</element>
+    </value>
     <value key="enabled">True</value>
     <value key="jscompilation">++plone++rer.customersatisfaction/rer-customersatisfaction.js</value>
     <value key="csscompilation">++plone++rer.customersatisfaction/rer-customersatisfaction.css</value>

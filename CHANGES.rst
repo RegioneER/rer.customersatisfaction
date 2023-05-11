@@ -5,7 +5,10 @@ Changelog
 2.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix english translations.
+  [cekk]
+- Fix bundle (there was a missing resource).
+  [cekk]
 
 
 2.2.2 (2023-05-11)
