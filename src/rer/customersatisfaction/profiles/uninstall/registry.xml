@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="rer.customersatisfaction">
+
+  <!-- PATTERN -->
+  <records prefix="plone.resources/rer-customer-satisfaction"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'
+           remove="True">
+  </records>
+
+  <!-- BUNDLE -->
+  <records prefix="plone.bundles/rer-customer-satisfaction"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'
+            remove="True">
+  </records>
+
+</registry>
