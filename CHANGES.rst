@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2.2 (unreleased)
+2.2.2 (2023-05-11)
 ------------------
 
 - Fix uninstall profile (remove action and bundles).
