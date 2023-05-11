@@ -5,7 +5,8 @@ Changelog
 2.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix uninstall profile (remove action and bundles).
+  [cekk]
 
 
 2.2.1 (2023-03-24)
