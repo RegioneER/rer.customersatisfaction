@@ -1,0 +1,154 @@
+# Translation of rer.customersatisfaction.pot to Spanish
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: rer.customersatisfaction\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-02 17:10+0000\n"
+"PO-Revision-Date: 2023-05-13 12:18-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language: es\n"
+"Language-Team: ES <LL@li.org>\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Preferred-Encodings: utf-8\n"
+"MIME-Version: 1.0\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Domain: rer.customersatisfaction\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+
+#: rer/customersatisfaction/profiles/default/actions.xml
+msgid "Customer satisfaction"
+msgstr "Satisfacción del cliente"
+
+#: rer/customersatisfaction/configure.zcml:24
+msgid "Installs the rer.customersatisfaction add-on."
+msgstr "Instala el complemento rer.customersatisfaction."
+
+#: rer/customersatisfaction/configure.zcml:24
+msgid "RER: Customer satisfaction"
+msgstr "RER: Satisfacción del cliente"
+
+#: rer/customersatisfaction/configure.zcml:41
+msgid "RER: Customer satisfaction (remove recaptcha)"
+msgstr "RER: Satisfacción del cliente (quitar recaptcha)"
+
+#: rer/customersatisfaction/configure.zcml:33
+msgid "RER: Customer satisfaction (uninstall)"
+msgstr "RER: Satisfacción del cliente (desinstalar)"
+
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:22
+msgid "Tell us why and help us to improve site quality"
+msgstr "Cuéntanos por qué y ayúdanos a mejorar la calidad del sitio."
+
+#: rer/customersatisfaction/configure.zcml:33
+msgid "Uninstalls the rer.customersatisfaction add-on."
+msgstr "Desinstala el complemento rer.customersatisfaction."
+
+msgid "comments_label"
+msgstr "Comentarios"
+
+#. Default: "Customer satisfaction"
+#: rer/customersatisfaction/browser/customer_satisfaction.pt:22
+msgid "customer_satisfaction_title_label"
+msgstr "Satisfacción del cliente"
+
+msgid "delete_feedbacks_confirm_label"
+msgstr "¿Está seguro de que desea eliminar todas las reseñas?"
+
+msgid "delete_feedbacks_label"
+msgstr "Borrar TODAS las reseñas"
+
+msgid "export_csv_label"
+msgstr "Exportar en CSV"
+
+#. Default: "Comments - ${title}"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:13
+msgid "feedbacks_title"
+msgstr "Comentarios - ${title}"
+
+msgid "filter_title_label"
+msgstr "Filtrar por título"
+
+#. Default: "Filter:&nbsp;"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:36
+msgid "filters_label"
+msgstr "Filtrado por:&nbsp;"
+
+msgid "item_selected"
+msgstr "elemento seleccionado"
+
+msgid "items_selected"
+msgstr "elementos seleccionados"
+
+msgid "last_voted_label"
+msgstr "Último voto"
+
+msgid "negative_votes_label"
+msgstr "Votos negativos"
+
+#. Default: "No comments for this content."
+#: rer/customersatisfaction/browser/show_feedbacks.pt:24
+msgid "no_comments_label"
+msgstr "No hay comentarios para este contenido."
+
+msgid "no_data_label"
+msgstr "Datos no encontrados"
+
+#. Default: "No feedbacks for this content."
+#: rer/customersatisfaction/browser/show_feedbacks.pt:56
+msgid "no_feedbacks_label"
+msgstr "No hay reseñas para este contenido."
+
+msgid "page_label"
+msgstr "Título"
+
+#. Default: "Is this page useful?"
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:7
+msgid "page_useful_label"
+msgstr "¿Te resultó útil esta página?"
+
+msgid "positive_votes_label"
+msgstr "Votos positivos"
+
+msgid "range_separator_label"
+msgstr "en"
+
+msgid "reset_feedbacks_confirm_label"
+msgstr "¿Está seguro de que desea eliminar las reseñas de este contenido?"
+
+msgid "reset_feedbacks_label"
+msgstr "Borrar reseñas"
+
+msgid "rows_per_page_label"
+msgstr "Elementos por página:"
+
+#. Default: "Vai alla ricerca per commenti negativi"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:49
+msgid "search_feedback_nok"
+msgstr "Ir a buscar comentarios negativos"
+
+#. Default: "Vai alla ricerca per commenti positivi"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:42
+msgid "search_feedback_ok"
+msgstr "Ir a buscar comentarios positivos"
+
+msgid "search_label"
+msgstr "Búsqueda..."
+
+#. Default: "Vai alla ricerca dei commenti non filtrata"
+#: rer/customersatisfaction/browser/show_feedbacks.pt:53
+msgid "search_no_filters"
+msgstr "Ir a la búsqueda de comentarios sin filtrar"
+
+#. Default: "Send your feedback"
+#: rer/customersatisfaction/browser/customer_satisfaction_viewlet.pt:28
+msgid "send_feedback"
+msgstr "Envía tu comentario"
+
+#. Default: "You need to provide a UID."
+#: rer/customersatisfaction/browser/show_feedbacks.py:24
+msgid "show_feedbacks_missing_uid"
+msgstr "Debe proporcionar un UID."

@@ -5,6 +5,8 @@ Changelog
 2.2.3 (unreleased)
 ------------------
 
+- Add Spanish translations.
+  [macagua]
 - Fix english translations.
   [cekk]
 - Fix bundle (there was a missing resource).
