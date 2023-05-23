@@ -180,7 +180,6 @@ const CommentsTable = () => {
   // Csv export
   const actionsMemo = <Export onExport={() => downloadCSV(filteredData)} />
 
-  useEffect(() => { console.dir(filteredData); })
   useEffect(() => {
     let data = [];
 
