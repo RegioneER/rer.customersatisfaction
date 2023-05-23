@@ -154,7 +154,7 @@ function convertArrayOfObjectsToCSV(array) {
     keys.forEach(key => {
       if (ctr > 0) result += columnDelimiter;
 
-      result += '"' + key.csv_value(item) + '"';
+      result += sanitize_str(key.csv_value(item));
       // eslint-disable-next-line no-plusplus
       ctr++;
     });
@@ -162,6 +162,10 @@ function convertArrayOfObjectsToCSV(array) {
   });
 
   return result;
+}
+
+function sanitize_str(str) {
+  return str.replace(/"/g, '\"').replace(/"/g, '""').replace(/,/g, '\,').replace(/'/g, '\'');
 }
 
 const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
