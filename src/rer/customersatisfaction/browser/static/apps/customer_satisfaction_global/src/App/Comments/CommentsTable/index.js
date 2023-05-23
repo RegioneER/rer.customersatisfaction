@@ -154,7 +154,7 @@ function convertArrayOfObjectsToCSV(array) {
     keys.forEach(key => {
       if (ctr > 0) result += columnDelimiter;
 
-      result += String(key.csv_value(item)).replace(/,/g, "\,");
+      result += String(key.csv_value(item)).replace(',', "");
       // eslint-disable-next-line no-plusplus
       ctr++;
     });
