@@ -18,7 +18,6 @@ import unittest
 
 
 class TestCustomerSatisfactionGet(unittest.TestCase):
-
     layer = RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING
 
     def add_record(self, vote, date, uid="", title="", comment=""):
@@ -88,7 +87,6 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
         soup.clear()
 
     def test_deleting_a_content_does_not_remove_entries(self):
-
         response = self.api_session.get(self.url)
         res = response.json()
         self.assertEqual(res["items_total"], 2)

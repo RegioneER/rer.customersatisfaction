@@ -35,7 +35,6 @@ class CustomerSatisfactionStore(object):
 
     @property
     def soup(self):
-
         return get_soup("customer_satisfaction_soup", api.portal.get())
 
     def add(self, data):

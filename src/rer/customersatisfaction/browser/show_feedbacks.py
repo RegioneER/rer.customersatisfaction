@@ -20,7 +20,7 @@ class View(BrowserView):
             api.portal.show_message(
                 message=_(
                     "show_feedbacks_missing_uid",
-                    default=u"You need to provide a UID.",
+                    default="You need to provide a UID.",
                 ),
                 request=self.request,
                 type="error",
@@ -42,7 +42,7 @@ class View(BrowserView):
             raise Unauthorized(
                 _(
                     "show_feedbacks_unauthorized",
-                    default=u"You don't have access to this content.",
+                    default="You don't have access to this content.",
                 )
             )
 

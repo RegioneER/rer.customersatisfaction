@@ -21,7 +21,6 @@ collective.honeypot.config.HONEYPOT_FIELD = "honey"
 
 
 class RerCustomersatisfactionLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -53,7 +52,6 @@ RER_CUSTOMERSATISFACTION_FUNCTIONAL_TESTING = FunctionalTesting(
 
 
 class RerCustomersatisfactionLayerApi(PloneRestApiDXLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

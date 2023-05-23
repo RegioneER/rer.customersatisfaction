@@ -9,7 +9,7 @@ class View(Overview):
         for site in self.sites():
             site_url = site.portal_url()
 
-            if not site.id in [i.get("id", None) for i in data]:
+            if site.id not in [i.get("id", None) for i in data]:
                 data.append(
                     {
                         "id": site.id,

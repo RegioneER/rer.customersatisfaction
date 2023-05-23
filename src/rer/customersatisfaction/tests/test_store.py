@@ -12,7 +12,6 @@ import unittest
 
 
 class TestTool(unittest.TestCase):
-
     layer = RER_CUSTOMERSATISFACTION_FUNCTIONAL_TESTING
 
     def setUp(self):

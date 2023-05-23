@@ -16,7 +16,6 @@ import unittest
 
 
 class TestCustomerSatisfactionAdd(unittest.TestCase):
-
     layer = RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING
 
     def setUp(self):
@@ -116,7 +115,6 @@ class TestCustomerSatisfactionAdd(unittest.TestCase):
         self.assertEqual(res[0]._attrs.get("comment", None), "i disagree")
 
     def test_honeypot_is_required(self):
-
         res = self.anon_api_session.post(self.url, json={})
         self.assertEqual(res.status_code, 403)
 
