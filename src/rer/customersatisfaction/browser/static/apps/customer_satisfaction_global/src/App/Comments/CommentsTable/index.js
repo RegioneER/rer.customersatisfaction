@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import DataTable from 'react-data-table-component';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import format from 'date-fns/format';
 
 import { apiFetchSitesList, apiFetchCommentsBySite } from './utils/apiFetch';
@@ -9,6 +10,7 @@ import { commentsDataAggregator } from './utils/commentsDataAggregator';
 import { FilterContextProvider } from './Context';
 import FilterForm from './FilterForm';
 
+const EXPORT_FILENAME = "Customer Satisfaction.csv"
 
 const columns = [
   {
@@ -32,6 +34,7 @@ const columns = [
     },
     sortable: true,
     sortField: 'siteId',
+    csv_value: row => (row.siteId)
   },
   {
     name: 'Titolo',
@@ -54,6 +57,7 @@ const columns = [
     },
     sortable: true,
     sortField: 'siteId',
+    csv_value: row => (row.contentTitle)
   },
   {
     name: 'Voti positivi',
@@ -63,6 +67,7 @@ const columns = [
     sortable: true,
     sortField: 'ok',
     width: '150px',
+    csv_value: row => (row.ok)
   },
   {
     name: 'Voti negativi',
@@ -72,6 +77,7 @@ const columns = [
     sortable: true,
     sortField: 'nok',
     width: '150px',
+    csv_value: row => row.nok
   },
   {
     name: 'Ultimo voto',
@@ -87,6 +93,7 @@ const columns = [
       </div>
     ),
     width: '180px',
+    csv_value: row => (row.last_vote)
   },
   {
     name: 'Commenti',
@@ -105,8 +112,59 @@ const columns = [
         </a>
       </div>
     ),
+    csv_value: row => (row.siteUrl + '/show-feedbacks?uid=' + row.contentUID)
   },
 ];
+
+function downloadCSV(array) {
+  if (!array.length) {
+    return;
+  }
+  const link = document.createElement('a');
+  let csv = convertArrayOfObjectsToCSV(array);
+  if (csv == null) return;
+
+  const filename = EXPORT_FILENAME;
+
+  if (!csv.match(/^data:text\/csv/i)) {
+    csv = `data:text/csv;charset=utf-8,${csv}`;
+  }
+
+  link.setAttribute('href', encodeURI(csv));
+  link.setAttribute('download', filename);
+  link.click();
+}
+
+function convertArrayOfObjectsToCSV(array) {
+  let result;
+
+  const columnDelimiter = ',';
+  const lineDelimiter = '\n';
+  const keys = columns;
+
+  result = '';
+
+  keys.forEach(item => {
+    result += item.name + columnDelimiter
+  })
+  result = result.slice(0, -1) + lineDelimiter;
+
+  array.forEach(item => {
+    let ctr = 0;
+    keys.forEach(key => {
+      if (ctr > 0) result += columnDelimiter;
+
+      result += key.csv_value(item);
+      // eslint-disable-next-line no-plusplus
+      ctr++;
+    });
+    result += lineDelimiter;
+  });
+
+  return result;
+}
+
+const Export = ({ onExport }) => <Button onClick={e => onExport(e.target.value)}>Export</Button>;
 
 const CommentsTable = () => {
   const [aggregatedData, setAggregatedData] = useState([]);
@@ -119,6 +177,10 @@ const CommentsTable = () => {
   // 	item => item.name && item.name.toLowerCase().includes(fileter.toLowerCase()),
   // );
 
+  // Csv export
+  const actionsMemo = <Export onExport={() => downloadCSV(filteredData)} />
+
+  useEffect(() => { console.dir(filteredData); })
   useEffect(() => {
     let data = [];
 
@@ -180,6 +242,7 @@ const CommentsTable = () => {
           data={filteredData}
           defaultSortAsc={false}
           defaultSortFieldId="last_vote_date"
+          actions={actionsMemo}
         />
         :
         <Box sx={{ display: 'flex', "justify-content": "center", "padding-top": "2em" }}>
