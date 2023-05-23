@@ -202,7 +202,6 @@ const CommentsTable = () => {
   useEffect(() => {
     // filter data by filters
     let result = [];
-    debugger;
     aggregatedData.forEach(item => {
       for (const [filter_key, filter_value] of Object.entries(filters)) {
         if (filter_value && filter_value.value) {
