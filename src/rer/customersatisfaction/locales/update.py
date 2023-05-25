@@ -24,10 +24,14 @@ def locale_folder_setup():
             lc_messages_path = lang + "/LC_MESSAGES/"
             os.mkdir(lc_messages_path)
             cmd = "msginit --locale={0} --input={1}.pot --output={2}/LC_MESSAGES/{3}.po".format(  # NOQA: E501
-                lang, domain, lang, domain,
+                lang,
+                domain,
+                lang,
+                domain,
             )
             subprocess.call(
-                cmd, shell=True,
+                cmd,
+                shell=True,
             )
 
     os.chdir("../../../../")
@@ -35,19 +39,29 @@ def locale_folder_setup():
 
 def _rebuild():
     cmd = "{0} rebuild-pot --pot {1}/{2}.pot --create {3} {4}".format(
-        i18ndude, locale_path, domain, domain, target_path,
+        i18ndude,
+        locale_path,
+        domain,
+        domain,
+        target_path,
     )
     subprocess.call(
-        cmd, shell=True,
+        cmd,
+        shell=True,
     )
 
 
 def _sync():
     cmd = "{0} sync --pot {1}/{2}.pot {3}*/LC_MESSAGES/{4}.po".format(
-        i18ndude, locale_path, domain, locale_path, domain,
+        i18ndude,
+        locale_path,
+        domain,
+        locale_path,
+        domain,
     )
     subprocess.call(
-        cmd, shell=True,
+        cmd,
+        shell=True,
     )
 
 
@@ -56,7 +70,8 @@ def _merge():
         i18ndude, locale_path, domain, locale_path
     )
     subprocess.call(
-        cmd, shell=True,
+        cmd,
+        shell=True,
     )
 
 

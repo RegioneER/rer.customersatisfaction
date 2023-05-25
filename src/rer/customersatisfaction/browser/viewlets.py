@@ -18,7 +18,7 @@ class CustomerSatisfactionViewlet(ViewletBase):
         context_state = api.content.get_view(
             context=self.context,
             request=self.request,
-            name=u"plone_context_state",
+            name="plone_context_state",
         )
         if context_state.canonical_object() == api.portal.get():
             return ""

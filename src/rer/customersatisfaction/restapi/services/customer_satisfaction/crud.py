@@ -38,7 +38,7 @@ class CustomerSatisfactionAdd(DataAdd):
         context_state = api.content.get_view(
             context=self.context,
             request=self.request,
-            name=u"plone_context_state",
+            name="plone_context_state",
         )
         context = context_state.canonical_object()
         data["uid"] = context.UID()

@@ -18,7 +18,6 @@ import unittest
 
 
 class TestCustomerSatisfactionGet(unittest.TestCase):
-
     layer = RER_CUSTOMERSATISFACTION_API_FUNCTIONAL_TESTING
 
     def add_record(self, vote, date, uid="", title="", comment=""):
@@ -45,14 +44,20 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
         api.user.create(
-            email="member@example.com", username="member", password="secret",
+            email="member@example.com",
+            username="member",
+            password="secret",
         )
         api.user.create(
-            email="global@example.com", username="global", password="secret",
+            email="global@example.com",
+            username="global",
+            password="secret",
         )
 
         api.user.create(
-            email="local@example.com", username="local", password="secret",
+            email="local@example.com",
+            username="local",
+            password="secret",
         )
 
         # create some contents
@@ -68,7 +73,8 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
         transaction.commit()
 
         api.user.grant_roles(
-            username="global", roles=["Editor"],
+            username="global",
+            roles=["Editor"],
         )
         api.user.grant_roles(
             username="local", roles=["Editor"], obj=self.restricted_document
@@ -95,7 +101,6 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
 
     def test_other_users_can_access_endpoint(self):
         for username in ["member", "local", "global"]:
-
             api_session = RelativeSession(self.portal_url)
             api_session.headers.update({"Accept": "application/json"})
             api_session.auth = (username, "secret")
@@ -191,7 +196,10 @@ class TestCustomerSatisfactionGet(unittest.TestCase):
         now = datetime.now()
         self.add_record(vote=1, date=now, comment="is ok", uid=self.document.UID())
         self.add_record(
-            vote=1, date=now, comment="ok for deleted content", uid="qwertyuiop",
+            vote=1,
+            date=now,
+            comment="ok for deleted content",
+            uid="qwertyuiop",
         )
 
         response = self.api_session.get(self.url)
