@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+2.2.4 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 2.2.3 (2023-05-25)
 ------------------
 - Add export to customer-satisfaction-global view

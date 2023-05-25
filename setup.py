@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="rer.customersatisfaction",
-    version="2.2.3",
+    version="2.2.4.dev0",
     description="Customer satisfaction",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
