@@ -4,7 +4,8 @@ Changelog
 
 2.2.3 (unreleased)
 ------------------
-
+- Add export to customer-satisfaction-global view
+  [folix-01]
 - Add Spanish translations.
   [macagua]
 - Fix english translations.
@@ -22,8 +23,6 @@ Changelog
 
 2.2.1 (2023-03-24)
 ------------------
-- Add export to customer-satisfaction-global view
-  [folix-01]
 - Add customer-satisfaction-global view
   [folix-01]
 - Fix english label.
