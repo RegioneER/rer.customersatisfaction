@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2.3 (unreleased)
+2.2.3 (2023-05-25)
 ------------------
 - Add export to customer-satisfaction-global view
   [folix-01]
