@@ -5,7 +5,8 @@ Changelog
 2.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- add escape chars for csv in the customer-satisfaction-gloabal view.
+  [folix-01]
 
 
 2.2.3 (2023-05-25)
