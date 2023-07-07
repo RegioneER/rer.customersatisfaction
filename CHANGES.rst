@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2.4 (unreleased)
+2.2.4 (2023-07-07)
 ------------------
 
 - add escape chars for csv in the customer-satisfaction-gloabal view.
