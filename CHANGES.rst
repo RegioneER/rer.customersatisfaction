@@ -5,7 +5,8 @@ Changelog
 2.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Extend the exported csv report compatibility with ms. Excel.
+  [folix-01]
 
 
 2.2.4 (2023-07-07)
