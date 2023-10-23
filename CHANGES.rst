@@ -5,7 +5,10 @@ Changelog
 2.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add customized date format to the exported csv
+  [folix-01]
+- Extend the exported csv report compatibility with ms. Excel.
+  [folix-01]
 
 
 2.2.4 (2023-07-07)

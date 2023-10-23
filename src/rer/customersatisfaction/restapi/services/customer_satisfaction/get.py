@@ -81,7 +81,11 @@ class CustomerSatisfactionGet(DataGet):
             comment = review._attrs.get("comment", "")
             if comment:
                 data["comments"].append(
-                    {"comment": comment, "date": json_compatible(date), "vote": vote}
+                    {
+                        "comment": comment,
+                        "date": json_compatible(date),
+                        "vote": vote,
+                    }
                 )
             if not data.get("last_vote", None):
                 data["last_vote"] = date
@@ -152,7 +156,12 @@ class CustomerSatisfactionCSVGet(DataGet):
                     v = ", ".join(v)
                 if isinstance(v, int):
                     v = str(v)
-                val = json_compatible(v)
+
+                # Override the datetime conversion in according to customer needs
+                if isinstance(v, datetime):
+                    v = v.strftime("%Y-%m-%d %H:%M:%S")
+
+                val = json_compatible(v).replace("\n", " ").replace("\r", " ")
                 if six.PY2:
                     val = val.encode("utf-8")
                 data[k] = val
@@ -161,7 +170,14 @@ class CustomerSatisfactionCSVGet(DataGet):
             else:
                 data["url"] = ""
             rows.append(data)
-        writer = csv.DictWriter(sbuf, fieldnames=columns, delimiter=",")
+        writer = csv.DictWriter(
+            sbuf,
+            fieldnames=columns,
+            delimiter=",",
+            quotechar='"',
+            escapechar=",",
+            quoting=csv.QUOTE_MINIMAL,
+        )
         writer.writeheader()
         for row in rows:
             try:
