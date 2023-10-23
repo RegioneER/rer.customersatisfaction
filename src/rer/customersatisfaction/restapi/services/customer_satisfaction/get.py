@@ -176,7 +176,7 @@ class CustomerSatisfactionCSVGet(DataGet):
             delimiter=",",
             quotechar='"',
             escapechar=",",
-            quoting=csv.QUOTE_ALL,
+            quoting=csv.QUOTE_MINIMAL,
         )
         writer.writeheader()
         for row in rows:
