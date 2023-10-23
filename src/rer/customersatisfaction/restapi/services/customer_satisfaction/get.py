@@ -156,6 +156,11 @@ class CustomerSatisfactionCSVGet(DataGet):
                     v = ", ".join(v)
                 if isinstance(v, int):
                     v = str(v)
+
+                # Override the datetime conversion in according to customer needs
+                if isinstance(v, datetime):
+                    v = v.strftime("%Y-%m-%d %H:%M:%S")
+
                 val = json_compatible(v).replace("\n", " ").replace("\r", " ")
                 if six.PY2:
                     val = val.encode("utf-8")
