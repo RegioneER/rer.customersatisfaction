@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.2.5 (unreleased)
+2.2.6 (unreleased)
 ------------------
 
 - Add customized date format to the exported csv
